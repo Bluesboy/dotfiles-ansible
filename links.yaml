@@ -12,3 +12,11 @@
       state: link
       owner: 1000
       group: 1000
+
+  - name: "Create symlink for NeoVim configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/nvim"
+      dest: ~/.config/nvim
+      state: link
+      owner: 1000
+      group: 1000
