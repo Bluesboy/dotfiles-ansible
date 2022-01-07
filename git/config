@@ -1,0 +1,5 @@
+[user]
+	name = Bluesboy
+	email = youngreg@ya.ru
+[core]
+	editor = nvim
