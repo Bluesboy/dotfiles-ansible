@@ -1,0 +1,23 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_become: true
+    ansible_become_user: root
+    ansible_ask_become_pass: true
+
+  tasks:
+  - name: "Install Common GUI tools"
+    community.general.pacman:
+      name: 
+      - alacritty
+      update_cache: yes
+      state: latest
+
+  - name: "Install Opera"
+    community.general.pacman:
+      name: 
+      - opera
+      - opera-ffmpeg-codecs
+      state: latest
+...

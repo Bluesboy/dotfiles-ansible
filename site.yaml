@@ -1,4 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- import_playbook: links.yaml
+- import_playbook: common.yaml
+- import_playbook: dev-tools.yaml
+- import_playbook: display.yaml
+- import_playbook: apps.yaml
 ...

@@ -1,0 +1,16 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_become: true
+    ansible_become_user: root
+    ansible_ask_become_pass: true
+
+  tasks:
+  - name: "Rust"
+    community.general.pacman:
+      name: 
+      - base-devel
+      - rust
+      state: latest
+...

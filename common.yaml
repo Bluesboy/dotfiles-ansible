@@ -1,0 +1,56 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_ask_become_pass: true
+
+  tasks:
+  - name: "Disable PC speaker in console"
+    ansible.builtin.replace:
+      path: /etc/inputrc
+      regexp: '^#(set bell-style none)$'
+      replace: '\1' 
+    become: yes
+
+  - name: "Create symlink for Git configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/git"
+      dest: ~/.config/git
+      state: link
+      owner: 1000
+      group: 1000
+    become: no
+
+  - name: "Create symlink for NeoVim configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/nvim"
+      dest: ~/.config/nvim
+      state: link
+      owner: 1000
+      group: 1000
+    become: no
+
+  - name: "Install common packages"
+    community.general.pacman:
+      name: 
+      - curl
+      - neovim
+      - ripgrep
+      - which
+      - exa
+      - tmux
+      - broot
+      - bottom
+      - bat
+      - bash-completion
+      update_cache: yes
+      state: latest
+    become: yes
+
+  - name: "Install LVM2"
+    community.general.pacman:
+      name: 
+      - lvm2
+      state: latest
+    become: yes
+...

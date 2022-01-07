@@ -1,0 +1,65 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_ask_become_pass: yes
+
+  tasks:
+  - name: "Install Xorg"
+    community.general.pacman:
+      name: 
+      - xorg
+      - xorg-xinit
+      - nvidia
+      - nvidia-utils
+      - xorg-fonts-100dpi
+      state: latest
+    become: yes
+
+  - name: "Install Fonts"
+    community.general.pacman:
+      name: 
+      - ttf-liberation
+      update_cache: yes
+      state: latest
+    become: yes
+
+  - name: "Create symlink for awesome configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/awesome"
+      dest: ~/.config/awesome
+      state: link
+      owner: 1000
+      group: 1000
+    become: no
+
+  - name: "Install Awesome"
+    community.general.pacman:
+      name: 
+      - awesome
+      - picom
+      update_cache: yes
+      state: latest
+    become: yes
+
+  - name: "Install LightDM"
+    community.general.pacman:
+      name: 
+      - lightdm
+      - lightdm-slick-greeter
+      state: latest
+    become: yes
+
+  - name: "Configure Greeter for LightDM"
+    ansible.builtin.lineinfile:
+      path: /etc/lightdm/lightdm.conf
+      regexp: "#greeter-session="
+      line: greeter-session=lightdm-slick-greeter
+    become: yes
+
+  - name: "Enable LightDM"
+    ansible.builtin.systemd:
+      name: lightdm
+      enabled: yes
+    become: yes
+...
