@@ -54,8 +54,25 @@
       - bottom
       - bat
       - bash-completion
+      - go-yq
+      - fish
+      - starship
       update_cache: yes
       state: latest
+    become: yes
+
+  - name: "Create symlink for Fish configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/fish"
+      dest: ~/.config/fish
+      state: link
+      owner: 1000
+      group: 1000
+
+  - name: "Set fish as default shell for current user"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      shell: /usr/bin/fish
     become: yes
 
   - name: "Install LVM2"
