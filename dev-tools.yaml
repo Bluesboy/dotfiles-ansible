@@ -2,15 +2,36 @@
 ---
 - hosts: localhost
   vars:
-    ansible_become: true
-    ansible_become_user: root
-    ansible_ask_become_pass: true
+    ansible_ask_become_pass: yes
 
   tasks:
+  - name: "Create the `aur_builder` user"
+    become: yes
+    ansible.builtin.user:
+      name: aur_builder
+      create_home: yes
+      group: wheel
+
+  - name: "Allow the `aur_builder` user to run `sudo pacman` without a password"
+    become: yes
+    ansible.builtin.lineinfile:
+      path: /etc/sudoers.d/11-install-aur_builder
+      line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+      create: yes
+      validate: 'visudo -cf %s'
+
   - name: "Rust"
     community.general.pacman:
       name: 
       - base-devel
       - rust
       state: latest
+    become: yes
+
+  - name: "Paru"
+    kewlfft.aur.aur:
+      name: paru
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...
