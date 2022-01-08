@@ -19,12 +19,9 @@
   - name: "Nerd Fonts"
     kewlfft.aur.aur:
       name:
+      - nerd-fonts-complete
       - nerd-fonts-dejavu-complete
       - nerd-fonts-source-code-pro
-      - nerd-fonts-fira-code
-      - nerd-fonts-terminus
-      - nerd-fonts-liberation-mono
-      - nerd-fonts-noto
       state: latest
     become: yes
     become_user: aur_builder
