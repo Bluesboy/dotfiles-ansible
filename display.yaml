@@ -16,10 +16,26 @@
       state: latest
     become: yes
 
+  - name: "Nerd Fonts"
+    kewlfft.aur.aur:
+      name:
+      - nerd-fonts-dejavu-complete
+      - nerd-fonts-source-code-pro
+      - nerd-fonts-fira-code
+      - nerd-fonts-terminus
+      - nerd-fonts-liberation-mono
+      - nerd-fonts-noto
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Install Fonts"
     community.general.pacman:
       name: 
-      - ttf-liberation
+      - noto-fonts
+      - noto-fonts-emoji
+      - noto-fonts-cjk
+      - noto-fonts-extra
       update_cache: yes
       state: latest
     become: yes
