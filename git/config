@@ -1,5 +1,10 @@
 [user]
 	name = Bluesboy
 	email = youngreg@ya.ru
+[pull]
+	ff = only
 [core]
-	editor = nvim
+	editor = $EDITOR
+[alias]
+	lo = log --oneline -10
+	s = status
