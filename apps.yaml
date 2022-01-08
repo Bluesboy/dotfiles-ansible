@@ -2,17 +2,24 @@
 ---
 - hosts: localhost
   vars:
-    ansible_become: true
-    ansible_become_user: root
     ansible_ask_become_pass: true
 
   tasks:
+  - name: "Create symlink for NeoVim configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/alacritty"
+      dest: ~/.config/alacritty
+      state: link
+      owner: 1000
+      group: 1000
+
   - name: "Install Common GUI tools"
     community.general.pacman:
       name: 
       - alacritty
       update_cache: yes
       state: latest
+    become: yes
 
   - name: "Install Opera"
     community.general.pacman:
@@ -20,4 +27,5 @@
       - opera
       - opera-ffmpeg-codecs
       state: latest
+    become: yes
 ...
