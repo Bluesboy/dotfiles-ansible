@@ -3,6 +3,12 @@
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
+    configs:
+    - git
+    - nvim
+    - tmux
+    - starship
+    - fish
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -12,29 +18,15 @@
       replace: '\1' 
     become: yes
 
-  - name: "Create symlink for Git configuration"
+  - name: "Create symlink for configuration directories"
     ansible.builtin.file:
-      src: "{{ playbook_dir }}/git"
-      dest: ~/.config/git
+      src: "{{ playbook_dir }}/{{ item }}"
+      dest: "~/.config/{{ item }}"
       state: link
       owner: 1000
       group: 1000
+    loop: "{{ configs }}"
 
-  - name: "Create symlink for NeoVim configuration"
-    ansible.builtin.file:
-      src: "{{ playbook_dir }}/nvim"
-      dest: ~/.config/nvim
-      state: link
-      owner: 1000
-      group: 1000
-
-  - name: "Create symlink for Tmux configuration"
-    ansible.builtin.file:
-      src: "{{ playbook_dir }}/tmux"
-      dest: ~/.config/tmux
-      state: link
-      owner: 1000
-      group: 1000
 
   - name: "Clone tmux-powerline"
     ansible.builtin.git:
@@ -60,14 +52,6 @@
       update_cache: yes
       state: latest
     become: yes
-
-  - name: "Create symlink for Fish configuration"
-    ansible.builtin.file:
-      src: "{{ playbook_dir }}/fish"
-      dest: ~/.config/fish
-      state: link
-      owner: 1000
-      group: 1000
 
   - name: "Set fish as default shell for current user"
     ansible.builtin.user:

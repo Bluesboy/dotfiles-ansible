@@ -1,0 +1,12 @@
+#Do not add new line
+
+add_newline = false
+
+[line_break]
+disabled = false
+
+[character]
+error_symbol = "[✖](bold red)"
+
+[time]
+disabled = true
