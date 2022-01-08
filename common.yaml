@@ -19,7 +19,6 @@
       state: link
       owner: 1000
       group: 1000
-    become: no
 
   - name: "Create symlink for NeoVim configuration"
     ansible.builtin.file:
@@ -28,7 +27,19 @@
       state: link
       owner: 1000
       group: 1000
-    become: no
+
+  - name: "Create symlink for Tmux configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/tmux"
+      dest: ~/.config/tmux
+      state: link
+      owner: 1000
+      group: 1000
+
+  - name: "Clone tmux-powerline"
+    ansible.builtin.git:
+      repo: 'https://github.com/erikw/tmux-powerline.git'
+      dest: "~/.local/share/tmux-powerline"
 
   - name: "Install common packages"
     community.general.pacman:
