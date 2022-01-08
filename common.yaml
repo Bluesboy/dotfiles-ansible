@@ -27,7 +27,6 @@
       group: 1000
     loop: "{{ configs }}"
 
-
   - name: "Clone tmux-powerline"
     ansible.builtin.git:
       repo: 'https://github.com/erikw/tmux-powerline.git'
@@ -37,6 +36,8 @@
     community.general.pacman:
       name: 
       - curl
+      - wget
+      - unzip
       - neovim
       - ripgrep
       - which

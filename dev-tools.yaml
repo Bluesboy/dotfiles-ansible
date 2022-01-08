@@ -34,4 +34,18 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: "NPM"
+    community.general.pacman:
+      name: 
+      - npm
+      state: latest
+    become: yes
+
+  - name: "Instal Node version manager"
+    community.general.npm:
+      name: n
+      global: yes
+      state: latest
+    become: yes
 ...
