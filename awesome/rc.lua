@@ -133,6 +133,19 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = { },
+        properties = {
+            focus = awful.client.focus.filter,
+            raise = true,
+            titlebars_enabled = false,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        }
+    }
+}
+
 local function setup_screen_tags(screen)
     for i = 1, tag_count do
         awful.tag({ i }, screen, awful.layout.layouts[2])
