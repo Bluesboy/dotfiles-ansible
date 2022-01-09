@@ -75,5 +75,8 @@ keymap("n", "<leader>x", ":wq<CR>", opts)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
+-- Backspace turn off search highlitning
+keymap("n", "<BS>", ":nohlsearch<CR>", opts)
+
 -- Nvimtree
 keymap("n", "<C-n>", ":NvimTreeToggle<cr>", opts)
