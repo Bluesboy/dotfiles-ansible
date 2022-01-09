@@ -3,15 +3,26 @@
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
+    configs:
+    - alacritty
+    - lf
 
   tasks:
   - name: "Create symlink for NeoVim configuration"
     ansible.builtin.file:
-      src: "{{ playbook_dir }}/alacritty"
-      dest: ~/.config/alacritty
+      src: "{{ playbook_dir }}/{{ item }}"
+      dest: "~/.config/{{ item }}"
       state: link
       owner: 1000
       group: 1000
+    loop: "{{ configs }}"
+
+  - name: "Apps from AUR"
+    kewlfft.aur.aur:
+      name: lf-bin
+      state: latest
+    become: yes
+    become_user: aur_builder
 
   - name: "Install Common GUI tools"
     community.general.pacman:

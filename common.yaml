@@ -48,6 +48,7 @@
       - bat
       - bash-completion
       - go-yq
+      - openbsd-netcat
       - fish
       - starship
       update_cache: yes
