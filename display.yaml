@@ -55,6 +55,14 @@
       state: latest
     become: yes
 
+  - name: "Install Auxiliary WM applications"
+    community.general.pacman:
+      name: 
+      - dmenu
+      update_cache: yes
+      state: latest
+    become: yes
+
   - name: "Install LightDM"
     community.general.pacman:
       name: 
