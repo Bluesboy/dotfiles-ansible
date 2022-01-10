@@ -61,10 +61,11 @@
       shell: /usr/bin/fish
     become: yes
 
-  - name: "Install LVM2"
+  - name: "Install disk utilities"
     community.general.pacman:
       name: 
       - lvm2
+      - mdadm
       state: latest
     become: yes
 ...
