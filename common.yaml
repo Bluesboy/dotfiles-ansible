@@ -44,12 +44,14 @@
       - curl
       - wget
       - unzip
+      - rsync
       - neovim
       - ripgrep
       - which
       - exa
       - tmux
       - broot
+      - dust
       - bottom
       - bat
       - bash-completion
