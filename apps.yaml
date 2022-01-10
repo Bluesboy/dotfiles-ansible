@@ -28,6 +28,7 @@
     community.general.pacman:
       name: 
       - alacritty
+      - flameshot
       update_cache: yes
       state: latest
     become: yes
