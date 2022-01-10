@@ -46,6 +46,15 @@
       group: 1000
     become: no
 
+  - name: "Create symlink for Picom configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/picom"
+      dest: ~/.config/picom
+      state: link
+      owner: 1000
+      group: 1000
+    become: no
+
   - name: "Install Awesome"
     community.general.pacman:
       name: 
