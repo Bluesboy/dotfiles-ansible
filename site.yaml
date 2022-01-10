@@ -4,5 +4,6 @@
   import_playbook: common.yaml
 - import_playbook: dev-tools.yaml
 - import_playbook: display.yaml
+- import_playbook: audio.yaml
 - import_playbook: apps.yaml
 ...
