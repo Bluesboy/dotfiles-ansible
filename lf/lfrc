@@ -101,6 +101,9 @@ cmd zip ${{
 
 # My settings
 set icons
+set info size
+set dircounts
 
 # My keybindings
 map <backspace2> set hidden!
+map S %tmux split-window
