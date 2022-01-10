@@ -39,4 +39,35 @@
       - opera-ffmpeg-codecs
       state: latest
     become: yes
+
+  - name: "Install Messengers"
+    community.general.pacman:
+      name: 
+      - telegram-desktop
+      - element-desktop
+      state: latest
+    become: yes
+
+  - name: "Install Slack"
+    kewlfft.aur.aur:
+      name: slack-desktop
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Skype"
+    kewlfft.aur.aur:
+      name: skypeforlinux-stable-bin
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Thunderbird"
+    community.general.pacman:
+      name: 
+      - thunderbird
+      - thunderbird-i18n-ru
+      - thunderbird-i18n-en-us
+      state: latest
+    become: yes
 ...
