@@ -18,6 +18,12 @@
       replace: '\1' 
     become: yes
 
+  - name: "Enable TimesyncD"
+    ansible.builtin.systemd:
+      name: systemd-timesyncd
+      enabled: yes
+    become: yes
+
   - name: "Create symlink for configuration directories"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/{{ item }}"
