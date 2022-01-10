@@ -48,4 +48,12 @@
       global: yes
       state: latest
     become: yes
+
+  - name: "Lua"
+    community.general.pacman:
+      name: 
+      - lua
+      - luarocks
+      state: latest
+    become: yes
 ...
