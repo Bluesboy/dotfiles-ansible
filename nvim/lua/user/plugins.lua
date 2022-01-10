@@ -57,7 +57,7 @@ return packer.startup(function(use)
 
   -- Lualine
   use {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require("lualine").setup {
@@ -100,6 +100,24 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+
+  -- Tmux integration
+  use({
+    "aserowy/tmux.nvim",
+    config = function()
+        require("tmux").setup({
+            copy_sync = {
+                enable = true,
+            },
+            navigation = {
+                enable_default_keybindings = true,
+            },
+            resize = {
+                enable_default_keybindings = true,
+            }
+        })
+    end
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
