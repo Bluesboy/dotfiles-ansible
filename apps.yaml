@@ -70,4 +70,20 @@
       - thunderbird-i18n-en-us
       state: latest
     become: yes
+
+  - name: "Install k8s tools"
+    community.general.pacman:
+      name:
+      - kubectl
+      - kubectx
+      - k9s
+      state: latest
+    become: yes
+
+  - name: "Install Google Cloud SDK"
+    kewlfft.aur.aur:
+      name: google-cloud-sdk
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...
