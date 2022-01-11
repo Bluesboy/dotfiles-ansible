@@ -1,4 +1,4 @@
 [submodule "awesome/lain"]
-	path = awesome/lain
+	path = config/awesome/lain
 	url = https://github.com/lcpz/lain.git
 	branch = master

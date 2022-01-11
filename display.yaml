@@ -3,6 +3,9 @@
 - hosts: localhost
   vars:
     ansible_ask_become_pass: yes
+    configs:
+    - awesome
+    - picom
 
   tasks:
   - name: "Install Xorg"
@@ -37,23 +40,14 @@
       state: latest
     become: yes
 
-  - name: "Create symlink for awesome configuration"
+  - name: "Create symlinks for configurations"
     ansible.builtin.file:
-      src: "{{ playbook_dir }}/awesome"
-      dest: ~/.config/awesome
+      src: "{{ playbook_dir }}/config/{{ item }}"
+      dest: "~/.config/{{ item }}"
       state: link
       owner: 1000
       group: 1000
-    become: no
-
-  - name: "Create symlink for Picom configuration"
-    ansible.builtin.file:
-      src: "{{ playbook_dir }}/picom"
-      dest: ~/.config/picom
-      state: link
-      owner: 1000
-      group: 1000
-    become: no
+    loop: "{{ configs }}"
 
   - name: "Install Awesome"
     community.general.pacman:

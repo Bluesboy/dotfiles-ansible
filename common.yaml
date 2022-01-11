@@ -26,7 +26,7 @@
 
   - name: "Create symlink for configuration directories"
     ansible.builtin.file:
-      src: "{{ playbook_dir }}/{{ item }}"
+      src: "{{ playbook_dir }}/config/{{ item }}"
       dest: "~/.config/{{ item }}"
       state: link
       owner: 1000
