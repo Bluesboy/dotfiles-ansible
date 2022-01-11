@@ -40,6 +40,7 @@ local tag_count = 5
 -- beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.font = "UbuntuMono Nerd Font 11"
+beautiful.useless_gap = 2
 
 if awesome.startup_errors then notify_error(awesome.startup_errors) end
 awesome.connect_signal("debug::error", notify_error)
