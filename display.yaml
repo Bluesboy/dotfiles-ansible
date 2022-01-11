@@ -16,6 +16,7 @@
       - nvidia
       - nvidia-utils
       - xorg-fonts-100dpi
+      - xclip
       state: latest
     become: yes
 
