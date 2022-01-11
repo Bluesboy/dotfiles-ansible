@@ -40,8 +40,15 @@
       name: 
       - opera
       - opera-ffmpeg-codecs
+      - browserpass
+      - browserpass-chromium
       state: latest
     become: yes
+
+  - name: "Make browserpass host config"
+    make:
+      chdir: /usr/lib/browserpass
+      target: hosts-chrome-user
 
   - name: "Install Messengers"
     community.general.pacman:
