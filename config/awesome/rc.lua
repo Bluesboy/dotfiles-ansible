@@ -243,7 +243,8 @@ local function setup_root_interactions()
         awful.key({ meta }, "[", function () awful.layout.inc(-1) end),
         awful.key({ meta }, "Tab", function () awful.tag.viewnext() end),
         awful.key({ meta, "Shift" }, "Tab", function () awful.tag.viewprev() end),
-        awful.key({ "Control" }, "`", function () quake_term:toggle() end)
+        awful.key({ "Control" }, "`", function () quake_term:toggle() end),
+        awful.key({ meta }, "v", function () awful.spawn("clipmenu") end)
         )
 
     for i = 1, tag_count do
@@ -348,7 +349,8 @@ local autostart = {
     "slack",
     "element-desktop",
     "thunderbird",
-    "telegram-desktop"
+    "telegram-desktop",
+    "clipmenud"
 }
 
 for _, i in pairs(autostart) do

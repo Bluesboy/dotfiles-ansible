@@ -63,6 +63,7 @@
     community.general.pacman:
       name: 
       - dmenu
+      - clipmenu
       update_cache: yes
       state: latest
     become: yes
