@@ -83,7 +83,39 @@ awful.rules.rules = {
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap+awful.placement.no_offscreen
         }
-    }
+    },
+    -- Put messangers to second tag
+    { rule_any = {
+        class = {
+            "Element",
+            "TelegramDesktop",
+            "Slack",
+            }
+        },
+        properties = {
+            tag = "2"
+        }
+    },
+    -- Put Thunderbird to third tag
+    { rule_any = {
+        class = {
+            "Thunderbird"
+            }
+        },
+        properties = {
+            tag = "3"
+        }
+    },
+    -- MPV always floating
+    { rule_any = {
+        class = {
+            "mpv"
+            }
+        },
+        properties = {
+            floating = true
+        }
+    },
 }
 
 -- Create a wibox for each screen and add it
@@ -311,6 +343,10 @@ awful.screen.connect_for_each_screen(setup_screen_tags)
 
 local autostart = {
     "picom",
+    "flameshot",
+    "slack",
+    "element-desktop",
+    "thunderbird"
 }
 
 for _, i in pairs(autostart) do
