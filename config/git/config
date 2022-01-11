@@ -8,3 +8,5 @@
 [alias]
 	lo = log --oneline -10
 	s = status
+[credential]
+	helper = !pass-git-helper $@

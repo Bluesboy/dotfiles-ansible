@@ -7,6 +7,7 @@
     - alacritty
     - lf
     - mpv
+    - pass-git-helper
 
   tasks:
   - name: "Create symlink for NeoVim configuration"
@@ -34,6 +35,21 @@
       update_cache: yes
       state: latest
     become: yes
+
+  - name: "Install Pass"
+    community.general.pacman:
+      name: 
+      - pass
+      - pass-otp
+      state: latest
+    become: yes
+
+  - name: "Install pass-git-helper"
+    kewlfft.aur.aur:
+      name: pass-git-helper
+      state: latest
+    become: yes
+    become_user: aur_builder
 
   - name: "Install Opera"
     community.general.pacman:

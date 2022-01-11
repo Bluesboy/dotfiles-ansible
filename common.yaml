@@ -60,7 +60,6 @@
       - fish
       - starship
       - jq
-      - pass
       - lazygit
       update_cache: yes
       state: latest
