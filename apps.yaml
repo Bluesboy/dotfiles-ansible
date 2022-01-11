@@ -74,13 +74,28 @@
       state: latest
     become: yes
 
-  - name: "Install k8s tools"
+  - name: "Install Docker tools"
     community.general.pacman:
       name:
+      - docker
       - kubectl
       - kubectx
       - k9s
       state: latest
+    become: yes
+
+  - name: "Enable Docker"
+    ansible.builtin.systemd:
+      name: docker
+      state: started
+      enabled: yes
+    become: yes
+
+  - name: "Add current user to docker group"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      groups: docker
+      append: yes
     become: yes
 
   - name: "Install Google Cloud SDK"
