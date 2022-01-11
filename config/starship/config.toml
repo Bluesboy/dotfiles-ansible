@@ -10,3 +10,6 @@ error_symbol = "[✖](bold red)"
 
 [time]
 disabled = true
+
+[gcloud]
+format = ' [$symbol$active]($style) '
