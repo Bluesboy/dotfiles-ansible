@@ -346,7 +346,8 @@ local autostart = {
     "flameshot",
     "slack",
     "element-desktop",
-    "thunderbird"
+    "thunderbird",
+    "telegram-desktop"
 }
 
 for _, i in pairs(autostart) do

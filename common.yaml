@@ -59,6 +59,8 @@
       - openbsd-netcat
       - fish
       - starship
+      - jq
+      - pass
       update_cache: yes
       state: latest
     become: yes
