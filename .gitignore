@@ -1,2 +1,3 @@
 *.bak
 packer_compiled.lua
+config/mpv/watch_later
