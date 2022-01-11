@@ -98,6 +98,13 @@
       append: yes
     become: yes
 
+  - name: "Install Krew"
+    kewlfft.aur.aur:
+      name: krew
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Install Google Cloud SDK"
     kewlfft.aur.aur:
       name: google-cloud-sdk
