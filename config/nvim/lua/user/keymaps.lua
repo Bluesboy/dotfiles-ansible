@@ -25,7 +25,7 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>e", ":Lex 30<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -72,11 +72,15 @@ keymap("n", "<leader>Q", ":q!<CR>", opts)
 keymap("n", "<leader>x", ":wq<CR>", opts)
 --
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Backspace turn off search highlitning
 keymap("n", "<BS>", ":nohlsearch<CR>", opts)
 
 -- Nvimtree
-keymap("n", "<C-n>", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
+
+-- Null-ls
+keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.formatting_sync()<CR>", opts)
+keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_formatting()<CR>", opts)

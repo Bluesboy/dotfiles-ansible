@@ -21,13 +21,12 @@ local function notify_error(err)
     naughty.notify({
         preset = naughty.config.presets.critical,
         title = "Error",
-        text = tostring(err)
+        text = tostring(err),
     })
 end
 
 local theme = {}
 theme.bg_focus = "#4d6d91"
-
 
 local terminal = "alacritty"
 -- local editor = os.getenv("EDITOR")
@@ -42,7 +41,9 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.font = "UbuntuMono Nerd Font 11"
 beautiful.useless_gap = 2
 
-if awesome.startup_errors then notify_error(awesome.startup_errors) end
+if awesome.startup_errors then
+    notify_error(awesome.startup_errors)
+end
 awesome.connect_signal("debug::error", notify_error)
 --
 -- setup quake-style terminal
@@ -52,7 +53,7 @@ local quake_term = lain.util.quake({
     extra = "--class QuakeDD",
     visible = true,
     height = 1,
-    border = 0 
+    border = 0,
 })
 
 awful.layout.layouts = {
@@ -61,7 +62,7 @@ awful.layout.layouts = {
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
-    awful.layout.suit.max
+    awful.layout.suit.max,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
@@ -76,46 +77,50 @@ awful.layout.layouts = {
 
 awful.rules.rules = {
     -- All clients will match this rule.
-    { rule = { },
+    {
+        rule = {},
         properties = {
             focus = awful.client.focus.filter,
             raise = true,
             titlebars_enabled = false,
             screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
-        }
+            placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+        },
     },
     -- Put messangers to second tag
-    { rule_any = {
-        class = {
-            "Element",
-            "TelegramDesktop",
-            "Slack",
-            }
+    {
+        rule_any = {
+            class = {
+                "Element",
+                "TelegramDesktop",
+                "Slack",
+            },
         },
         properties = {
-            tag = "2"
-        }
+            tag = "2",
+        },
     },
     -- Put Thunderbird to third tag
-    { rule_any = {
-        class = {
-            "Thunderbird"
-            }
+    {
+        rule_any = {
+            class = {
+                "Thunderbird",
+            },
         },
         properties = {
-            tag = "3"
-        }
+            tag = "3",
+        },
     },
     -- MPV always floating
-    { rule_any = {
-        class = {
-            "mpv"
-            }
+    {
+        rule_any = {
+            class = {
+                "mpv",
+            },
         },
         properties = {
-            floating = true
-        }
+            floating = true,
+        },
     },
 }
 
@@ -128,68 +133,81 @@ local function setup_screen_tags(screen)
     -- Layout Box
     screen.mylayoutbox = awful.widget.layoutbox(screen)
     screen.mylayoutbox:buttons(gears.table.join(
-             awful.button({ }, 1, function () awful.layout.inc(-1) end),
-             awful.button({ }, 3, function () awful.layout.inc( 1) end),
-             awful.button({ }, 4, function () awful.layout.inc(-1) end),
-             awful.button({ }, 5, function () awful.layout.inc( 1) end)))
+        awful.button({}, 1, function()
+            awful.layout.inc(-1)
+        end),
+        awful.button({}, 3, function()
+            awful.layout.inc(1)
+        end),
+        awful.button({}, 4, function()
+            awful.layout.inc(-1)
+        end),
+        awful.button({}, 5, function()
+            awful.layout.inc(1)
+        end)
+    ))
 
     -- Create a taglist widget
     local taglist_buttons = gears.table.join(
-        awful.button({ }, 1, function(t) t:view_only() end),
+        awful.button({}, 1, function(t)
+            t:view_only()
+        end),
         awful.button({ meta }, 1, function(t)
             if client.focus then
                 client.focus:move_to_tag(t)
             end
         end),
-        awful.button({ }, 3, awful.tag.viewtoggle),
+        awful.button({}, 3, awful.tag.viewtoggle),
         awful.button({ meta }, 3, function(t)
             if client.focus then
                 client.focus:toggle_tag(t)
             end
         end),
-        awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
-        awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end))
+        awful.button({}, 4, function(t)
+            awful.tag.viewprev(t.screen)
+        end),
+        awful.button({}, 5, function(t)
+            awful.tag.viewnext(t.screen)
+        end)
+    )
 
-    screen.mytaglist = awful.widget.taglist {
-        screen  = screen,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    screen.mytaglist = awful.widget.taglist({
+        screen = screen,
+        filter = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons,
+    })
 
     -- Create a tasklist widget
     local tasklist_buttons = gears.table.join(
-        awful.button({ }, 1, function (c)
+        awful.button({}, 1, function(c)
             if c == client.focus then
                 c.minimized = true
             else
-                c:emit_signal(
-                "request::activate",
-                "tasklist",
-                {raise = true}
-                )
+                c:emit_signal("request::activate", "tasklist", { raise = true })
             end
         end),
-        awful.button({ }, 3, function()
+        awful.button({}, 3, function()
             awful.menu.client_list({ theme = { width = 350 } })
         end),
-        awful.button({ }, 4, function ()
+        awful.button({}, 4, function()
             awful.client.focus.byidx(-1)
         end),
-        awful.button({ }, 5, function ()
+        awful.button({}, 5, function()
             awful.client.focus.byidx(1)
-        end))
+        end)
+    )
 
-    screen.mytasklist = awful.widget.tasklist {
-        screen  = screen,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-    }
+    screen.mytasklist = awful.widget.tasklist({
+        screen = screen,
+        filter = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons,
+    })
 
     -- Create the wibox
     screen.taskbar = awful.wibar({ position = "top", screen = screen })
 
     -- Add widgets to the wibox
-    screen.taskbar:setup {
+    screen.taskbar:setup({
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
@@ -202,7 +220,7 @@ local function setup_screen_tags(screen)
             wibox.widget.systray(),
             wibox.container.background(screen.mylayoutbox, theme.bg_focus),
         },
-    }
+    })
 end
 
 local function setup_root_interactions()
@@ -227,85 +245,121 @@ local function setup_root_interactions()
     local keys = gears.table.join(
         -- Launch terminal
         awful.key({ meta }, "Return", launch_terminal),
-        -- Restart Awesome 
-        awful.key({ meta, "Control" }, "r", restart_awesome), 
+        -- Restart Awesome
+        awful.key({ meta, "Control" }, "r", restart_awesome),
 
         -- Open Dmenu
-        awful.key({ meta }, "p", dmenu), 
+        awful.key({ meta }, "p", dmenu),
 
         -- Start Opera Browser
         awful.key({ meta }, "o", start_opera),
 
         -- Focus window to direction
-        awful.key({ meta }, "j", function () awful.client.focus.bydirection("down") end),
-        awful.key({ meta }, "k", function () awful.client.focus.bydirection("up") end),
-        awful.key({ meta }, "h", function () awful.client.focus.bydirection("left") end),
-        awful.key({ meta }, "l", function () awful.client.focus.bydirection("right") end),
+        awful.key({ meta }, "j", function()
+            awful.client.focus.bydirection("down")
+        end),
+        awful.key({ meta }, "k", function()
+            awful.client.focus.bydirection("up")
+        end),
+        awful.key({ meta }, "h", function()
+            awful.client.focus.bydirection("left")
+        end),
+        awful.key({ meta }, "l", function()
+            awful.client.focus.bydirection("right")
+        end),
 
         -- Move window to direction
-        awful.key({ meta, "Shift" }, "j", function () awful.client.swap.bydirection("down") end),
-        awful.key({ meta, "Shift" }, "k", function () awful.client.swap.bydirection("up") end),
-        awful.key({ meta, "Shift" }, "h", function () awful.client.swap.bydirection("left") end),
-        awful.key({ meta, "Shift" }, "l", function () awful.client.swap.bydirection("right") end),
+        awful.key({ meta, "Shift" }, "j", function()
+            awful.client.swap.bydirection("down")
+        end),
+        awful.key({ meta, "Shift" }, "k", function()
+            awful.client.swap.bydirection("up")
+        end),
+        awful.key({ meta, "Shift" }, "h", function()
+            awful.client.swap.bydirection("left")
+        end),
+        awful.key({ meta, "Shift" }, "l", function()
+            awful.client.swap.bydirection("right")
+        end),
 
         -- Switch window
-        awful.key({ alt }, "Tab", function () awful.client.focus.byidx( 1) end),
-        awful.key({ alt, "Shift" }, "Tab", function () awful.client.focus.byidx(-1) end),
+        awful.key({ alt }, "Tab", function()
+            awful.client.focus.byidx(1)
+        end),
+        awful.key({ alt, "Shift" }, "Tab", function()
+            awful.client.focus.byidx(-1)
+        end),
 
         -- Switch layout
-        awful.key({ meta }, "]", function () awful.layout.inc( 1) end),
-        awful.key({ meta }, "[", function () awful.layout.inc(-1) end),
+        awful.key({ meta }, "]", function()
+            awful.layout.inc(1)
+        end),
+        awful.key({ meta }, "[", function()
+            awful.layout.inc(-1)
+        end),
 
         -- Switch tag
-        awful.key({ meta }, "Tab", function () awful.tag.viewnext() end),
-        awful.key({ meta, "Shift" }, "Tab", function () awful.tag.viewprev() end),
+        awful.key({ meta }, "Tab", function()
+            awful.tag.viewnext()
+        end),
+        awful.key({ meta, "Shift" }, "Tab", function()
+            awful.tag.viewprev()
+        end),
 
         -- Open drop down terminal
-        awful.key({ "Control" }, "`", function () quake_term:toggle() end),
+        awful.key({ "Control" }, "`", function()
+            quake_term:toggle()
+        end),
 
         -- Open Clipmenu
-        awful.key({ meta }, "v", function () awful.spawn("clipmenu") end),
+        awful.key({ meta }, "v", function()
+            awful.spawn("clipmenu")
+        end),
 
         -- Open Passmenu
-        awful.key({ meta, "Shift" }, "p", function () awful.spawn("passmenu") end)
-        )
+        awful.key({ meta, "Shift" }, "p", function()
+            awful.spawn("passmenu")
+        end)
+    )
 
     for i = 1, tag_count do
-        keys = gears.table.join(keys,
-        -- Switch to tag.
-        awful.key({ meta }, i, function ()
-            local screen = awful.screen.focused()
-            local tag = screen.tags[i]
-            if tag then
-                tag:view_only()
-            end
-        end),
-        -- Toggle tag display.
-        awful.key({ meta, "Control" }, i, function ()
-            local screen = awful.screen.focused()
-            local tag = screen.tags[i]
-            if tag then
-               awful.tag.viewtoggle(tag)
-            end
-        end),
-        -- Move client to tag.
-        awful.key({ meta, "Shift" }, i, function ()
-            if client.focus then
-                local tag = client.focus.screen.tags[i]
+        keys = gears.table.join(
+            keys,
+            -- Switch to tag.
+            awful.key({ meta }, i, function()
+                local screen = awful.screen.focused()
+                local tag = screen.tags[i]
                 if tag then
-                    client.focus:move_to_tag(tag)
+                    tag:view_only()
                 end
-            end
-        end),
-        -- Toggle tag on focused client.
-        awful.key({ meta, "Control", "Shift" }, i, function ()
-            if client.focus then
-                local tag = client.focus.screen.tags[i]
+            end),
+            -- Toggle tag display.
+            awful.key({ meta, "Control" }, i, function()
+                local screen = awful.screen.focused()
+                local tag = screen.tags[i]
                 if tag then
-                    client.focus:toggle_tag(tag)
+                    awful.tag.viewtoggle(tag)
                 end
-            end
-        end))
+            end),
+            -- Move client to tag.
+            awful.key({ meta, "Shift" }, i, function()
+                if client.focus then
+                    local tag = client.focus.screen.tags[i]
+                    if tag then
+                        client.focus:move_to_tag(tag)
+                    end
+                end
+            end),
+            -- Toggle tag on focused client.
+            awful.key({ meta, "Control", "Shift" }, i, function()
+                if client.focus then
+                    local tag = client.focus.screen.tags[i]
+                    if tag then
+                        client.focus:toggle_tag(tag)
+                    end
+                end
+            end)
+        )
     end
 
     root.keys(keys)
@@ -322,12 +376,12 @@ local function setup_client_interactions(client)
     end
 
     local function move_client(client)
-        client:emit_signal("request::activate", "mouse_click", {raise = true})
+        client:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.move(client)
     end
 
     local function resize_client(client)
-        client:emit_signal("request::activate", "mouse_click", {raise = true})
+        client:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.resize(client)
     end
 
@@ -338,24 +392,30 @@ local function setup_client_interactions(client)
     local buttons = gears.table.join(
         awful.button({}, 1, raise_client),
         awful.button({ meta }, 1, move_client),
-        awful.button({ meta }, 3, resize_client))
+        awful.button({ meta }, 3, resize_client)
+    )
 
     local keys = gears.table.join(
         awful.key({ meta }, "q", client_kill),
-        awful.key({ meta }, "f",
-            function (c)
-                c.fullscreen = not c.fullscreen
-                c:raise()
-            end),
-        awful.key({ meta }, "m",
-            function (c)
-                c.maximized = not c.maximized
-                c:raise()
-            end),
-        awful.key({ meta, "Shift" }, "f",  awful.client.floating.toggle),
-        awful.key({ meta }, "t", function () client.ontop = not client.ontop end),
-        awful.key({ meta }, "o", function () client:move_to_screen() end),
-        awful.key({ alt }, "Return", function () client:swap(awful.client.getmaster()) end))
+        awful.key({ meta }, "f", function(c)
+            c.fullscreen = not c.fullscreen
+            c:raise()
+        end),
+        awful.key({ meta }, "m", function(c)
+            c.maximized = not c.maximized
+            c:raise()
+        end),
+        awful.key({ meta, "Shift" }, "f", awful.client.floating.toggle),
+        awful.key({ meta }, "t", function()
+            client.ontop = not client.ontop
+        end),
+        awful.key({ meta }, "o", function()
+            client:move_to_screen()
+        end),
+        awful.key({ alt }, "Return", function()
+            client:swap(awful.client.getmaster())
+        end)
+    )
 
     client:buttons(buttons)
     client:keys(keys)
@@ -373,7 +433,7 @@ local autostart = {
     "element-desktop",
     "thunderbird",
     "telegram-desktop",
-    "clipmenud"
+    "clipmenud",
 }
 
 for _, i in pairs(autostart) do

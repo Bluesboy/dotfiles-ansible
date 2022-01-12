@@ -3,6 +3,8 @@
 - hosts: localhost
   vars:
     ansible_ask_become_pass: yes
+    configs:
+    - stylua
 
   tasks:
   - name: "Create the `aur_builder` user"
@@ -19,6 +21,15 @@
       line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
       create: yes
       validate: 'visudo -cf %s'
+
+  - name: "Create symlink for configuration directories"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/config/{{ item }}"
+      dest: "~/.config/{{ item }}"
+      state: link
+      owner: 1000
+      group: 1000
+    loop: "{{ configs }}"
 
   - name: "Rust"
     community.general.pacman:
@@ -56,4 +67,22 @@
       - luarocks
       state: latest
     become: yes
+
+  - name: "Linters"
+    community.general.pacman:
+      name: 
+      - python-black
+      - flake8
+      - eslint
+      - prettier
+      state: latest
+    become: yes
+
+  - name: "Linters from AUR"
+    kewlfft.aur.aur:
+      name:
+      - stylua
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...
