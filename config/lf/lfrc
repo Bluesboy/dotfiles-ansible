@@ -121,13 +121,7 @@ set dircounts
 map <backspace2> set hidden!
 
 # Open new pane in Tmux
-map S %tmux split-window
-
-# Tmux integration
-map C-j %tmux select-pane -D
-map C-k %tmux select-pane -U
-map C-h %tmux select-pane -L
-map C-l %tmux select-pane -R
+map <c-s> $tmux split-window
 
 # Create directory
 map a push :mkdir<space>
