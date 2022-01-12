@@ -99,15 +99,35 @@ cmd zip ${{
     rm -rf $1
 }}
 
-# My settings
+### My commands
+cmd mkdir %mkdir "$@"
+
+### My settings
+
+# Enable icons
 set icons
+
+# Show file sizes
 set info size
+
+# Show number of files in directories
 set dircounts
 
-# My keybindings
+### My keybindings
+
+# Show hidden files
+
+# Show hidden files on backspace
 map <backspace2> set hidden!
+
+# Open new pane in Tmux
 map S %tmux split-window
+
+# Tmux integration
 map C-j %tmux select-pane -D
 map C-k %tmux select-pane -U
 map C-h %tmux select-pane -L
 map C-l %tmux select-pane -R
+
+# Create directory
+map a push :mkdir<space>
