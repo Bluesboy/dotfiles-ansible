@@ -32,6 +32,9 @@
       - alacritty
       - flameshot
       - mpv
+      - zathura
+      - zathura-pdf-mupdf
+      - zathura-ps
       update_cache: yes
       state: latest
     become: yes
@@ -131,7 +134,7 @@
   - name: "Install Google Cloud SDK"
     kewlfft.aur.aur:
       name: google-cloud-sdk
-      state: latest
+      state: present
     become: yes
     become_user: aur_builder
 
