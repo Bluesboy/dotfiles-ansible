@@ -122,6 +122,17 @@ awful.rules.rules = {
             floating = true,
         },
     },
+    -- Opera starts maximized
+    {
+        rule_any = {
+            class = {
+                "Opera",
+            },
+        },
+        properties = {
+            maximized = true,
+        },
+    },
 }
 
 -- Create a wibox for each screen and add it
@@ -245,6 +256,7 @@ local function setup_root_interactions()
     local keys = gears.table.join(
         -- Launch terminal
         awful.key({ meta }, "Return", launch_terminal),
+
         -- Restart Awesome
         awful.key({ meta, "Control" }, "r", restart_awesome),
 
