@@ -225,26 +225,49 @@ local function setup_root_interactions()
     -- local c = awful.client.restore()
 
     local keys = gears.table.join(
+        -- Launch terminal
         awful.key({ meta }, "Return", launch_terminal),
-        awful.key({ meta, "Control" }, "r", restart_awesome),
-        awful.key({ meta }, "p", dmenu),
+        -- Restart Awesome 
+        awful.key({ meta, "Control" }, "r", restart_awesome), 
+
+        -- Open Dmenu
+        awful.key({ meta }, "p", dmenu), 
+
+        -- Start Opera Browser
         awful.key({ meta }, "o", start_opera),
+
+        -- Focus window to direction
         awful.key({ meta }, "j", function () awful.client.focus.bydirection("down") end),
         awful.key({ meta }, "k", function () awful.client.focus.bydirection("up") end),
         awful.key({ meta }, "h", function () awful.client.focus.bydirection("left") end),
         awful.key({ meta }, "l", function () awful.client.focus.bydirection("right") end),
+
+        -- Move window to direction
         awful.key({ meta, "Shift" }, "j", function () awful.client.swap.bydirection("down") end),
         awful.key({ meta, "Shift" }, "k", function () awful.client.swap.bydirection("up") end),
         awful.key({ meta, "Shift" }, "h", function () awful.client.swap.bydirection("left") end),
         awful.key({ meta, "Shift" }, "l", function () awful.client.swap.bydirection("right") end),
+
+        -- Switch window
         awful.key({ alt }, "Tab", function () awful.client.focus.byidx( 1) end),
         awful.key({ alt, "Shift" }, "Tab", function () awful.client.focus.byidx(-1) end),
+
+        -- Switch layout
         awful.key({ meta }, "]", function () awful.layout.inc( 1) end),
         awful.key({ meta }, "[", function () awful.layout.inc(-1) end),
+
+        -- Switch tag
         awful.key({ meta }, "Tab", function () awful.tag.viewnext() end),
         awful.key({ meta, "Shift" }, "Tab", function () awful.tag.viewprev() end),
+
+        -- Open drop down terminal
         awful.key({ "Control" }, "`", function () quake_term:toggle() end),
-        awful.key({ meta }, "v", function () awful.spawn("clipmenu") end)
+
+        -- Open Clipmenu
+        awful.key({ meta }, "v", function () awful.spawn("clipmenu") end),
+
+        -- Open Passmenu
+        awful.key({ meta, "Shift" }, "p", function () awful.spawn("passmenu") end)
         )
 
     for i = 1, tag_count do
