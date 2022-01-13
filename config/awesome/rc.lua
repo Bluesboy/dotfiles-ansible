@@ -334,6 +334,11 @@ local function setup_root_interactions()
         -- Open Passmenu
         awful.key({ meta, "Shift" }, "p", function()
             awful.spawn("passmenu")
+        end),
+
+        -- Open Flameshot GUI
+        awful.key({}, "Print", function()
+            awful.util.spawn("flameshot gui")
         end)
     )
 
