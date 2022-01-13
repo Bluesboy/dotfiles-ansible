@@ -60,6 +60,17 @@
       state: latest
     become: yes
 
+  - name: "Instal 'neovim' Node package"
+    community.general.npm:
+      name: neovim
+      global: yes
+      state: latest
+    become: yes
+
+  - name: "Instal 'neovim' Python package"
+    ansible.builtin.pip:
+      name: neovim
+
   - name: "Lua"
     community.general.pacman:
       name: 
