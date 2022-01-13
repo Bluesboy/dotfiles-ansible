@@ -30,6 +30,7 @@
     community.general.pacman:
       name: 
       - alacritty
+      - gparted
       - flameshot
       - mpv
       - zathura
@@ -107,6 +108,7 @@
       - kubectl
       - kubectx
       - k9s
+      - helm
       state: latest
     become: yes
 

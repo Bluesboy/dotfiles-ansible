@@ -76,6 +76,8 @@
       name: 
       - lvm2
       - mdadm
+      - btrfs-progs
+      - ntfs-3g
       state: latest
     become: yes
 ...
