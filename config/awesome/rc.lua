@@ -231,6 +231,7 @@ local function setup_screen_tags(screen)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             wibox.widget.textclock(),
+            awful.widget.keyboardlayout(),
             wibox.container.background(screen.mylayoutbox, theme.bg_focus),
         },
     })
