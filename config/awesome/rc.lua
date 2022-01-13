@@ -143,6 +143,7 @@ local function setup_screen_tags(screen)
 
     -- Layout Box
     screen.mylayoutbox = awful.widget.layoutbox(screen)
+
     screen.mylayoutbox:buttons(gears.table.join(
         awful.button({}, 1, function()
             awful.layout.inc(-1)
@@ -229,6 +230,7 @@ local function setup_screen_tags(screen)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+            wibox.widget.textclock(),
             wibox.container.background(screen.mylayoutbox, theme.bg_focus),
         },
     })
@@ -408,22 +410,30 @@ local function setup_client_interactions(client)
     )
 
     local keys = gears.table.join(
+        -- Close client
         awful.key({ meta }, "q", client_kill),
+
+        -- Toggle fullscreen
         awful.key({ meta }, "f", function(c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end),
+
+        -- Toggle maximized
         awful.key({ meta }, "m", function(c)
             c.maximized = not c.maximized
             c:raise()
         end),
+
+        -- Toggle floating
         awful.key({ meta, "Shift" }, "f", awful.client.floating.toggle),
+
+        -- Toggle always on top
         awful.key({ meta }, "t", function()
             client.ontop = not client.ontop
         end),
-        awful.key({ meta }, "o", function()
-            client:move_to_screen()
-        end),
+
+        -- Make client master
         awful.key({ alt }, "Return", function()
             client:swap(awful.client.getmaster())
         end)
