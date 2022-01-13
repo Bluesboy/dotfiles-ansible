@@ -24,6 +24,12 @@
       enabled: yes
     become: yes
 
+  - name: "Upgrade all packages"
+    community.general.pacman:
+      update_cache: yes
+      upgrade: yes
+    become: yes
+
   - name: "Create symlink for configuration directories"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
