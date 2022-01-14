@@ -9,3 +9,6 @@ config/fish/completions/_*
 
 config/fish/conf.d/.gitnow
 config/fish/conf.d/z.fish
+config/fish/conf.d/fzf.fish
+config/fish/completions/fzf_configure_bindings.fish
+config/fish/functions/fzf_configure_bindings.fish
