@@ -4,11 +4,11 @@
   vars:
     ansible_ask_become_pass: true
     configs:
+    - fish
     - git
     - nvim
-    - tmux
     - starship
-    - fish
+    - tmux
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -47,26 +47,28 @@
   - name: "Install common packages"
     community.general.pacman:
       name: 
-      - curl
-      - wget
-      - unzip
-      - rsync
-      - neovim
-      - ripgrep
-      - which
-      - exa
-      - tmux
-      - broot
-      - dust
-      - bottom
-      - bat
       - bash-completion
-      - go-yq
-      - openbsd-netcat
+      - bat
+      - bottom
+      - broot
+      - curl
+      - dust
+      - exa
       - fish
-      - starship
+      - fisher
+      - go-yq
       - jq
       - lazygit
+      - neovim
+      - openbsd-netcat
+      - ripgrep
+      - rsync
+      - starship
+      - thefuck
+      - tmux
+      - unzip
+      - wget
+      - which
       update_cache: yes
       state: latest
     become: yes
@@ -80,9 +82,9 @@
   - name: "Install disk utilities"
     community.general.pacman:
       name: 
+      - btrfs-progs
       - lvm2
       - mdadm
-      - btrfs-progs
       - ntfs-3g
       state: latest
     become: yes

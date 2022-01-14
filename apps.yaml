@@ -30,8 +30,8 @@
     community.general.pacman:
       name: 
       - alacritty
-      - gparted
       - flameshot
+      - gparted
       - mpv
       - zathura
       - zathura-pdf-mupdf
@@ -105,10 +105,10 @@
     community.general.pacman:
       name:
       - docker
+      - helm
+      - k9s
       - kubectl
       - kubectx
-      - k9s
-      - helm
       state: latest
     become: yes
 

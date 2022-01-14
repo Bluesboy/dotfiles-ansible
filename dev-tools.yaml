@@ -82,10 +82,10 @@
   - name: "Linters"
     community.general.pacman:
       name: 
-      - python-black
-      - flake8
       - eslint
+      - flake8
       - prettier
+      - python-black
       state: latest
     become: yes
 
