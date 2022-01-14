@@ -121,6 +121,12 @@ return packer.startup(function(use)
         end,
     })
 
+    -- Toggleterm
+    use("akinsho/nvim-toggleterm.lua")
+
+    -- Indentation
+    use("lukas-reineke/indent-blankline.nvim")
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
