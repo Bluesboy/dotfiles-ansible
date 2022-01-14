@@ -54,6 +54,7 @@ return packer.startup(function(use)
 
     -- Colorscheme
     use("projekt0n/github-nvim-theme")
+    use("norcalli/nvim-colorizer.lua")
 
     -- Lualine
     use({
@@ -67,7 +68,7 @@ return packer.startup(function(use)
             })
         end,
     })
-    --
+
     -- cmp plugins
     use("hrsh7th/nvim-cmp") -- The completion plugin
     use("hrsh7th/cmp-buffer") -- buffer completions
