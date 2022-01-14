@@ -19,7 +19,7 @@ fish_add_path -m $N_PREFIX
 fish_add_path -m ~/.cargo/bin
 
 function fish_greeting
-  echo Hey there, you in FISH!
+  # Put this here to override default greeting message
 end
 
 function fish_user_key_bindings
