@@ -8,3 +8,4 @@ config/fish/conf.d/gitnow_config.fish
 config/fish/completions/_*
 
 config/fish/conf.d/.gitnow
+config/fish/conf.d/z.fish
