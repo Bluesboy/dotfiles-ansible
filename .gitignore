@@ -3,3 +3,8 @@ packer_compiled.lua
 config/mpv/watch_later
 config/fish/functions/_*
 config/fish/conf.d/autopair.fish
+config/fish/conf.d/gitnow.fish
+config/fish/conf.d/gitnow_config.fish
+config/fish/completions/_*
+
+config/fish/conf.d/.gitnow
