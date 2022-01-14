@@ -1,3 +1,5 @@
 *.bak
 packer_compiled.lua
 config/mpv/watch_later
+config/fish/functions/_*
+config/fish/conf.d/autopair.fish
