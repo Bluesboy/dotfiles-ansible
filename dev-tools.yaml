@@ -69,7 +69,9 @@
 
   - name: "Instal 'neovim' Python package"
     ansible.builtin.pip:
-      name: neovim
+      name:
+      - neovim
+      - virtualfish
 
   - name: "Lua"
     community.general.pacman:
