@@ -15,6 +15,7 @@
       - xorg-xinit
       - nvidia
       - nvidia-utils
+      - nvidia-settings
       - xorg-fonts-100dpi
       - xclip
       state: latest
