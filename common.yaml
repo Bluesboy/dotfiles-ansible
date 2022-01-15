@@ -54,6 +54,7 @@
       - curl
       - dust
       - exa
+      - fd
       - fish
       - fisher
       - go-yq
