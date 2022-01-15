@@ -1,6 +1,9 @@
 # Initialize Starship prompt
 starship init fish | source
 
+# Alias for the fuck
+thefuck --alias | source
+
 # Set Neovim as default editor
 set -gx EDITOR nvim
 
