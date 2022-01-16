@@ -49,6 +49,7 @@
       name: 
       - bash-completion
       - bat
+      - bind
       - bottom
       - broot
       - curl
