@@ -52,4 +52,5 @@ if status --is-interactive
   abbr --add --global -- lg lazygit
   abbr --add --global -- tf terraform
   abbr --add --global -- fishconf 'vim ~/.config/fish/config.fish'
+  abbr --add --global -- cleankube 'kubectl get pod --all-namespaces | grep -i \'terminated\|nodeshutdown\|error\' | awk \'{ print $1, $2 }\' | xargs -n2 kubectl delete pod -n'
 end
