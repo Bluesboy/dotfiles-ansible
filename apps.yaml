@@ -153,4 +153,11 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: "Install Git Extras"
+    kewlfft.aur.aur:
+      name: git-extras
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...

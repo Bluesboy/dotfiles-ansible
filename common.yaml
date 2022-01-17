@@ -59,6 +59,7 @@
       - fish
       - fisher
       - go-yq
+      - hub
       - jq
       - lazygit
       - neovim
