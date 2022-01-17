@@ -6,6 +6,7 @@
     configs:
     - awesome
     - picom
+    - redshift
 
   tasks:
   - name: "Install Xorg"
@@ -88,5 +89,13 @@
     ansible.builtin.systemd:
       name: lightdm
       enabled: yes
+    become: yes
+
+  - name: "Install Redshift"
+    community.general.pacman:
+      name: 
+      - redshift
+      update_cache: yes
+      state: latest
     become: yes
 ...
