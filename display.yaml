@@ -98,4 +98,11 @@
       update_cache: yes
       state: latest
     become: yes
+
+  - name: Enable Redshift
+    ansible.builtin.systemd:
+      name: redshift
+      state: started
+      enabled: yes
+      scope: user
 ...
