@@ -8,6 +8,7 @@
     - lf
     - mpv
     - pass-git-helper
+    - flameshot
 
   tasks:
   - name: "Create symlink for NeoVim configuration"
