@@ -161,4 +161,11 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: "Install Transmission"
+    community.general.pacman:
+      name:
+      - transmission-cli
+      state: latest
+    become: yes
 ...
