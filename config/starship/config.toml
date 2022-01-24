@@ -13,3 +13,6 @@ disabled = true
 
 [gcloud]
 format = ' [$symbol$active]($style) '
+
+[kubernetes]
+disabled = false
