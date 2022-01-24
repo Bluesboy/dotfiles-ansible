@@ -64,6 +64,7 @@
       - lazygit
       - neovim
       - openbsd-netcat
+      - openvpn
       - ripgrep
       - rsync
       - starship
