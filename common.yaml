@@ -58,6 +58,7 @@
       - fd
       - fish
       - fisher
+      - fzf
       - go-yq
       - hub
       - jq
