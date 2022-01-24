@@ -3,6 +3,7 @@ env:
 
 window:
   decorations: none
+  opacity: 0.92
 
 scrolling:
   history: 100000
@@ -61,8 +62,6 @@ colors:
 
 bell:
   animation: EaseOutExpo
-
-background_opacity: 0.92
 
 cursor:
   style:
