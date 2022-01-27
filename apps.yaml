@@ -9,6 +9,7 @@
     - mpv
     - pass-git-helper
     - flameshot
+    - zathura
 
   tasks:
   - name: "Create symlink for NeoVim configuration"
