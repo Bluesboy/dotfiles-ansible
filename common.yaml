@@ -63,10 +63,12 @@
       - hub
       - jq
       - lazygit
+      - mediainfo
       - neovim
       - openbsd-netcat
       - openvpn
       - ripgrep
+      - rmlint
       - rsync
       - starship
       - thefuck
@@ -91,6 +93,7 @@
       - lvm2
       - mdadm
       - ntfs-3g
+      - xfsprogs
       state: latest
     become: yes
 ...
