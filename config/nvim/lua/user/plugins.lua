@@ -49,7 +49,10 @@ return packer.startup(function(use)
     use("ethanholz/nvim-lastplace")
     use("kyazdani42/nvim-web-devicons")
     use("kyazdani42/nvim-tree.lua")
-    use("akinsho/bufferline.nvim")
+    use({
+        "akinsho/bufferline.nvim",
+        branch = "main"
+    })
     use("moll/vim-bbye")
 
     -- Colorscheme
@@ -63,7 +66,7 @@ return packer.startup(function(use)
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "github",
+                    theme = "powerline",
                 },
             })
         end,
@@ -122,7 +125,10 @@ return packer.startup(function(use)
     })
 
     -- Toggleterm
-    use("akinsho/nvim-toggleterm.lua")
+    use({
+        "akinsho/nvim-toggleterm.lua",
+        branch = "main",
+    })
 
     -- Indentation
     use("lukas-reineke/indent-blankline.nvim")

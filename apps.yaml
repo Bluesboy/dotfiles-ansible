@@ -107,6 +107,7 @@
     community.general.pacman:
       name:
       - docker
+      - skopeo
       - helm
       - k9s
       - kubectl
@@ -138,7 +139,7 @@
   - name: "Install Google Cloud SDK"
     kewlfft.aur.aur:
       name: google-cloud-sdk
-      state: present
+      state: latest
     become: yes
     become_user: aur_builder
 
