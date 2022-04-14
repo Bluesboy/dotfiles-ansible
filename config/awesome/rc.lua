@@ -133,6 +133,19 @@ awful.rules.rules = {
             maximized = true,
         },
     },
+
+    {
+        rule_any = {
+            name = {
+                "Картинка в картинке",
+            },
+        },
+        properties = {
+            maximized = false,
+            floating = true,
+            ontop = true,
+        },
+    },
 }
 
 -- Create a wibox for each screen and add it
@@ -247,7 +260,19 @@ local function setup_root_interactions()
     end
 
     local function start_opera()
-        awful.spawn(browser)
+        local matcher = function(c)
+            return awful.rules.match(c, { class = "Opera" })
+        end
+
+        awful.client.run_or_raise(browser, matcher)
+    end
+
+    local function start_slack()
+        local matcher = function(c)
+            return awful.rules.match(c, { class = "Slack" })
+        end
+
+        awful.client.run_or_raise("slack", matcher)
     end
 
     local function dmenu()
@@ -268,6 +293,9 @@ local function setup_root_interactions()
 
         -- Start Opera Browser
         awful.key({ meta }, "o", start_opera),
+
+        -- Start Slack
+        awful.key({ meta }, "s", start_slack),
 
         -- Focus window to direction
         awful.key({ meta }, "j", function()
@@ -391,21 +419,21 @@ local function setup_client_placement(client)
 end
 
 local function setup_client_interactions(client)
-    local function raise_client(client)
+    local function raise_client(c)
         client:emit_signal("request::activate", "mouse_click", { raise = true })
     end
 
-    local function move_client(client)
+    local function move_client(c)
         client:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.move(client)
     end
 
-    local function resize_client(client)
+    local function resize_client(c)
         client:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.resize(client)
     end
 
-    local function client_kill(client)
+    local function client_kill(c)
         client:kill()
     end
 
