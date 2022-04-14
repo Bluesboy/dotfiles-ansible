@@ -34,9 +34,9 @@ end
 
 # Setup abbreviations
 if status --is-interactive
-  abbr --add --global -- aurox 'gcloud config configurations activate aurox'
+  abbr --add --global -- aurox 'gcloud config configurations activate aurox && kubectx aurox'
   abbr --add --global -- dr 'docker run -it --rm'
-  abbr --add --global -- flux 'gcloud config configurations activate flux'
+  abbr --add --global -- flux 'gcloud config configurations activate flux && kubectx flux'
   abbr --add --global -- g git
   abbr --add --global -- ga 'git add'
   abbr --add --global -- gc 'git commit -m'
