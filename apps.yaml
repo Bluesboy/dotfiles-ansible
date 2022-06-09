@@ -142,6 +142,13 @@
       state: latest
     become: yes
     become_user: aur_builder
+ 
+  - name: "Install Google Cloud SDK GKE Auth plugin"
+    kewlfft.aur.aur:
+      name: google-cloud-sdk-gke-gcloud-auth-plugin
+      state: latest
+    become: yes
+    become_user: aur_builder
 
   - name: "Install tfswitch"
     kewlfft.aur.aur:
@@ -169,5 +176,12 @@
       name:
       - transmission-cli
       state: latest
+    become: yes
+
+  - name: "Add current user to transmission group"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      groups: transmission
+      append: yes
     become: yes
 ...

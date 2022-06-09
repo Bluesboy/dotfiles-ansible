@@ -19,6 +19,9 @@ set -gx N_PREFIX ~/.local/share/n
 # Set TTY for pass-git-helper
 set -gx GPG_TTY (tty)
 
+# Use gcloud-gke-auth-plugin by default
+set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
+
 # Setup PATH from .bash_profile
 fish_add_path -m ~/.local/bin
 fish_add_path -m $N_PREFIX
