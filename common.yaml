@@ -39,6 +39,15 @@
       group: 1000
     loop: "{{ configs }}"
 
+  - name: "Add usev rule for Dactyl"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/udev/dactyl.rules"
+      dest: /etc/udev/rules.d/92-viia.rules
+      owner: root
+      group: root
+      mode: '0644'
+    become: yes
+
   - name: "Clone tmux-powerline"
     ansible.builtin.git:
       repo: 'https://github.com/erikw/tmux-powerline.git'
