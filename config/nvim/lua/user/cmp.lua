@@ -47,7 +47,7 @@ local kind_icons = {
 
 cmp.setup({
     window = {
-        documentation = "native",
+        documentation = cmp.config.window.bordered(),
     },
     snippet = {
         expand = function(args)
