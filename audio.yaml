@@ -7,11 +7,27 @@
   tasks:
   - name: "Install Pipewire"
     community.general.pacman:
-      name: 
+      name:
       - pipewire
       - pipewire-alsa
+      - pipewire-pulse
       - wireplumber
       - helvum
       state: latest
+    become: yes
+
+  - name: "Install Bluez"
+    community.general.pacman:
+      name:
+      - bluez
+      - bluez-utils
+      state: latest
+    become: yes
+
+  - name: "Enable Bluetooth"
+    ansible.builtin.systemd:
+      name: bluetooth
+      state: started
+      enabled: yes
     become: yes
 ...
