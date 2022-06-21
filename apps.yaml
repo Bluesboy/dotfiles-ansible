@@ -32,6 +32,7 @@
     community.general.pacman:
       name: 
       - alacritty
+      - feh
       - flameshot
       - gparted
       - mpv
