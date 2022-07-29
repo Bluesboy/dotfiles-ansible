@@ -1,0 +1,103 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_ask_become_pass: true
+    # configs:
+    # - alacritty
+    # - lf
+    # - mpv
+    # - pass-git-helper
+    # - flameshot
+    # - zathura
+
+  tasks:
+  - name: "Install Docker tools"
+    community.general.pacman:
+      name:
+      - docker
+      - skopeo
+      - helm
+      - k9s
+      - kubectl
+      - kubectx
+      state: latest
+    become: yes
+
+  - name: "Enable Docker"
+    ansible.builtin.systemd:
+      name: docker
+      state: started
+      enabled: yes
+    become: yes
+
+  - name: "Add current user to docker group"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      groups: docker
+      append: yes
+    become: yes
+
+  - name: "Enable nested virtualization"
+    community.general.modprobe:
+      name: kvm_intel
+      params: "nested=1"
+      state: present
+    become: yes
+
+  - name: "Install Libvirt and Virtualization tools"
+    community.general.pacman:
+      name:
+      - libvirt
+      - qemu-base
+      - dmidecode
+      - dnsmasq
+      state: latest
+    become: yes
+
+  - name: "Install Additional tools for libvirt"
+    community.general.pacman:
+      name:
+      - virt-install
+      - libguestfs
+      state: latest
+    become: yes
+
+  - name: "Add current user to docker group"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      groups: libvirt
+      append: yes
+    become: yes
+
+  - name: "Set the UNIX domain socket group ownership to libvirt"
+    ansible.builtin.lineinfile:
+      path: /etc/libvirt/libvirtd.conf
+      regexp: '^#unix_sock_group'
+      line: 'unix_sock_group = "libvirt"'
+      state: present
+    become: yes
+
+  - name: "Set the UNIX domain socket group ownership to libvirt"
+    ansible.builtin.lineinfile:
+      path: /etc/libvirt/libvirtd.conf
+      regexp: '^#unix_sock_rw_perms'
+      line: 'unix_sock_rw_perms = "0770"'
+      state: present
+    become: yes
+
+  - name: "Enable Libvirt"
+    ansible.builtin.systemd:
+      name: libvirtd
+      state: started
+      enabled: yes
+    become: yes
+
+  - name: "Create Network bridge for Libvirt"
+    community.general.nmcli:
+      type: bridge
+      conn_name: "virbr0"
+      master: "enp4s0"
+      state: present
+    become: yes
+...
