@@ -325,6 +325,16 @@ local function setup_root_interactions()
             awful.client.swap.bydirection("right")
         end),
 
+        -- Revolve client forward/backward
+        awful.key({ meta }, "Down", function()
+            awful.client.cycle(false)
+            awful.client.focus.byidx(1)
+        end),
+        awful.key({ meta }, "Up", function()
+            awful.client.cycle(true)
+            awful.client.focus.byidx(-1)
+        end),
+
         -- Switch window
         awful.key({ alt }, "Tab", function()
             awful.client.focus.byidx(1)
