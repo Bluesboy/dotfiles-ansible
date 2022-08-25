@@ -98,4 +98,19 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: "Install Git BFG"
+    kewlfft.aur.aur:
+      name:
+      - bfg
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Git Filter Repo"
+    community.general.pacman:
+      name:
+      - git-filter-repo
+      state: latest
+    become: yes
 ...
