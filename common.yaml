@@ -105,4 +105,12 @@
       - xfsprogs
       state: latest
     become: yes
+
+  - name: "Set email for mdmonitor service"
+    ansible.builtin.lineinfile:
+      path: /etc/mdadm.conf
+      regexp: '^#MAILADDR'
+      line: 'MAILADDR root'
+      state: present
+    become: yes
 ...
