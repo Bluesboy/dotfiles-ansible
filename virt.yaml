@@ -16,6 +16,7 @@
     community.general.pacman:
       name:
       - docker
+      - podman
       - skopeo
       - helm
       - k9s
@@ -24,18 +25,18 @@
       state: latest
     become: yes
 
-  - name: "Enable Docker"
-    ansible.builtin.systemd:
-      name: docker
-      state: started
-      enabled: yes
-    become: yes
-
   - name: "Add current user to docker group"
     ansible.builtin.user:
       name: "{{ ansible_user_id }}"
       groups: docker
       append: yes
+    become: yes
+
+  - name: "Copy Docker Configuration file"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/docker/daemon.json"
+      dest: /etc/docker/daemon.json
+      mode: "0644"
     become: yes
 
   - name: "Enable nested virtualization"
@@ -59,6 +60,7 @@
     community.general.pacman:
       name:
       - virt-install
+      - virt-viewer
       - libguestfs
       state: latest
     become: yes
@@ -86,6 +88,30 @@
       state: present
     become: yes
 
+  - name: "Install Cockpit"
+    community.general.pacman:
+      name:
+      - cockpit
+      - cockpit-machines
+      - cockpit-podman
+      - cockpit-pcp
+      state: latest
+    become: yes
+
+  - name: "Install Cockpit ZFS plugin"
+    kewlfft.aur.aur:
+      name: cockpit-zfs-manager
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Cockpit File Sharing plugin"
+    kewlfft.aur.aur:
+      name: cockpit-file-sharing
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Enable Libvirt"
     ansible.builtin.systemd:
       name: libvirtd
@@ -93,11 +119,15 @@
       enabled: yes
     become: yes
 
-  - name: "Create Network bridge for Libvirt"
-    community.general.nmcli:
-      type: bridge
-      conn_name: "virbr0"
-      master: "enp4s0"
-      state: present
+  - name: "Enable Docker"
+    ansible.builtin.systemd:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
     become: yes
+    loop:
+    - docker.socket
+    - podman.socket
+    - libvirtd.socket
+    - cockpit.socket
 ...
