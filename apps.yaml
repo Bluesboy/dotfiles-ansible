@@ -50,6 +50,14 @@
       state: latest
     become: yes
 
+  - name: "Install Gopass"
+    community.general.pacman:
+      name: 
+      - gopass
+      - gopass-jsonapi
+      state: latest
+    become: yes
+
   - name: "Install pass-git-helper"
     kewlfft.aur.aur:
       name: pass-git-helper
