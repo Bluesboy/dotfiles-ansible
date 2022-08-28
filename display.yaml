@@ -13,21 +13,21 @@
     community.general.pacman:
       name: 
       - xorg
-      - xorg-xinit
-      - nvidia
-      - nvidia-utils
-      - nvidia-settings
-      - xorg-fonts-100dpi
-      - xclip
+      - xorg-xinit # X.Org initialisation program
+      - nvidia # NVIDIA drivers for linux
+      - nvidia-utils # NVIDIA drivers utilities
+      - nvidia-settings # Tool for configuring the NVIDIA graphics driver
+      - xorg-fonts-100dpi # X.org 100dpi fonts
+      - xclip # Command line interface to the X11 clipboard
       state: latest
     become: yes
 
   - name: "Nerd Fonts"
     kewlfft.aur.aur:
       name:
-      - nerd-fonts-complete
-      - nerd-fonts-dejavu-complete
-      - nerd-fonts-source-code-pro
+      - nerd-fonts-complete # Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
+      - nerd-fonts-dejavu-complete # All variants of Nerd-Font-patched DejaVu Sans Mono
+      - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
       state: latest
     become: yes
     become_user: aur_builder
@@ -35,10 +35,10 @@
   - name: "Install Fonts"
     community.general.pacman:
       name: 
-      - noto-fonts
-      - noto-fonts-emoji
-      - noto-fonts-cjk
-      - noto-fonts-extra
+      - noto-fonts # Google Noto TTF fonts
+      - noto-fonts-emoji # Google Noto emoji fonts
+      - noto-fonts-cjk # Google Noto CJK fonts
+      - noto-fonts-extra # Google Noto TTF fonts - additional variants
       update_cache: yes
       state: latest
     become: yes
@@ -55,8 +55,8 @@
   - name: "Install Awesome"
     community.general.pacman:
       name: 
-      - awesome
-      - picom
+      - awesome # Highly configurable framework window manager
+      - picom # X compositor that may fix tearing issues
       update_cache: yes
       state: latest
     become: yes
@@ -64,8 +64,8 @@
   - name: "Install Auxiliary WM applications"
     community.general.pacman:
       name: 
-      - dmenu
-      - clipmenu
+      - dmenu # Generic menu for X
+      - clipmenu # Clipboard management using dmenu
       update_cache: yes
       state: latest
     become: yes
@@ -73,8 +73,8 @@
   - name: "Install LightDM"
     community.general.pacman:
       name: 
-      - lightdm
-      - lightdm-slick-greeter
+      - lightdm # A lightweight display manager
+      - lightdm-slick-greeter # A slick-looking LightDM greeter
       state: latest
     become: yes
 
@@ -94,7 +94,7 @@
   - name: "Install Redshift"
     community.general.pacman:
       name: 
-      - redshift
+      - redshift # Adjusts the color temperature of your screen according to your surroundings.
       update_cache: yes
       state: latest
     become: yes

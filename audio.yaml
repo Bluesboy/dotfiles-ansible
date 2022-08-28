@@ -8,19 +8,19 @@
   - name: "Install Pipewire"
     community.general.pacman:
       name:
-      - pipewire
-      - pipewire-alsa
-      - pipewire-pulse
-      - wireplumber
-      - helvum
+      - pipewire # Low-latency audio/video router and processor
+      - pipewire-alsa # Low-latency audio/video router and processor - ALSA configuration
+      - pipewire-pulse # Low-latency audio/video router and processor - PulseAudio replacement
+      - wireplumber # Session / policy manager implementation for PipeWire
+      - helvum # GTK patchbay for PipeWire
       state: latest
     become: yes
 
   - name: "Install Bluez"
     community.general.pacman:
       name:
-      - bluez
-      - bluez-utils
+      - bluez # Daemons for the bluetooth protocol stack
+      - bluez-utils # Development and debugging utilities for the bluetooth protocol stack
       state: latest
     become: yes
 

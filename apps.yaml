@@ -31,13 +31,13 @@
   - name: "Install Common GUI tools"
     community.general.pacman:
       name: 
-      - alacritty
-      - flameshot
-      - gparted
-      - mpv
-      - zathura
-      - zathura-pdf-mupdf
-      - zathura-ps
+      - alacritty # A cross-platform, GPU-accelerated terminal emulator
+      - flameshot # Powerful yet simple to use screenshot software
+      - gparted # A Partition Magic clone, frontend to GNU Parted
+      - mpv # a free, open source, and cross-platform media player
+      - zathura # Minimalistic document viewer
+      - zathura-pdf-mupdf # PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
+      - zathura-ps # Adds ps support to zathura by using the libspectre library
       update_cache: yes
       state: latest
     become: yes
@@ -45,16 +45,16 @@
   - name: "Install Pass"
     community.general.pacman:
       name: 
-      - pass
-      - pass-otp
+      - pass # Stores, retrieves, generates, and synchronizes passwords securely
+      - pass-otp # A pass extension for managing one-time-password (OTP) tokens.
       state: latest
     become: yes
 
   - name: "Install Gopass"
     community.general.pacman:
       name: 
-      - gopass
-      - gopass-jsonapi
+      - gopass # The slightly more awesome standard unix password manager for teams.
+      - gopass-jsonapi # jsonapi for gopass used for bridging to browsers
       state: latest
     become: yes
 
@@ -68,10 +68,10 @@
   - name: "Install Opera"
     community.general.pacman:
       name: 
-      - opera
-      - opera-ffmpeg-codecs
-      - browserpass
-      - browserpass-chromium
+      - opera # A fast and secure web browser
+      - opera-ffmpeg-codecs # additional support for proprietary codecs for opera
+      - browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
+      - browserpass-chromium # Chromium extension for Browserpass, browser extension for zx2c4's pass (password manager)
       state: latest
     become: yes
 
@@ -83,21 +83,21 @@
   - name: "Install Messengers"
     community.general.pacman:
       name: 
-      - telegram-desktop
-      - element-desktop
+      - telegram-desktop # Official Telegram Desktop client
+      - element-desktop # Glossy Matrix collaboration client — desktop version.
       state: latest
     become: yes
 
   - name: "Install Slack"
     kewlfft.aur.aur:
-      name: slack-desktop
+      name: slack-desktop # Slack Desktop (Beta) for Linux
       state: latest
     become: yes
     become_user: aur_builder
 
   - name: "Install Skype"
     kewlfft.aur.aur:
-      name: skypeforlinux-stable-bin
+      name: skypeforlinux-stable-bin # Skype for Linux - Stable/Release Version
       state: latest
     become: yes
     become_user: aur_builder
@@ -105,36 +105,10 @@
   - name: "Install Thunderbird"
     community.general.pacman:
       name: 
-      - thunderbird
-      - thunderbird-i18n-ru
-      - thunderbird-i18n-en-us
+      - thunderbird # Standalone mail and news reader from mozilla.org
+      - thunderbird-i18n-ru # Russian language pack for Thunderbird
+      - thunderbird-i18n-en-us # English (US) language pack for Thunderbird
       state: latest
-    become: yes
-
-  - name: "Install Docker tools"
-    community.general.pacman:
-      name:
-      - docker
-      - skopeo
-      - helm
-      - k9s
-      - kubectl
-      - kubectx
-      state: latest
-    become: yes
-
-  - name: "Enable Docker"
-    ansible.builtin.systemd:
-      name: docker
-      state: started
-      enabled: yes
-    become: yes
-
-  - name: "Add current user to docker group"
-    ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
-      groups: docker
-      append: yes
     become: yes
 
   - name: "Install tfswitch"
@@ -161,7 +135,7 @@
   - name: "Install Transmission"
     community.general.pacman:
       name:
-      - transmission-cli
+      - transmission-cli # Fast, easy, and free BitTorrent client (CLI tools, daemon and web client)
       state: latest
     become: yes
 

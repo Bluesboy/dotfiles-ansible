@@ -56,35 +56,35 @@
   - name: "Install common packages"
     community.general.pacman:
       name: 
-      - bash-completion
-      - bat
-      - bind
-      - bottom
-      - broot
-      - curl
-      - dust
-      - exa
-      - fd
-      - fish
-      - fisher
-      - fzf
-      - go-yq
-      - hub
-      - jq
-      - lazygit
-      - mediainfo
-      - neovim
-      - openbsd-netcat
-      - openvpn
-      - ripgrep
-      - rmlint
-      - rsync
-      - starship
-      - thefuck
-      - tmux
-      - unzip
-      - wget
-      - which
+      - bash-completion # Programmable completion for the bash shell
+      - bat # Cat clone with syntax highlighting and git integration
+      - bind # A complete, highly portable implementation of the DNS protocol
+      - bottom # A graphical process/system monitor
+      - broot # Fuzzy Search + tree + cd
+      - curl # It's fucking cURL, questions?
+      - dust # A more intuitive version of du in rust
+      - exa # ls replacement
+      - fd # Simple, fast and user-friendly alternative to find
+      - fish # Smart and user friendly shell intended mostly for interactive use
+      - fisher # A package manager for the fish shell
+      - fzf # Command-line fuzzy finder
+      - go-yq # Portable command-line YAML processor
+      - hub # cli interface for Github
+      - jq # Command-line JSON processor
+      - lazygit # Simple terminal UI for git commands
+      - mediainfo # Supplies technical and tag information about a video or audio file (CLI interface)
+      - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
+      - openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
+      - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+      - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
+      - rmlint # Tool to remove duplicates and other lint, being much faster than fdupes
+      - rsync #  A fast and versatile file copying tool for remote and local files
+      - starship # The cross-shell prompt for astronauts
+      - thefuck # Magnificent app which corrects your previous console command
+      - tmux # A terminal multiplexer
+      - unzip # For extracting and viewing files in .zip archives
+      - wget # Network utility to retrieve files from the Web
+      - which # A utility to show the full path of commands
       update_cache: yes
       state: latest
     become: yes
@@ -98,11 +98,11 @@
   - name: "Install disk utilities"
     community.general.pacman:
       name: 
-      - btrfs-progs
-      - lvm2
-      - mdadm
-      - ntfs-3g
-      - xfsprogs
+      - btrfs-progs # Btrfs filesystem utilities
+      - lvm2 # Logical Volume Manager 2 utilities
+      - mdadm # A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+      - ntfs-3g # NTFS filesystem driver and utilities
+      - xfsprogs # XFS filesystem utilities
       state: latest
     become: yes
 

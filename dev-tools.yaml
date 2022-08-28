@@ -41,7 +41,7 @@
 
   - name: "Paru"
     kewlfft.aur.aur:
-      name: paru
+      name: paru # Feature packed AUR helper
       state: latest
     become: yes
     become_user: aur_builder
@@ -76,25 +76,25 @@
   - name: "Lua"
     community.general.pacman:
       name: 
-      - lua
-      - luarocks
+      - lua # Powerful lightweight programming language designed for extending applications
+      - luarocks # Deployment and management system for Lua modules
       state: latest
     become: yes
 
   - name: "Linters"
     community.general.pacman:
       name:
-      - eslint
-      - flake8
-      - prettier
-      - python-black
+      - eslint # An AST-based pattern checker for JavaScript
+      - flake8 # The modular source code checker
+      - prettier # An opinionated code formatter for JS, JSON, CSS, YAML and much more
+      - python-black # Uncompromising Python code formatter
       state: latest
     become: yes
 
   - name: "Linters from AUR"
     kewlfft.aur.aur:
       name:
-      - stylua
+      - stylua # Code formatter for Lua
       state: latest
     become: yes
     become_user: aur_builder
@@ -102,7 +102,7 @@
   - name: "Install Git BFG"
     kewlfft.aur.aur:
       name:
-      - bfg
+      - bfg # Removes large or troublesome blobs like git-filter-branch does, but faster.
       state: latest
     become: yes
     become_user: aur_builder
@@ -110,27 +110,22 @@
   - name: "Install Git Filter Repo"
     community.general.pacman:
       name:
-      - git-filter-repo
+      - git-filter-repo # Quickly rewrite git repository history (filter-branch replacement)
       state: latest
     become: yes
 
   - name: "Install Krew"
     kewlfft.aur.aur:
-      name: krew
+      name: krew # Krew is the package manager for kubectl plugins
       state: latest
     become: yes
     become_user: aur_builder
 
-  - name: "Install Google Cloud SDK"
+  - name: "Install Google Cloud SDK And Plugins"
     kewlfft.aur.aur:
-      name: google-cloud-sdk
-      state: latest
-    become: yes
-    become_user: aur_builder
- 
-  - name: "Install Google Cloud SDK GKE Auth plugin"
-    kewlfft.aur.aur:
-      name: google-cloud-sdk-gke-gcloud-auth-plugin
+      name:
+      - google-cloud-sdk # A set of command-line tools for the Google Cloud Platform. Includes gcloud (with beta and alpha commands), gsutil, and bq.
+      - google-cloud-sdk-gke-gcloud-auth-plugin # A google-cloud-sdk component that provides a kubectl authentication plugin for GKE.
       state: latest
     become: yes
     become_user: aur_builder

@@ -8,14 +8,14 @@
   - name: "Install Docker tools"
     community.general.pacman:
       name:
-      - docker
-      - podman
-      - skopeo
-      - helm
-      - k9s
-      - kubectl
-      - kubectx
-      - minikube
+      - docker # Pack, ship and run any application as a lightweight container
+      - podman # Tool and library for running OCI-based containers in pods
+      - skopeo # A command line utility for various operations on container images and image repositories.
+      - helm # The Kubernetes Package Manager
+      - k9s # TUI for managing Kubernetes clusters and pods
+      - kubectl # A command line tool for communicating with a Kubernetes API server
+      - kubectx # Utility to manage and switch between kubectl contexts and Kubernetes namespaces
+      - minikube # A tool that makes it easy to run Kubernetes locally
       state: latest
     become: yes
 
@@ -36,19 +36,19 @@
   - name: "Install Libvirt and Virtualization tools"
     community.general.pacman:
       name:
-      - libvirt
-      - qemu-base
-      - dmidecode
-      - dnsmasq
+      - libvirt # API for controlling virtualization engines (openvz,kvm,qemu,virtualbox,xen,etc)
+      - qemu-base # A basic QEMU setup for headless environments
+      - dmidecode # Desktop Management Interface table related utilities
+      - dnsmasq # Lightweight, easy to configure DNS forwarder and DHCP server
       state: latest
     become: yes
 
   - name: "Install Additional tools for libvirt"
     community.general.pacman:
       name:
-      - virt-install
-      - virt-viewer
-      - libguestfs
+      - virt-install # Command line tool for creating new KVM , Xen, or Linux container guests using the libvirt hypervisor
+      - virt-viewer # A lightweight interface for interacting with the graphical display of virtualized guest OS.
+      - libguestfs # Access and modify virtual machine disk images
       state: latest
     become: yes
 
@@ -71,23 +71,18 @@
   - name: "Install Cockpit"
     community.general.pacman:
       name:
-      - cockpit
-      - cockpit-machines
-      - cockpit-podman
-      - cockpit-pcp
+      - cockpit # A systemd web based user interface for Linux servers
+      - cockpit-machines # Cockpit UI for virtual machines
+      - cockpit-podman # Cockpit UI for podman containers
+      - cockpit-pcp # Cockpit support for reading PCP metrics and loading PCP archives
       state: latest
     become: yes
 
-  - name: "Install Cockpit ZFS plugin"
+  - name: "Install Cockpit plugins from AUR"
     kewlfft.aur.aur:
-      name: cockpit-zfs-manager
-      state: latest
-    become: yes
-    become_user: aur_builder
-
-  - name: "Install Cockpit File Sharing plugin"
-    kewlfft.aur.aur:
-      name: cockpit-file-sharing
+      name: 
+      - cockpit-zfs-manager # An interactive ZFS on Linux admin package for Cockpit
+      - cockpit-file-sharing # A Cockpit plugin to easily manage samba and NFS file sharing.
       state: latest
     become: yes
     become_user: aur_builder
