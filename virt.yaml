@@ -3,13 +3,6 @@
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
-    # configs:
-    # - alacritty
-    # - lf
-    # - mpv
-    # - pass-git-helper
-    # - flameshot
-    # - zathura
 
   tasks:
   - name: "Install Docker tools"
@@ -24,13 +17,6 @@
       - kubectx
       - minikube
       state: latest
-    become: yes
-
-  - name: "Add current user to docker group"
-    ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
-      groups: docker
-      append: yes
     become: yes
 
   - name: "Copy Docker Configuration file"
@@ -64,13 +50,6 @@
       - virt-viewer
       - libguestfs
       state: latest
-    become: yes
-
-  - name: "Add current user to docker group"
-    ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
-      groups: libvirt
-      append: yes
     become: yes
 
   - name: "Set the UNIX domain socket group ownership to libvirt"
@@ -113,12 +92,15 @@
     become: yes
     become_user: aur_builder
 
-  - name: "Enable Libvirt"
-    ansible.builtin.systemd:
-      name: libvirtd
-      state: started
-      enabled: yes
+  - name: "Configure groups for current user"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      groups: "{{ item }}"
+      append: yes
     become: yes
+    loop:
+    - docker
+    - libvirt
 
   - name: "Enable Docker"
     ansible.builtin.systemd:
