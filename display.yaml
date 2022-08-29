@@ -2,7 +2,7 @@
 ---
 - hosts: localhost
   vars:
-    ansible_ask_become_pass: yes
+    ansible_ask_become_pass: true
     configs:
     - awesome
     - picom
