@@ -81,6 +81,13 @@
       state: latest
     become: yes
 
+  - name: "Ruby"
+    community.general.pacman:
+      name: 
+      - ruby # An object-oriented language for quick and easy programming
+      state: latest
+    become: yes
+
   - name: "Linters"
     community.general.pacman:
       name:
