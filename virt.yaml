@@ -15,7 +15,6 @@
       - k9s # TUI for managing Kubernetes clusters and pods
       - kubectl # A command line tool for communicating with a Kubernetes API server
       - kubectx # Utility to manage and switch between kubectl contexts and Kubernetes namespaces
-      - minikube # A tool that makes it easy to run Kubernetes locally
       state: latest
     become: yes
 
@@ -49,6 +48,14 @@
       - virt-install # Command line tool for creating new KVM , Xen, or Linux container guests using the libvirt hypervisor
       - virt-viewer # A lightweight interface for interacting with the graphical display of virtualized guest OS.
       - libguestfs # Access and modify virtual machine disk images
+      state: latest
+    become: yes
+
+  - name: "Install DevOps tools"
+    community.general.pacman:
+      name:
+      - minikube # A tool that makes it easy to run Kubernetes locally
+      - vagrant # Build and distribute virtualized development environments
       state: latest
     become: yes
 
