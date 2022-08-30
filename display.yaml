@@ -23,16 +23,6 @@
       state: latest
     become: yes
 
-  - name: "Nerd Fonts"
-    kewlfft.aur.aur:
-      name:
-      - nerd-fonts-complete # Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
-      - nerd-fonts-dejavu-complete # All variants of Nerd-Font-patched DejaVu Sans Mono
-      - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
-      state: latest
-    become: yes
-    become_user: aur_builder
-
   - name: "Install Fonts"
     community.general.pacman:
       name: 
@@ -43,6 +33,16 @@
       update_cache: yes
       state: latest
     become: yes
+
+  - name: "Nerd Fonts"
+    kewlfft.aur.aur:
+      name:
+      - nerd-fonts-complete # Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
+      - nerd-fonts-dejavu-complete # All variants of Nerd-Font-patched DejaVu Sans Mono
+      - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
+      state: latest
+    become: yes
+    become_user: aur_builder
 
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
@@ -91,6 +91,22 @@
       name: lightdm
       enabled: yes
     become: yes
+
+  - name: "Pinentry for Dmenu"
+    kewlfft.aur.aur:
+      name:
+      - pinentry-dmenu # A pinentry program with the charm of dmenu
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Symlink .gnupg configuration"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/config/gnupg/gpg-agent.conf"
+      dest: "~/.gnupg/gpg-agent.conf"
+      state: link
+      owner: 1000
+      group: 1000
 
   - name: "Install Redshift"
     community.general.pacman:
