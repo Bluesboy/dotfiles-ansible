@@ -104,7 +104,7 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Thunderbird",
+                "thunderbird",
             },
         },
         properties = {
@@ -503,5 +503,5 @@ local autostart = {
 }
 
 for _, i in pairs(autostart) do
-    awful.util.spawn(i)
+    awful.spawn(i)
 end
