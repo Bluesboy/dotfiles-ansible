@@ -13,3 +13,10 @@ config/fish/conf.d/fzf.fish
 config/fish/completions/fzf_configure_bindings.fish
 config/fish/functions/fzf_configure_bindings.fish
 config/fish/fish_variables
+config/fish/conf.d/__async_prompt.fish
+config/fish/conf.d/abbr_tips.fish
+config/fish/conf.d/done.fish
+config/fish/conf.d/puffer_fish_key_bindings.fish
+config/fish/conf.d/sponge.fish
+config/fish/functions/sponge_filter_failed.fish
+config/fish/functions/sponge_filter_matched.fish

@@ -20,8 +20,32 @@
       - xorg-fonts-100dpi # X.org 100dpi fonts
       - xclip # Command line interface to the X11 clipboard
       - upower # Abstraction for enumerating power devices, listening to device events and querying history and statistics
+      - autorandr
       state: latest
     become: yes
+
+  - name: "Enable Autorandr"
+    ansible.builtin.systemd:
+      name: autorandr
+      enabled: yes
+    become: yes
+
+  - name: "Lookup for HiDPI configs"
+    ansible.builtin.find: 
+      paths: "{{ playbook_dir }}/config/hidpi"
+      hidden: yes
+    register: hidpi
+
+  - debug: msg="{{ hidpi.files }}"
+
+  - name: "Create symlinks for configurations"
+    ansible.builtin.file:
+      src: "{{ playbook_dir }}/config/hidpi/{{ item.path | basename }}"
+      dest: "~/{{ item.path | basename }}"
+      state: link
+      owner: 1000
+      group: 1000
+    loop: "{{ hidpi.files }}"
 
   - name: "Install Fonts"
     community.general.pacman:
@@ -71,24 +95,30 @@
       state: latest
     become: yes
 
-  - name: "Install LightDM"
+  - name: "Install SDDM"
     community.general.pacman:
       name: 
-      - lightdm # A lightweight display manager
-      - lightdm-slick-greeter # A slick-looking LightDM greeter
+      - sddm # QML based X11 and Wayland display manager
       state: latest
     become: yes
 
-  - name: "Configure Greeter for LightDM"
-    ansible.builtin.lineinfile:
-      path: /etc/lightdm/lightdm.conf
-      regexp: "#greeter-session="
-      line: greeter-session=lightdm-slick-greeter
+  - name: "Install SDDM theme"
+    kewlfft.aur.aur:
+      name:
+      - sddm-sugar-dark
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Copy SDDM configuration"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/sddm/"
+      dest: "/etc/sddm.conf.d/"
     become: yes
 
-  - name: "Enable LightDM"
+  - name: "Enable SDDM"
     ansible.builtin.systemd:
-      name: lightdm
+      name: sddm
       enabled: yes
     become: yes
 

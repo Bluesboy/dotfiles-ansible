@@ -38,7 +38,7 @@ local tag_count = 5
 
 -- beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.font = "UbuntuMono Nerd Font 11"
+beautiful.font = "UbuntuMono Nerd Font 16"
 beautiful.useless_gap = 2
 
 if awesome.startup_errors then
@@ -276,7 +276,7 @@ local function setup_root_interactions()
     end
 
     local function dmenu()
-        awful.spawn("dmenu_run")
+        awful.spawn("dmenu_run -fn 'UbuntuMono Nerd Font 16'")
     end
 
     -- local c = awful.client.restore()
