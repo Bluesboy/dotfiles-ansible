@@ -9,4 +9,8 @@
 	lo = log --oneline -10
 	s = status
 [credential]
-	helper = !pass-git-helper $@
+	helper = gopass
+[credential "https://bitbucket.org"]
+  username = Bluesboy
+[credential "https://github.com"]
+  username = Bluesboy
