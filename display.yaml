@@ -36,8 +36,6 @@
       hidden: yes
     register: hidpi
 
-  - debug: msg="{{ hidpi.files }}"
-
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/hidpi/{{ item.path | basename }}"
@@ -63,7 +61,7 @@
       name:
       - nerd-fonts-complete # Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
       - nerd-fonts-dejavu-complete # All variants of Nerd-Font-patched DejaVu Sans Mono
-      - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
+      # - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
       state: latest
     become: yes
     become_user: aur_builder
