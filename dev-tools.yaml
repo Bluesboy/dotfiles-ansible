@@ -136,4 +136,11 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: "Packer"
+    community.general.pacman:
+      name:
+      - packer # tool for creating identical machine images for multiple platforms from a single source configuration
+      state: latest
+    become: yes
 ...
