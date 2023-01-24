@@ -21,7 +21,7 @@
       group: 1000
     loop: "{{ configs }}"
 
-  - name: "Apps from AUR"
+  - name: "Install lf file-browser"
     kewlfft.aur.aur:
       name: lf-bin
       state: latest
