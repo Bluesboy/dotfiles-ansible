@@ -14,3 +14,5 @@
   username = Bluesboy
 [credential "https://github.com"]
   username = Bluesboy
+[init]
+  defaultBranch = master
