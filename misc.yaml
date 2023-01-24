@@ -1,0 +1,29 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+
+  tasks:
+  - name: "Install Brave browser"
+    kewlfft.aur.aur:
+      name: brave-bin
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install OBS"
+    community.general.pacman:
+      name: 
+      - obs-studio
+      state: latest
+    become: yes
+
+  - name: "Install PacCap"
+    community.general.pacman:
+      name: 
+      - tcpdump
+      - wireshark-qt
+      - wireshark-cli
+      - termshark
+      state: latest
+    become: yes
+...
