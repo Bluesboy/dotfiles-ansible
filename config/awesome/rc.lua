@@ -146,6 +146,19 @@ awful.rules.rules = {
             ontop = true,
         },
     },
+    -- Telegram Media Viewer is floating
+    {
+        rule_any = {
+            name = {
+                "Media viewer",
+            },
+        },
+        properties = {
+            maximized = false,
+            floating = true,
+            ontop = true,
+        },
+    },
 }
 
 -- Create a wibox for each screen and add it
