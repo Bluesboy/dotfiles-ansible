@@ -52,19 +52,13 @@
       - noto-fonts-emoji # Google Noto emoji fonts
       - noto-fonts-cjk # Google Noto CJK fonts
       - noto-fonts-extra # Google Noto TTF fonts - additional variants
+      - ttf-ubuntu-mono-nerd # Patched font Ubuntu Mono from nerd fonts library
+      - ttf-dejavu-nerd # Patched font Dejavu Sans Mono from nerd fonts library
+      - ttf-firacode-nerd # Patched font Fira (Fura) Code from nerd fonts library
+      - otf-firamono-nerd # Patched font Fira (Fura) Mono from nerd fonts library
       update_cache: yes
       state: latest
     become: yes
-
-  - name: "Nerd Fonts"
-    kewlfft.aur.aur:
-      name:
-      - nerd-fonts-complete # Iconic font aggregator, collection, & patcher. 3,600+ icons, 50+ patched fonts.
-      - nerd-fonts-dejavu-complete # All variants of Nerd-Font-patched DejaVu Sans Mono
-      # - nerd-fonts-source-code-pro # Patched font SourceCodePro from nerd-fonts library
-      state: latest
-    become: yes
-    become_user: aur_builder
 
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
