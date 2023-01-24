@@ -43,6 +43,7 @@ if status --is-interactive
   abbr --add --global -- aurox 'gcloud config configurations activate aurox && kubectx aurox'
   abbr --add --global -- dr 'docker run -it --rm'
   abbr --add --global -- flux 'gcloud config configurations activate flux && kubectx flux'
+  abbr --add --global -- swaps 'gcloud config configurations activate aurox-swaps && kubectx swaps'
   abbr --add --global -- g git
   abbr --add --global -- ga 'git add'
   abbr --add --global -- gc 'git commit -m'
@@ -58,5 +59,5 @@ if status --is-interactive
   abbr --add --global -- lg lazygit
   abbr --add --global -- tf terraform
   abbr --add --global -- fishconf 'vim ~/.config/fish/config.fish'
-  abbr --add --global -- cleankube 'kubectl get pod --all-namespaces | grep -i \'terminated\|nodeshutdown\|error\|nodeaffinity\|completed\' | awk \'{ print $1, $2 }\' | xargs -n2 kubectl delete pod -n'
+  abbr --add --global -- ck 'kubectl get pod --all-namespaces | grep -i \'terminated\|nodeshutdown\|error\|nodeaffinity\|completed\' | awk \'{ print $1, $2 }\' | xargs -n2 kubectl delete pod -n'
 end
