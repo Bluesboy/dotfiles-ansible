@@ -54,6 +54,15 @@ return packer.startup(function(use)
         branch = "main"
     })
     use("moll/vim-bbye")
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    })
 
     -- Colorscheme
     use("projekt0n/github-nvim-theme")
