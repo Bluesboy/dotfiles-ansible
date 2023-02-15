@@ -1,0 +1,37 @@
+# ~/.tmuxinator/project_name.yml
+# you can make as many tabs as you wish...
+
+project_name: work
+project_root: ~/work
+# socket_name: tmux # Not needed. Remove to use default socket
+windows:
+  - home:
+      root: ~/
+      layout: main-horizontal
+      panes:
+        - lf
+        -
+
+  - k9s:
+      layout: main-horizontal
+      panes:
+        - k9s
+        -
+  - aurox:
+      root: ~/work/aurox
+      layout: main-horizontal
+      panes:
+        - lf
+        -
+  - flux:
+      root: ~/work/lumetric
+      layout: main-horizontal
+      panes:
+        - lf
+        -
+  - system:
+      root: ~
+      layout: main-horizontal
+      panes:
+        - btm
+        - sudo journalctl -xf
