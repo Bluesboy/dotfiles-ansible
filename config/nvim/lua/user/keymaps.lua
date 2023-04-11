@@ -89,3 +89,7 @@ keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 -- Null-ls
 keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.formatting_sync()<CR>", opts)
 keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_formatting()<CR>", opts)
+
+-- Bufferline
+keymap("n", "<leader><tab>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<leader><Backspace>", ":BufferLineCyclePrev<CR>", opts)
