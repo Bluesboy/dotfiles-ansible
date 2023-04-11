@@ -10,6 +10,8 @@
       name:
       - docker # Pack, ship and run any application as a lightweight container
       - docker-compose # Fast, isolated development environments using Docker
+      - docker-buildx # Docker CLI plugin for extended build capabilities with BuildKit
+      - buildkit # A toolkit for converting source code to build artifacts in a repeatable manner
       - podman # Tool and library for running OCI-based containers in pods
       - podman-compose # A script to run docker-compose.yml using podman
       - skopeo # A command line utility for various operations on container images and image repositories.
