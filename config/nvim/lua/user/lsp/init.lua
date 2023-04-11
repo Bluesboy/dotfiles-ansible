@@ -3,6 +3,17 @@ if not status_ok then
     return
 end
 
-require("user.lsp.lsp-installer")
-require("user.lsp.handlers").setup()
-require("user.lsp.null-ls")
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+    "lua_ls",
+    "tsserver",
+    "bashls",
+    "ansiblels",
+    "dockerls",
+    "gopls",
+    "jsonls",
+    "pylsp",
+    "yamlls"
+  }
+})
