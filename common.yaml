@@ -76,6 +76,7 @@
       - bat # Cat clone with syntax highlighting and git integration
       - bind # A complete, highly portable implementation of the DNS protocol
       - bottom # A graphical process/system monitor
+      - btop # A monitor of system resources, bpytop ported to C++ 
       - broot # Fuzzy Search + tree + cd
       - curl # It's fucking cURL, questions?
       - dust # A more intuitive version of du in rust
