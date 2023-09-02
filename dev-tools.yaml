@@ -38,25 +38,26 @@
       state: latest
     become: yes
 
-  - name: "Instal Node version manager"
+  - name: "Install Node version manager"
     community.general.npm:
       name: n
       global: yes
       state: latest
     become: yes
 
-  - name: "Instal 'neovim' Node package"
+  - name: "Install 'neovim' Node package"
     community.general.npm:
       name: neovim
       global: yes
       state: latest
     become: yes
 
-  - name: "Instal 'neovim' Python package"
-    ansible.builtin.pip:
-      name:
-      - neovim
-      - virtualfish
+  - name: "Install 'neovim' python package"
+    community.general.pacman:
+      name: 
+      - python-pynvim
+      state: latest
+    become: yes
 
   - name: "Lua"
     community.general.pacman:
