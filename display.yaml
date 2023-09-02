@@ -14,12 +14,15 @@
       name: 
       - xorg
       - xorg-xinit # X.Org initialisation program
+      - mesa # An open-source implementation of the OpenGL specification
+      - vulkan-radeon # Radeon's Vulkan mesa driver
       - nvidia # NVIDIA drivers for linux
       - nvidia-utils # NVIDIA drivers utilities
       - nvidia-settings # Tool for configuring the NVIDIA graphics driver
       - xorg-fonts-100dpi # X.org 100dpi fonts
       - xclip # Command line interface to the X11 clipboard
       - upower # Abstraction for enumerating power devices, listening to device events and querying history and statistics
+      - arandr
       - autorandr
       state: latest
     become: yes
