@@ -30,7 +30,7 @@
 
   - name: "Install Common GUI tools"
     community.general.pacman:
-      name: 
+      name:
       - alacritty # A cross-platform, GPU-accelerated terminal emulator
       - flameshot # Powerful yet simple to use screenshot software
       - gparted # A Partition Magic clone, frontend to GNU Parted
@@ -44,7 +44,7 @@
 
   - name: "Install Pass"
     community.general.pacman:
-      name: 
+      name:
       - pass # Stores, retrieves, generates, and synchronizes passwords securely
       - pass-otp # A pass extension for managing one-time-password (OTP) tokens.
       state: latest
@@ -52,7 +52,7 @@
 
   - name: "Install Gopass"
     community.general.pacman:
-      name: 
+      name:
       - gopass # The slightly more awesome standard unix password manager for teams.
       - gopass-jsonapi # jsonapi for gopass used for bridging to browsers
       - git-credential-gopass # git-credentials helper for gopass
@@ -69,11 +69,18 @@
 
   - name: "Install Opera"
     community.general.pacman:
-      name: 
+      name:
       - opera # A fast and secure web browser
       - opera-ffmpeg-codecs # additional support for proprietary codecs for opera
       - browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
       - browserpass-chromium # Chromium extension for Browserpass, browser extension for zx2c4's pass (password manager)
+      state: latest
+    become: yes
+
+  - name: "Install Firefox"
+    community.general.pacman:
+      name:
+      - firefox
       state: latest
     become: yes
 
@@ -84,7 +91,7 @@
 
   - name: "Install Messengers"
     community.general.pacman:
-      name: 
+      name:
       - telegram-desktop # Official Telegram Desktop client
       - element-desktop # Glossy Matrix collaboration client — desktop version.
       state: latest
@@ -106,7 +113,7 @@
 
   - name: "Install Thunderbird"
     community.general.pacman:
-      name: 
+      name:
       - thunderbird # Standalone mail and news reader from mozilla.org
       - thunderbird-i18n-ru # Russian language pack for Thunderbird
       - thunderbird-i18n-en-us # English (US) language pack for Thunderbird
