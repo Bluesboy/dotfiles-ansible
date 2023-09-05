@@ -139,4 +139,9 @@
       state: latest
     become: yes
     become_user: aur_builder
+
+  - name: Instal Tmux Plugin Manager
+    ansible.builtin.git:
+      repo:  https://github.com/tmux-plugins/tpm.git
+      dest: ~/.config/tmux/plugins/tpm
 ...

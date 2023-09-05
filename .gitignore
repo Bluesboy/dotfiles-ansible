@@ -20,3 +20,4 @@ config/fish/conf.d/puffer_fish_key_bindings.fish
 config/fish/conf.d/sponge.fish
 config/fish/functions/sponge_filter_failed.fish
 config/fish/functions/sponge_filter_matched.fish
+config/tmux/plugins/
