@@ -25,6 +25,18 @@ on-cd &{{
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
+cmd git_branch ${{
+    git branch | fzf | xargs git checkout
+    pwd_shell=$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')
+    lf -remote "send $id updir"
+    lf -remote "send $id cd \"$pwd_shell\""
+}}
+
+map gb :git_branch
+map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
+map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
+map gl ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
+
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
 # exit on error and option '-u' is used to give error for unset variables.
@@ -64,6 +76,7 @@ cmd open ${{
     case $(file --mime-type $f -b) in
         text/*) $EDITOR $fx;;
         application/json) $EDITOR $fx;;
+        application/javascript) $EDITOR $fx;;
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -150,3 +163,6 @@ map <c-s> $tmux split-window
 
 # Create directory
 map a push :mkdir<space>
+
+#FuzzyFinder
+map f $vi $(fzf)
