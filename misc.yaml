@@ -10,6 +10,13 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install Wireguard-Tools"
+    community.general.pacman:
+      name:
+      - wireguard-tools
+      state: latest
+    become: yes
+
   - name: "Install OBS"
     community.general.pacman:
       name: 
@@ -17,9 +24,30 @@
       state: latest
     become: yes
 
+  - name: "Install CUPS"
+    community.general.pacman:
+      name:
+      - cups
+      state: latest
+    become: yes
+
+  - name: "Install SANE"
+    community.general.pacman:
+      name:
+      - sane
+      state: latest
+    become: yes
+
+  - name: "Install Skanpage"
+    community.general.pacman:
+      name:
+      - skanpage
+      state: latest
+    become: yes
+
   - name: "Install PacCap"
     community.general.pacman:
-      name: 
+      name:
       - tcpdump
       - wireshark-qt
       - wireshark-cli
