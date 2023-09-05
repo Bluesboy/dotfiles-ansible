@@ -5,7 +5,7 @@ end
 
 bufferline.setup({
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
@@ -14,11 +14,10 @@ bufferline.setup({
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
     indicator = {
-      icon = '▎',
-      style = 'icon',
+      icon = "▎",
+      style = "icon",
     },
-    buffer_close_icon = "",
-    -- buffer_close_icon = '',
+    buffer_close_icon = "",
     modified_icon = "●",
     close_icon = "",
     -- close_icon = '',
@@ -37,8 +36,8 @@ bufferline.setup({
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
-    diagnostics_update_in_insert = false,
+    diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
+    diagnostics_update_in_insert = true,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
     --   return "("..count..")"
     -- end,
@@ -66,7 +65,7 @@ bufferline.setup({
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
-    separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+    separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = true,
     always_show_bufferline = true,
     -- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -85,9 +84,9 @@ bufferline.setup({
     },
 
     buffer_selected = {
-      fg = {attribute='fg',highlight='Red'},
-      bg = {attribute='bg',highlight='Blue'},
-      underline = true
+      fg = { attribute = "fg", highlight = "Red" },
+      bg = { attribute = "bg", highlight = "Blue" },
+      underline = true,
     },
     buffer_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },

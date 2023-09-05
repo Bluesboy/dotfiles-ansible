@@ -1,7 +1,7 @@
 require("github-theme").setup({
   options = {
     styles = {
-      functions = 'italic'
+      functions = "italic",
     },
     darken = {
       floats = false,
@@ -11,7 +11,7 @@ require("github-theme").setup({
           "qf",
           "vista_kind",
           "terminal",
-          "packer"
+          "packer",
         },
       },
     },
@@ -21,4 +21,4 @@ require("github-theme").setup({
   groups = {},
 })
 
-vim.cmd.colorscheme('github_dark')
+vim.cmd.colorscheme("github_dark")

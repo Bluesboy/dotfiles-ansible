@@ -19,6 +19,8 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
+
+keymap("n", "<leader>sf", ":source %<CR>", opts)
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -73,10 +75,10 @@ keymap("n", "<leader>x", ":wq<CR>", opts)
 --
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap(
-    "n",
-    "<leader>f",
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
-    opts
+  "n",
+  "<leader>f",
+  "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>",
+  opts
 )
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
@@ -87,8 +89,8 @@ keymap("n", "<BS>", ":nohlsearch<CR>", opts)
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Null-ls
-keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.formatting_sync()<CR>", opts)
-keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_formatting()<CR>", opts)
+keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.format()<CR>", opts)
+keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_format()<CR>", opts)
 
 -- Bufferline
 keymap("n", "<leader><tab>", ":BufferLineCycleNext<CR>", opts)
