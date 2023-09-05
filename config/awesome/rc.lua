@@ -38,7 +38,7 @@ local tag_count = 5
 
 -- beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.font = "UbuntuMono Nerd Font 16"
+beautiful.font = "UbuntuMono Nerd Font 14"
 beautiful.useless_gap = 2
 
 if awesome.startup_errors then
@@ -54,6 +54,7 @@ local quake_term = lain.util.quake({
     visible = true,
     height = 1,
     border = 0,
+    followtag = 1,
 })
 
 awful.layout.layouts = {
@@ -91,13 +92,34 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Element",
-                "TelegramDesktop",
                 "Slack",
             },
         },
         properties = {
+            tag = "1",
+            screen = "HDMI-1"
+        },
+    },
+    {
+        rule_any = {
+            class = {
+                "TelegramDesktop",
+            },
+        },
+        properties = {
             tag = "2",
+            screen = "HDMI-1"
+        },
+    },
+    {
+        rule_any = {
+            class = {
+                "Element",
+            },
+        },
+        properties = {
+            tag = "3",
+            screen = "HDMI-1"
         },
     },
     -- Put Thunderbird to third tag
@@ -108,7 +130,7 @@ awful.rules.rules = {
             },
         },
         properties = {
-            tag = "3",
+            screen = "HDMI-2",
         },
     },
     -- MPV always floating
@@ -157,6 +179,18 @@ awful.rules.rules = {
             maximized = false,
             floating = true,
             ontop = true,
+        },
+    },
+    -- Zoom Starts on the right screen
+    {
+        rule_any = {
+            name = {
+                "Zoom Meeting",
+            },
+        },
+        properties = {
+            screen = "HDMI-2",
+            tag = "2"
         },
     },
 }
@@ -390,8 +424,43 @@ local function setup_root_interactions()
         -- Open Flameshot GUI
         awful.key({}, "Print", function()
             awful.util.spawn("flameshot gui")
+        end),
+
+        awful.key({ meta, "Control" }, "h", function () 
+            awful.screen.focus_bydirection("left", _screen )
+        end),
+
+        awful.key({ meta, "Control" }, "l", function ()
+            awful.screen.focus_bydirection("right", _screen )
         end)
     )
+      -- set up keybindings based on existing monitors
+      for s in screen do
+          for screen_name, _ in pairs(s.outputs) do
+              if screen_name == "HDMI-1" then
+                  keys = gears.table.join(
+                      keys,
+                      awful.key({ "Control" }, "F1", function()
+                          awful.screen.focus(s)
+                      end)
+                  )
+              elseif screen_name == "DP-2" then
+                  keys = gears.table.join(
+                      keys,
+                      awful.key({ "Control" }, "F2", function()
+                          awful.screen.focus(s)
+                      end)
+                  )
+              elseif screen_name == "HDMI-2" then
+                  keys = gears.table.join(
+                      keys,
+                      awful.key({ "Control" }, "F3", function()
+                          awful.screen.focus(s)
+                      end)
+                  )
+              end
+          end
+      end
 
     for i = 1, tag_count do
         keys = gears.table.join(
@@ -476,7 +545,7 @@ local function setup_client_interactions(client)
             c:raise()
         end),
 
-        -- Toggle maximized
+       -- Toggle maximized
         awful.key({ meta }, "m", function(c)
             c.maximized = not c.maximized
             c:raise()
@@ -493,6 +562,18 @@ local function setup_client_interactions(client)
         -- Make client master
         awful.key({ alt }, "Return", function()
             client:swap(awful.client.getmaster())
+        end),
+
+        awful.key({ meta, "Control", alt }, "1", function()
+            client:move_to_screen("HDMI-1")
+        end),
+
+        awful.key({ meta, "Control", alt }, "2", function()
+            client:move_to_screen("DP-2")
+        end),
+
+        awful.key({ meta, "Control", alt }, "3", function()
+            client:move_to_screen("HDMI-2")
         end)
     )
 
