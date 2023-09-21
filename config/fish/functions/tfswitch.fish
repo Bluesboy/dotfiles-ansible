@@ -1,3 +1,3 @@
 function tfswitch --wraps=tfswitch
-  command tfswitch -b $HOME/.local/bin/terraform 
+  command tfswitch --bin=$HOME/.local/bin/terraform $argv;
 end
