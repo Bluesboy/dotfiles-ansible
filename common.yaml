@@ -103,6 +103,7 @@
       - wget # Network utility to retrieve files from the Web
       - which # A utility to show the full path of commands
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
+      - trash-cli # Command line trashcan (recycle bin) interface
       update_cache: yes
       state: latest
     become: yes
