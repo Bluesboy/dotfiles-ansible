@@ -31,6 +31,12 @@
       state: latest
     become: yes
 
+  - name: "Enable CUPS"
+    ansible.builtin.systemd:
+      name: cups
+      enabled: yes
+    become: yes
+
   - name: "Install SANE"
     community.general.pacman:
       name:
