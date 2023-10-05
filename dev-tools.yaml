@@ -16,6 +16,22 @@
       group: 1000
     loop: "{{ configs }}"
 
+  - name: "Install pipx"
+    community.general.pacman:
+      name: python-pipx
+      state: latest
+    become: yes
+
+  - name: "Install iPython"
+    community.general.pipx:
+      name: ipython
+      state: latest
+
+  - name: "Install Jupyter"
+    community.general.pipx:
+      name: jupyterlab
+      state: latest
+
   - name: "Rust"
     community.general.pacman:
       name: 
