@@ -25,6 +25,11 @@ on-cd &{{
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
+# show brief info in bottom corner
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
+}}
+
 cmd git_branch ${{
     git branch | fzf | xargs git checkout
     pwd_shell=$(pwd | sed 's/\\/\\\\/g;s/"/\\"/g')
