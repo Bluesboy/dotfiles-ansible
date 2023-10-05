@@ -9,7 +9,6 @@ nvim_tree.setup({
     hijack_netrw = true,
     view = {
         width = 35,
-        hide_root_folder = false,
         side = "left",
         number = false,
         relativenumber = false,

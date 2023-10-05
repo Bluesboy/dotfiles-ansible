@@ -86,7 +86,7 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<BS>", ":nohlsearch<CR>", opts)
 
 -- Nvimtree
-keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<C-n>", "<cmd> NvimTreeToggle<CR>", opts)
 
 -- Null-ls
 keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.format()<CR>", opts)
@@ -95,3 +95,7 @@ keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_format()<CR>", opts)
 -- Bufferline
 keymap("n", "<leader><tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<leader><Backspace>", ":BufferLineCyclePrev<CR>", opts)
+
+-- ToggleTerm
+keymap("n", "<C-s>", "<cmd> ToggleTerm<CR>", opts)
+keymap("n", "<M-g>", "<cmd> lua _LAZYGIT_TOGGLE()<CR>", opts)

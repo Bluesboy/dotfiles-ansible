@@ -82,6 +82,9 @@ return packer.startup(function(use)
   -- Colorscheme
   use("projekt0n/github-nvim-theme")
   use("norcalli/nvim-colorizer.lua")
+  --
+-- Transparent
+  use("xiyaowong/transparent.nvim")
 
   -- Lualine
   use({
@@ -172,6 +175,12 @@ return packer.startup(function(use)
   })
 
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
