@@ -10,6 +10,13 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install Zoom"
+    kewlfft.aur.aur:
+      name: zoom
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Install Wireguard-Tools"
     community.general.pacman:
       name:
