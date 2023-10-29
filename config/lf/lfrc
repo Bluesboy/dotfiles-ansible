@@ -1,6 +1,14 @@
 # interpreter for shell commands
 set shell sh
 
+set period 1
+
+set previewer ctpv
+set cleaner ctpvclear
+
+&ctpv -s $id
+&ctpvquit $id
+
 cmd on-cd &{{
 # display git repository status in your prompt
   source /usr/share/git/completion/git-prompt.sh
@@ -10,6 +18,10 @@ cmd on-cd &{{
   GIT_PS1_SHOWUPSTREAM=auto
   git=$(__git_ps1 " (%s)") || true
   fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
+  lf -remote "send $id set promptfmt \"$fmt\""
+
+  export STARSHIP_SHELL=
+  fmt="$(starship prompt)"
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
@@ -51,6 +63,15 @@ map gl ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%C
 # times.
 set shellopts '-eu'
 
+# Move up/down in the parent directory
+cmd move-parent &{{
+    dironly="setlocal '$(dirname "$PWD")' dironly"
+    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+}}
+
+map J move-parent down
+map K move-parent up
+
 # set internal field separator (IFS) to "\n" for shell commands
 # This is useful to automatically split file names in $fs and $fx properly
 # since default file separator used in these variables (i.e. 'filesep' option)
@@ -90,12 +111,10 @@ cmd open ${{
 # cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
 # map r push :rename<space>
 
-# make sure trash folder exists
-# %mkdir -p ~/.trash
+# Use trash-cli
+cmd trash %trash-put $fx
 
-# move current file or selected files to trash folder
-# (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+map D trash
 
 # define a custom 'delete' command
 # cmd delete ${{
@@ -114,14 +133,7 @@ cmd trash %set -f; mv $fx ~/.trash
 # (xkcd link: https://xkcd.com/1168/)
 cmd extract ${{
     set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+    atool -x $f
 }}
 
 # compress current file or selected files with tar and gunzip
@@ -158,16 +170,49 @@ set dircounts
 
 ### My keybindings
 
-# Show hidden files
-
 # Show hidden files on backspace
 map <backspace2> set hidden!
 
 # Open new pane in Tmux
-map <c-s> $tmux split-window
+map <c-s> $tmux split-window -l 15
 
 # Create directory
 map a push :mkdir<space>
 
 #FuzzyFinder
 map f $vi $(fzf)
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map <c-f> :fzf_jump
+
+cmd fzf_search ${{
+    RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+    res="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1 | sed 's/\\/\\\\/g;s/"/\\"/g'
+    )"
+    [ -n "$res" ] && lf -remote "send $id select \"$res\""
+}}
+map gf :fzf_search
+
+#Archivemount
+
+map zm ${{
+    mntdir="${f}.mnt"
+    mkdir -p "$mntdir"
+    archivemount "$f" "$mntdir"
+    lf -remote "send $id cd $mntdir"
+}}

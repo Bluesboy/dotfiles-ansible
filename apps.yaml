@@ -28,6 +28,20 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install CTPV Git"
+    kewlfft.aur.aur:
+      name: ctpv-git
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Archivemount"
+    kewlfft.aur.aur:
+      name: archivemount
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Install Common GUI tools"
     community.general.pacman:
       name:
