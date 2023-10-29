@@ -68,4 +68,19 @@
       - termshark
       state: latest
     become: yes
+
+  - name: "Install LibreOffice"
+    community.general.pacman:
+      name:
+      - libreoffice-fresh
+      - libreoffice-fresh-ru
+      state: latest
+    become: yes
+
+  - name: "Install ExpressVPN"
+    kewlfft.aur.aur:
+      name: expressvpn
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...
