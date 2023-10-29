@@ -94,6 +94,7 @@
       name:
       - telegram-desktop # Official Telegram Desktop client
       - element-desktop # Glossy Matrix collaboration client — desktop version.
+      - discord # All-in-one voice and text chat for gamers
       state: latest
     become: yes
 
