@@ -22,15 +22,31 @@
       state: latest
     become: yes
 
+  - name: "Install Virtualenv"
+    community.general.pipx:
+      name: virtualenv
+      state: latest
+
+  - name: "Install VirtualFish"
+    community.general.pipx:
+      name: virtualfish
+      state: latest
+
   - name: "Install iPython"
     community.general.pipx:
       name: ipython
       state: latest
 
-  - name: "Install Jupyter"
+  - name: "Install Jupyterlab"
     community.general.pipx:
       name: jupyterlab
       state: latest
+
+  - name: "Install Jupyterlab Vim"
+    community.general.pipx:
+      name: jupyterlab-vim
+      state: latest
+      install_deps: true
 
   - name: "Rust"
     community.general.pacman:
