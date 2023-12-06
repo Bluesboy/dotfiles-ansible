@@ -1,6 +1,10 @@
 #Do not add new line
 
 add_newline = false
+scan_timeout = 30
+
+[directory]
+fish_style_pwd_dir_length = 3
 
 [line_break]
 disabled = false
