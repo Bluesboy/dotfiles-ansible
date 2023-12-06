@@ -9,7 +9,6 @@
     - nvim
     - starship
     - tmux
-    - tmuxinator
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -100,6 +99,7 @@
       - thefuck # Magnificent app which corrects your previous console command
       - tmux # A terminal multiplexer
       - unzip # For extracting and viewing files in .zip archives
+      - p7zip # Command-line file archiver with high compression ratio
       - wget # Network utility to retrieve files from the Web
       - which # A utility to show the full path of commands
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
@@ -140,12 +140,4 @@
     ansible.builtin.git:
       repo:  https://github.com/tmux-plugins/tpm.git
       dest: ~/.config/tmux/plugins/tpm
-
-  - name: "Install Uberzug++"
-    kewlfft.aur.aur:
-      name:
-      - ueberzugpp
-      state: latest
-    become: yes
-    become_user: aur_builder
 ...
