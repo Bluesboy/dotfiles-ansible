@@ -48,6 +48,52 @@
       state: latest
       install_deps: true
 
+  - name: "Install Jupyter Client"
+    community.general.pacman:
+      name: python-jupyter-client
+      state: latest
+    become: yes
+
+  - name: "Install Ueberzug"
+    community.general.pacman:
+      name: ueberzug
+      state: latest
+    become: yes
+
+  - name: "Install Helm LS"
+    kewlfft.aur.aur:
+      name:
+      - helm-ls
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+
+  - name: "Install Cairosvg"
+    community.general.pacman:
+      name: python-cairosvg
+      state: latest
+    become: yes
+
+  - name: "Install pnglatex"
+    community.general.pipx:
+      name: pnglatex
+      state: latest
+
+  - name: "Install Plotly"
+    kewlfft.aur.aur:
+      name: python-plotly
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Kaleido"
+    kewlfft.aur.aur:
+      name: python-kaleido-bin
+      state: latest
+    become: yes
+    become_user: aur_builder
+        
   - name: "Rust"
     community.general.pacman:
       name: 
@@ -55,6 +101,14 @@
       - rust
       state: latest
     become: yes
+
+  - name: "Yay"
+    kewlfft.aur.aur:
+      name: yay # Yet another yogurt. Pacman wrapper and AUR helper written in go
+      use: makepkg
+      state: present
+    become: yes
+    become_user: aur_builder
 
   - name: "Paru"
     kewlfft.aur.aur:
@@ -159,6 +213,13 @@
     community.general.pacman:
       name:
       - packer # tool for creating identical machine images for multiple platforms from a single source configuration
+      state: latest
+    become: yes
+
+  - name: "Operator SDK"
+    community.general.pacman:
+      name: 
+      - operator-sdk
       state: latest
     become: yes
 ...
