@@ -98,6 +98,14 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install kind for kubernetes"
+    kewlfft.aur.aur:
+      name: 
+      - kind # Kubernetes IN Docker - local clusters for testing Kubernetes
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Configure groups for current user"
     ansible.builtin.user:
       name: "{{ ansible_user_id }}"
