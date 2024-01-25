@@ -41,14 +41,12 @@ require("nvim-treesitter.configs").setup({
   playground = {
     enable = true,
   },
-  indent = { enable = true, disable = { "yaml" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
+  indent = { enable = true, disable = { "yaml" } }
 })
 -- vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.g.skip_ts_context_commentstring_module = true
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.gotmpl = {

@@ -64,26 +64,11 @@ return packer.startup(function(use)
     end,
   })
 
-  use({
-    "nathom/filetype.nvim",
-    config = function()
-      require("filetype").setup({
-        overrides = {
-          extensions = {
-            tf = "terraform",
-            tfvars = "terraform",
-            tfstate = "json",
-          },
-        },
-      })
-    end,
-  })
-
   -- Colorscheme
   use("projekt0n/github-nvim-theme")
   use("norcalli/nvim-colorizer.lua")
   --
--- Transparent
+  -- Transparent
   use("xiyaowong/transparent.nvim")
 
   -- Lualine
@@ -167,18 +152,33 @@ return packer.startup(function(use)
 
 
   -- Markdown Preview
--- install without yarn or npm
+  -- install without yarn or npm
   use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   })
 
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
   use({
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
     ft = { "markdown" },
+  })
+
+  use({
+    "someone-stole-my-name/yaml-companion.nvim",
+    requires = {
+      { "neovim/nvim-lspconfig" },
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    config = function()
+      require("telescope").load_extension("yaml_schema")
+    end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
