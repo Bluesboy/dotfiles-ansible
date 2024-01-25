@@ -186,4 +186,11 @@ return packer.startup(function(use)
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
+  use({
+    "NeogitOrg/neogit",
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" }
+    }
+  })
 end)
