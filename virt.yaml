@@ -63,6 +63,13 @@
       state: latest
     become: yes
 
+  - name: "Install Icedtea-web"
+    community.general.pacman:
+      name:
+      - icedtea-web
+      state: latest
+    become: yes
+
   - name: "Set the UNIX domain socket group ownership to libvirt"
     ansible.builtin.lineinfile:
       path: /etc/libvirt/libvirtd.conf
