@@ -22,3 +22,5 @@ config/fish/functions/sponge_filter_failed.fish
 config/fish/functions/sponge_filter_matched.fish
 config/tmux/plugins/
 **/fishd.tmp.*
+config/fish/completions/gopass.fish
+config/fish/completions/kind.fish

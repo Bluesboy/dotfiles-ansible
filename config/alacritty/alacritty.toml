@@ -1,0 +1,66 @@
+[bell]
+animation = "EaseOutExpo"
+
+[[colors.indexed_colors]]
+color = "0xd18616"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xf14c4c"
+index = 17
+
+[colors.bright]
+black = "0x666666"
+blue = "0x3b8eea"
+cyan = "0x29b7da"
+green = "0x23d18b"
+magenta = "0xd670d6"
+red = "0xf14c4c"
+white = "0xd1d5da"
+yellow = "0xf5f543"
+
+[colors.normal]
+black = "0x24292e"
+blue = "0x3b8eea"
+cyan = "0x29b7da"
+green = "0x23d18b"
+magenta = "0xbc3fbc"
+red = "0xf14c4c"
+white = "0xd1d5da"
+yellow = "0xe2e210"
+
+[colors.primary]
+background = "0x24292e"
+foreground = "0xd1d5da"
+
+[cursor.style]
+shape = "Beam"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "UbuntuMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "UbuntuMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "UbuntuMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "UbuntuMono Nerd Font"
+style = "Regular"
+
+[scrolling]
+history = 100000
+
+[window]
+decorations = "none"
+opacity = 0.92
