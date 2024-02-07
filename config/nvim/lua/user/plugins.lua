@@ -193,4 +193,6 @@ return packer.startup(function(use)
       { "nvim-telescope/telescope.nvim" }
     }
   })
+
+  use 'karb94/neoscroll.nvim'
 end)
