@@ -92,6 +92,7 @@
       - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
       - openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
       - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+      - parallel # A shell tool for executing jobs in parallel
       - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
       - rmlint # Tool to remove duplicates and other lint, being much faster than fdupes
       - rsync #  A fast and versatile file copying tool for remote and local files
