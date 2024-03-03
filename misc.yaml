@@ -17,20 +17,6 @@
     become: yes
     become_user: aur_builder
 
-  - name: "Install Wireguard-Tools"
-    community.general.pacman:
-      name:
-      - wireguard-tools
-      state: latest
-    become: yes
-
-  - name: "Install Openfortivpn"
-    kewlfft.aur.aur:
-      name: openfortivpn
-      state: latest
-    become: yes
-    become_user: aur_builder
-
   - name: "Install OBS"
     community.general.pacman:
       name: 
