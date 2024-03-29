@@ -6,9 +6,11 @@
     configs:
     - fish
     - git
+    - lf
     - nvim
     - starship
     - tmux
+    - wezterm
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -71,12 +73,13 @@
   - name: "Install common packages"
     community.general.pacman:
       name: 
+      - atool # A script for managing file archives of various types
       - bash-completion # Programmable completion for the bash shell
       - bat # Cat clone with syntax highlighting and git integration
       - bind # A complete, highly portable implementation of the DNS protocol
       - bottom # A graphical process/system monitor
-      - btop # A monitor of system resources, bpytop ported to C++ 
       - broot # Fuzzy Search + tree + cd
+      - btop # A monitor of system resources, bpytop ported to C++ 
       - curl # It's fucking cURL, questions?
       - dust # A more intuitive version of du in rust
       - eza # ls replacement
@@ -84,30 +87,33 @@
       - fish # Smart and user friendly shell intended mostly for interactive use
       - fisher # A package manager for the fish shell
       - fzf # Command-line fuzzy finder
+      - github-cli # The GitHub CLI
       - go-yq # Portable command-line YAML processor
       - hub # cli interface for Github
       - jq # Command-line JSON processor
       - lazygit # Simple terminal UI for git commands
+      - lf #  A terminal file manager inspired by ranger
+      - lynx # A text browser for the World Wide Web
       - mediainfo # Supplies technical and tag information about a video or audio file (CLI interface)
       - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
+      - nmap # Utility for network discovery and security auditing
       - openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
       - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+      - p7zip # Command-line file archiver with high compression ratio
       - parallel # A shell tool for executing jobs in parallel
+      - pcmanfm-gtk3 # Extremely fast and lightweight file manager (GTK+ 3 version)
       - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
       - rmlint # Tool to remove duplicates and other lint, being much faster than fdupes
       - rsync #  A fast and versatile file copying tool for remote and local files
       - starship # The cross-shell prompt for astronauts
       - thefuck # Magnificent app which corrects your previous console command
       - tmux # A terminal multiplexer
+      - trash-cli # Command line trashcan (recycle bin) interface
       - unzip # For extracting and viewing files in .zip archives
-      - p7zip # Command-line file archiver with high compression ratio
+      - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
+      - wezterm # A GPU-accelerated cross-platform terminal emulator and multiplexer
       - wget # Network utility to retrieve files from the Web
       - which # A utility to show the full path of commands
-      - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
-      - trash-cli # Command line trashcan (recycle bin) interface
-      - pcmanfm-gtk3 # Extremely fast and lightweight file manager (GTK+ 3 version)
-      - atool # A script for managing file archives of various types
-      - lynx # A text browser for the World Wide Web
       update_cache: yes
       state: latest
     become: yes
