@@ -24,3 +24,4 @@ config/tmux/plugins/
 **/fishd.tmp.*
 config/fish/completions/gopass.fish
 config/fish/completions/kind.fish
+config/nvim/lazy-lock.json

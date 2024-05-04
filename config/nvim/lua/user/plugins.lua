@@ -41,20 +41,20 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
   -- Basic Plugins
-  use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("ethanholz/nvim-lastplace")
-  use("kyazdani42/nvim-web-devicons")
-  use("kyazdani42/nvim-tree.lua")
+  -- use("wbthomason/packer.nvim") -- Have packer manage itself
+  -- use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
+  -- use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
+  -- use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+  -- use("numToStr/Comment.nvim") -- Easily comment stuff
+  -- use("ethanholz/nvim-lastplace")
+  -- use("kyazdani42/nvim-web-devicons")
+  -- use("kyazdani42/nvim-tree.lua")
   use({
     "akinsho/bufferline.nvim",
     branch = "main",
   })
   use("moll/vim-bbye")
-  use({
+  --[[ use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
@@ -62,17 +62,17 @@ return packer.startup(function(use)
         -- Configuration here, or leave empty to use defaults
       })
     end,
-  })
+  }) ]]
 
   -- Colorscheme
-  use("projekt0n/github-nvim-theme")
-  use("norcalli/nvim-colorizer.lua")
+  -- use("projekt0n/github-nvim-theme")
+  -- use("norcalli/nvim-colorizer.lua")
   --
   -- Transparent
-  use("xiyaowong/transparent.nvim")
+  -- use("xiyaowong/transparent.nvim")
 
   -- Lualine
-  use({
+  --[[ use({
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
@@ -82,49 +82,49 @@ return packer.startup(function(use)
         },
       })
     end,
-  })
+  }) ]]
 
   -- cmp plugins
-  use("hrsh7th/nvim-cmp") -- The completion plugin
+  --[[ use("hrsh7th/nvim-cmp") -- The completion plugin
   use("hrsh7th/cmp-buffer") -- buffer completions
   use("hrsh7th/cmp-path") -- path completions
   use("hrsh7th/cmp-cmdline") -- cmdline completions
   use("saadparwaiz1/cmp_luasnip") -- snippet completions
   use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-nvim-lua")
+  use("hrsh7th/cmp-nvim-lua") ]]
 
   -- snippets
-  use("L3MON4D3/LuaSnip") --snippet engine
-  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  --[[ use("L3MON4D3/LuaSnip") --snippet engine
+  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use ]]
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use({
+  -- use("neovim/nvim-lspconfig") -- enable LSP
+  --[[ use({
     "williamboman/mason.nvim", -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
     run = function()
       pcall(vim.cmd, "MasonUpdate")
     end,
-  })
-  use("williamboman/mason-lspconfig.nvim")
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  }) ]]
+  -- use("williamboman/mason-lspconfig.nvim")
+  -- use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
-  -- Telescope
+  --[[ -- Telescope
   use("nvim-telescope/telescope.nvim")
-  use("nvim-telescope/telescope-media-files.nvim")
+  use("nvim-telescope/telescope-media-files.nvim") ]]
 
   -- Treesitter
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
+  -- use({
+  --   "nvim-treesitter/nvim-treesitter",
+  --   run = ":TSUpdate",
+  -- })
   use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("nvim-treesitter/playground")
+  -- use("nvim-treesitter/playground")
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
+  -- use("lewis6991/gitsigns.nvim")
 
   -- Tmux integration
-  use({
+  --[[ use({
     "aserowy/tmux.nvim",
     config = function()
       require("tmux").setup({
@@ -139,7 +139,7 @@ return packer.startup(function(use)
         },
       })
     end,
-  })
+  }) ]]
 
   -- Toggleterm
   use({
@@ -148,7 +148,7 @@ return packer.startup(function(use)
   })
 
   -- Indentation
-  use("lukas-reineke/indent-blankline.nvim")
+  -- use("lukas-reineke/indent-blankline.nvim")
 
 
   -- Markdown Preview
@@ -181,11 +181,6 @@ return packer.startup(function(use)
     end,
   })
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
   use({
     "NeogitOrg/neogit",
     requires = {
@@ -195,4 +190,10 @@ return packer.startup(function(use)
   })
 
   use 'karb94/neoscroll.nvim'
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
 end)
