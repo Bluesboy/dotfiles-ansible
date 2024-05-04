@@ -53,13 +53,25 @@
       - noto-fonts-cjk # Google Noto CJK fonts
       - noto-fonts-extra # Google Noto TTF fonts - additional variants
       - ttf-ubuntu-mono-nerd # Patched font Ubuntu Mono from nerd fonts library
+      - ttf-ubuntu-nerd # Patched font Ubuntu from nerd fonts library 
       - ttf-dejavu-nerd # Patched font Dejavu Sans Mono from nerd fonts library
       - ttf-firacode-nerd # Patched font Fira (Fura) Code from nerd fonts library
+      - ttf-nerd-fonts-symbols # High number of extra glyphs from popular 'iconic fonts'
+      - ttf-nerd-fonts-symbols-common # High number of extra glyphs from popular 'iconic fonts' (common files)
+      - ttf-nerd-fonts-symbols-mono # High number of extra glyphs from popular 'iconic fonts' (monospace)
+      - ttf-noto-nerd # Patched font Noto from nerd fonts library
       - otf-firamono-nerd # Patched font Fira (Fura) Mono from nerd fonts library
       update_cache: yes
       state: latest
     become: yes
 
+  - name: "Install Ubuntu Mono Ligaturized"
+    kewlfft.aur.aur:
+      name:
+      - ttf-ubuntu-mono-ligaturized-git
+      state: latest
+    become: yes
+    become_user: aur_builder
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
