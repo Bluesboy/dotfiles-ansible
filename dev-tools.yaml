@@ -222,4 +222,19 @@
       - operator-sdk
       state: latest
     become: yes
+
+  - name: 'Download "g" install script'
+    ansible.builtin.get_url:
+      url: https://git.io/g-install
+      dest: /tmp/g-install
+      mode: '0775'
+
+  - name: 'Execute "g" install script'
+    ansible.builtin.shell:
+      cmd: /tmp/g-install -y
+
+  - name: 'Remove "g" install script'
+    ansible.builtin.file:
+      path: /tmp/g-install
+      state: absent
 ...

@@ -46,6 +46,7 @@ if status --is-interactive
   abbr --add --global -- swaps 'gcloud config configurations activate aurox-swaps && kubectx swaps'
   abbr --add --global -- stage 'gcloud config configurations activate stage && kubectx stage'
   abbr --add --global -- g git
+  abbr --add --global -- gvm g
   abbr --add --global -- ga 'git add'
   abbr --add --global -- gc 'git commit -m'
   abbr --add --global -- gca 'git commit --amend'
@@ -64,3 +65,4 @@ if status --is-interactive
   abbr --add --global -- ck 'kubectl get pod --all-namespaces | grep -i \'terminated\|nodeshutdown\|error\|nodeaffinity\|completed\' | awk \'{ print $1, $2 }\' | xargs -n2 kubectl delete pod -n'
   abbr --add --global -- tm 'tmux'
 end
+set -gx GOPATH $HOME/go; set -gx GOROOT $HOME/.go; set -gx PATH $GOPATH/bin $PATH; # g-install: do NOT edit, see https://github.com/stefanmaric/g
