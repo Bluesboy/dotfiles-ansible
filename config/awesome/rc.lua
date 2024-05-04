@@ -3,6 +3,7 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+local ruled = require("ruled")
 require("awful.autofocus")
 
 -- Notification library
@@ -76,124 +77,130 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.se,
 }
 
-awful.rules.rules = {
+ruled.client.connect_signal('request::rules', function()
     -- All clients will match this rule.
-    {
+    ruled.client.append_rule {
+        id = 'global',
         rule = {},
         properties = {
             focus = awful.client.focus.filter,
             raise = true,
             titlebars_enabled = false,
             screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+            placement = awful.placement.no_overlap + awful.placement.no_offscreen
         },
-    },
-    -- Put messangers to second tag
-    {
+    }
+
+    ruled.client.append_rule {
+      id = 'slack',
+      rule_any = {
+          class = {
+              "Slack"
+          },
+      },
+      properties = {
+          tag = "1",
+          screen = "HDMI-1"
+      },
+    }
+
+    ruled.client.append_rule {
+        id = "telegram",
         rule_any = {
             class = {
-                "Slack",
-            },
-        },
-        properties = {
-            tag = "1",
-            screen = "HDMI-1"
-        },
-    },
-    {
-        rule_any = {
-            class = {
-                "TelegramDesktop",
+                "TelegramDesktop"
             },
         },
         properties = {
             tag = "2",
             screen = "HDMI-1"
         },
-    },
-    {
+    }
+
+    ruled.client.append_rule {
+        id = "element",
         rule_any = {
             class = {
-                "Element",
+                "Element"
             },
         },
         properties = {
             tag = "3",
             screen = "HDMI-1"
         },
-    },
-    -- Put Thunderbird to third tag
-    {
+    }
+    ruled.client.append_rule {
+        id = "thunderbird",
         rule_any = {
             class = {
-                "thunderbird",
+                "thunderbird"
             },
         },
         properties = {
-            screen = "HDMI-2",
+            tag = "1",
+            screen = "HDMI-2"
         },
-    },
-    -- MPV always floating
-    {
+    }
+    ruled.client.append_rule {
+        id = "mpv",
         rule_any = {
             class = {
-                "mpv",
+                "mpv"
             },
         },
         properties = {
-            floating = true,
+            floating = true
         },
-    },
-    -- Opera starts maximized
-    {
+    }
+    ruled.client.append_rule {
+        id = "opera",
         rule_any = {
             class = {
-                "Opera",
+                "Opera"
             },
         },
         properties = {
-            maximized = true,
+            maximized = true
         },
-    },
-
-    {
+    }
+    ruled.client.append_rule {
+        id = "pip",
         rule_any = {
             name = {
                 "Картинка в картинке",
+                "Picture-in-picture"
             },
         },
         properties = {
-            maximized = false,
             floating = true,
-            ontop = true,
-        },
-    },
-    -- Telegram Media Viewer is floating
-    {
+            ontop = true
+        }
+    }
+    ruled.client.append_rule {
+        id = "telegram_viewer",
         rule_any = {
             name = {
                 "Media viewer",
             },
         },
         properties = {
-            maximized = false,
             floating = true,
-            ontop = true,
+            ontop = true
         },
-    },
-    -- Zoom Starts on the right screen
-    {
+    }
+    ruled.client.append_rule {
+        id = "zoom",
         rule_any = {
             name = {
-                "Zoom Meeting",
-            },
+                "Zoom Meeting"
+            }
         },
         properties = {
             screen = "HDMI-2",
             tag = "2"
-        },
-    },
-}
+        }
+    }
+end)
 
 -- Create a wibox for each screen and add it
 local function setup_screen_tags(screen)
@@ -308,7 +315,7 @@ local function setup_root_interactions()
 
     local function start_opera()
         local matcher = function(c)
-            return awful.rules.match(c, { class = "Opera" })
+            return ruled.client.match(c, { class = "Opera" })
         end
 
         awful.client.run_or_raise(browser, matcher)
@@ -316,7 +323,7 @@ local function setup_root_interactions()
 
     local function start_slack()
         local matcher = function(c)
-            return awful.rules.match(c, { class = "Slack" })
+            return ruled.client.match(c, { class = "Slack" })
         end
 
         awful.client.run_or_raise("slack", matcher)
@@ -423,7 +430,7 @@ local function setup_root_interactions()
 
         -- Open Flameshot GUI
         awful.key({}, "Print", function()
-            awful.util.spawn("flameshot gui")
+            awful.spawn("flameshot gui")
         end),
 
         awful.key({ meta, "Control" }, "h", function () 
@@ -589,11 +596,12 @@ awful.screen.connect_for_each_screen(setup_screen_tags)
 local autostart = {
     "picom",
     "flameshot",
+    "feh --randomize --bg-fill " .. os.getenv("HOME") .. "/Pictures/wallpapers/",
+    "clipmenud",
     "slack",
     "element-desktop",
-    "thunderbird",
     "telegram-desktop",
-    "clipmenud",
+    "thunderbird"
 }
 
 for _, i in pairs(autostart) do
