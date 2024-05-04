@@ -10,6 +10,13 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install Signal-Desktop"
+    community.general.pacman:
+      name:
+      - signal-desktop
+      state: latest
+    become: yes
+
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom
