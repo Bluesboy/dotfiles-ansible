@@ -223,6 +223,12 @@
       state: latest
     become: yes
 
+  - name: "Task"
+    community.general.pacman:
+      name:
+      - go-task # A task runner written in Go
+      state: latest
+    become: yes
   - name: 'Download "g" install script'
     ansible.builtin.get_url:
       url: https://git.io/g-install
