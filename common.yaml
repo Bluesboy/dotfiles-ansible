@@ -10,7 +10,6 @@
     - nvim
     - starship
     - tmux
-    - wezterm
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -111,7 +110,6 @@
       - trash-cli # Command line trashcan (recycle bin) interface
       - unzip # For extracting and viewing files in .zip archives
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
-      - wezterm # A GPU-accelerated cross-platform terminal emulator and multiplexer
       - wget # Network utility to retrieve files from the Web
       - which # A utility to show the full path of commands
       update_cache: yes
