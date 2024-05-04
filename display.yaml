@@ -143,6 +143,13 @@
     become: yes
     become_user: aur_builder
 
+  - name: "Install FFmpegthumbnailer"
+    community.general.pacman:
+      name: 
+      - ffmpegthumbnailer # Lightweight video thumbnailer that can be used by file managers
+      state: latest
+    become: yes
+
   - name: "Symlink .gnupg configuration"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/gnupg/gpg-agent.conf"
