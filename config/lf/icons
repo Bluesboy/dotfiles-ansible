@@ -51,7 +51,8 @@ README    
 *.scss   
 *.el     
 *.clj    
-*.py     
+*.py      
+*.lua    🌙
 *.rb     
 *.go     
 *.html   
