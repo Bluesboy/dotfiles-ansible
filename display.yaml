@@ -72,6 +72,7 @@
       state: latest
     become: yes
     become_user: aur_builder
+
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
@@ -81,10 +82,18 @@
       group: 1000
     loop: "{{ configs }}"
 
+  - name: "Install Awesome WM"
+    kewlfft.aur.aur:
+      name:
+      - awesome-git # Highly configurable framework window manager
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Install Awesome"
     community.general.pacman:
       name: 
-      - awesome # Highly configurable framework window manager
+      # - awesome # Highly configurable framework window manager
       - picom # X compositor that may fix tearing issues
       update_cache: yes
       state: latest
