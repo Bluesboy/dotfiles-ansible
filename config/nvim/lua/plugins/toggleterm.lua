@@ -1,3 +1,8 @@
 return {
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  "akinsho/toggleterm.nvim",
+  config = function()
+    require("toggleterm").setup({
+      autochdir = true,
+    })
+  end,
 }
