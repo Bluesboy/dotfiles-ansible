@@ -33,8 +33,6 @@ map("n", "<C-j>", "<C-w>j", opts)
 map("n", "<C-k>", "<C-w>k", opts)
 map("n", "<C-l>", "<C-w>l", opts)
 
-map("n", "<leader>e", ":Lex 30<cr>", opts)
-
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<cr>", opts)
 map("n", "<C-Down>", ":resize -2<cr>", opts)

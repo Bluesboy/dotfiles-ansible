@@ -46,7 +46,6 @@ return {
       local lspconfig = require("lspconfig")
 
       local signs = {
-
         { name = "DiagnosticSignError", text = "" },
         { name = "DiagnosticSignWarn", text = "" },
         { name = "DiagnosticSignHint", text = "" },
