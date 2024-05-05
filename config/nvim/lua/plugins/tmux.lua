@@ -12,5 +12,5 @@ return {
         enable_default_keybindings = true,
       },
     })
-  end
+  end,
 }

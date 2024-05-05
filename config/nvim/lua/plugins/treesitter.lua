@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "nvim-treesitter/playground"
+    "nvim-treesitter/playground",
   },
   build = ":TSUpdate",
   config = function()
@@ -33,7 +33,7 @@ return {
       },
       indent = {
         enable = true,
-      }
+      },
     })
-  end
+  end,
 }

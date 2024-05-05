@@ -3,15 +3,15 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require('mason').setup()
-    end
+      require("mason").setup()
+    end,
   },
   {
     "someone-stole-my-name/yaml-companion.nvim",
     dependencies = {
-        "neovim/nvim-lspconfig",
-        "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope.nvim"
+      "neovim/nvim-lspconfig",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
     },
     config = function(_, opts)
       local cfg = require("yaml-companion").setup(opts)
@@ -23,24 +23,24 @@ return {
     "williamboman/mason-lspconfig.nvim",
     lazy = false,
     config = function()
-      require('mason-lspconfig').setup {
+      require("mason-lspconfig").setup({
         ensure_installed = {
           "lua_ls",
           "pyright",
           "terraformls",
           "yamlls",
-          "helm_ls"
+          "helm_ls",
         },
-        auto_install = true
-      }
-    end
+        auto_install = true,
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "towolf/vim-helm",
-      "b0o/schemastore.nvim"
+      "b0o/schemastore.nvim",
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -61,12 +61,12 @@ return {
         settings = {
           Lua = {
             diagnostics = {
-              globals = { "vim" }
+              globals = { "vim" },
             },
             workspace = {
               library = {
                 vim.api.nvim_get_runtime_file("", true),
-                ['/usr/share/awesome/lib'] = true
+                ["/usr/share/awesome/lib"] = true,
               },
             },
             telemetry = {
@@ -74,23 +74,23 @@ return {
             },
             globals = {
               "awesome",
-              "client"
-            }
-          }
-        }
+              "client",
+            },
+          },
+        },
       }
 
-      lspconfig.helm_ls.setup {
+      lspconfig.helm_ls.setup({
         settings = {
-          ['helm-ls'] = {
+          ["helm-ls"] = {
             yamlls = {
-              path = "yaml-language-server"
-            }
-          }
-        }
-      }
+              path = "yaml-language-server",
+            },
+          },
+        },
+      })
 
-      lspconfig.yamlls.setup {
+      lspconfig.yamlls.setup({
         settings = {
           yaml = {
             hover = true,
@@ -100,31 +100,31 @@ return {
               enable = false,
               url = "",
             },
-            schemas = require('schemastore').yaml.schemas {
+            schemas = require("schemastore").yaml.schemas({
               extra = {
                 {
-                  name = 'kubernetes',
-                  description = 'Kubernetes',
-                  fileMatch = { '*.yaml', '*.yml' },
-                  url = 'https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.3/_definitions.json'
+                  name = "kubernetes",
+                  description = "Kubernetes",
+                  fileMatch = { "*.yaml", "*.yml" },
+                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.3/_definitions.json",
                 },
               },
-            },
+            }),
             singleQuote = true,
           },
         },
-      }
+      })
 
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       lspconfig.lua_ls.setup(lua_ls_setup)
 
       lspconfig.pyright.setup({
-        capabilities = capabilities
+        capabilities = capabilities,
       })
 
       lspconfig.terraformls.setup({
-        capabilities = capabilities
+        capabilities = capabilities,
       })
 
       -- Format before writing terraform files
@@ -136,45 +136,44 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+      vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+      vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
       -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
           -- Enable completion triggered by <c-x><c-o>
-          vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
           -- Buffer local mappings.
           -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = ev.buf }
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
           -- vim.keymap.set("n", "gl", vim.diagnostic.open_float)
           -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-          vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-          vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
-          vim.keymap.set('n', '<leader>wl', function()
+          vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+          vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+          vim.keymap.set("n", "<leader>wl", function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           end, opts)
-          vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-          vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', '<leader>f', function()
-            vim.lsp.buf.format { async = true }
+          vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+          vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+          vim.keymap.set("n", "<leader>f", function()
+            vim.lsp.buf.format({ async = true })
           end, opts)
-          vim.keymap.set('n', 'gn', function ()
+          vim.keymap.set("n", "gn", function()
             vim.diagnostic.goto_next({ buffer = 0 })
           end, opts)
-          vim.keymap.set('n', 'gp', function ()
+          vim.keymap.set("n", "gp", function()
             vim.diagnostic.goto_prev({ buffer = 0 })
           end, opts)
         end,
@@ -183,7 +182,7 @@ return {
       local config = {
         virtual_text = false, -- disable virtual text
         signs = {
-          active = signs, -- show signs
+          active = signs,     -- show signs
         },
         update_in_insert = true,
         underline = true,
@@ -194,28 +193,25 @@ return {
           border = "rounded",
           source = "always",
           header = "",
-          prefix = ""
-        }
+          prefix = "",
+        },
       }
 
       vim.diagnostic.config(config)
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
-          -- Use a sharp border with `FloatBorder` highlights
-          border = "single",
-          -- add the title in hover float window
-          title = "hover"
-        }
-      )
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        -- Use a sharp border with `FloatBorder` highlights
+        border = "single",
+        -- add the title in hover float window
+        title = "hover",
+      })
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",
       })
-    end
+    end,
   },
   {
     "towolf/vim-helm",
-    ft = 'helm'
-  }
+    ft = "helm",
+  },
 }

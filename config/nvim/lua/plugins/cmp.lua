@@ -3,18 +3,18 @@ return {
     "hrsh7th/cmp-nvim-lsp",
   },
   {
-    "L3MON4D3/LuaSnip",               -- snippet engine
+    "L3MON4D3/LuaSnip", -- snippet engine
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",     -- snippet completions
+      "saadparwaiz1/cmp_luasnip", -- snippet completions
       "rafamadriz/friendly-snippets", -- a bunch of snippets to use
     },
   },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "L3MON4D3/LuaSnip",    -- snippet engine
-      "hrsh7th/cmp-buffer",  -- buffer completions
-      "hrsh7th/cmp-path",    -- path completions
+      "L3MON4D3/LuaSnip", -- snippet engine
+      "hrsh7th/cmp-buffer", -- buffer completions
+      "hrsh7th/cmp-path", -- path completions
       "hrsh7th/cmp-cmdline", -- cmdline completions
       "hrsh7th/cmp-nvim-lua",
       "onsails/lspkind.nvim",
@@ -113,7 +113,7 @@ return {
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             -- can also be a function to dynamically calculate max width such as
             -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
-            ellipsis_char = "...",    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = true, -- show labelDetails in menu. Disabled by default
           }),
         },

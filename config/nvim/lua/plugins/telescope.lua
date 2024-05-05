@@ -1,12 +1,13 @@
 return {
-  'nvim-telescope/telescope.nvim', tag = '0.1.5',
+  "nvim-telescope/telescope.nvim",
+  tag = "0.1.5",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-lua/popup.nvim',
-    'nvim-telescope/telescope-media-files.nvim'
+    "nvim-lua/plenary.nvim",
+    "nvim-lua/popup.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
   },
   config = function()
-    require('telescope').setup({
+    require("telescope").setup({
       defaults = {
 
         prompt_prefix = " ",
@@ -42,7 +43,7 @@ return {
             -- ["<C-q>"] = send_to_qflist + open_qflist,
             -- ["<M-q>"] = send_selected_to_qflist + open_qflist,
             ["<C-l>"] = complete_tag,
-            ["<C-_>"] = which_key,         -- keys from pressing <C-/>
+            ["<C-_>"] = which_key, -- keys from pressing <C-/>
           },
 
           n = {
@@ -97,9 +98,9 @@ return {
         --   extension_config_key = value,
         -- }
         -- please take a look at the readme of the extension you want to configure
-      }
+      },
     })
 
-    require('telescope').load_extension('media_files')
-  end
+    require("telescope").load_extension("media_files")
+  end,
 }
