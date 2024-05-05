@@ -3,10 +3,16 @@ local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
+end
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+map("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -20,77 +26,81 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 
-keymap("n", "<leader>sf", ":source %<CR>", opts)
+map("n", "<leader>sf", ":source %<cr>", opts)
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<CR>", opts)
+map("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize +2<CR>", opts)
-keymap("n", "<C-Down>", ":resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+map("n", "<C-Up>", ":resize +2<cr>", opts)
+map("n", "<C-Down>", ":resize -2<cr>", opts)
+map("n", "<C-Left>", ":vertical resize -2<cr>", opts)
+map("n", "<C-Right>", ":vertical resize +2<cr>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+map("n", "<S-l>", ":bnext<cr>", opts)
+map("n", "<S-h>", ":bprevious<cr>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+map("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
+map("v", "<A-j>", ":m .+1<cr>==", opts)
+map("v", "<A-k>", ":m .-2<cr>==", opts)
+map("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+map("x", "J", ":move '>+1<cr>gv-gv", opts)
+map("x", "K", ":move '<-2<cr>gv-gv", opts)
+map("x", "<A-j>", ":move '>+1<cr>gv-gv", opts)
+map("x", "<A-k>", ":move '<-2<cr>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+map("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+map("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+map("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+map("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Leader write, quit and both
-keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader>q", ":q<CR>", opts)
-keymap("n", "<leader>Q", ":q!<CR>", opts)
-keymap("n", "<leader>x", ":wq<CR>", opts)
+map("n", "<leader>w", ":w<cr>", opts)
+map("n", "<leader>q", ":q<cr>", opts)
+map("n", "<leader>x", ":q!<cr>", opts)
+map("n", "<leader>Q", ":wq<cr>", opts)
 
 -- Telescope
-keymap("n", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<C-t>", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<C-f>", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<C-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Backspace turn off search highlitning
-keymap("n", "<BS>", ":nohlsearch<CR>", opts)
+map("n", "<BS>", ":nohlsearch<cr>", opts)
 
 -- Nvimtree
-keymap("n", "<C-n>", ":Neotree toggle<CR>", opts)
+map("n", "<C-n>", ":Neotree toggle<cr>", opts)
 
 -- Null-ls
-keymap("n", "<leader>f", "<cmd> lua vim.lsp.buf.format()<CR>", opts)
-keymap("v", "<leader>f", "<cmd> lua vim.lsp.buf.range_format()<CR>", opts)
+map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<cr>", opts)
+map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_format()<cr>", opts)
 
 -- -- Bufferline
--- keymap("n", "<leader><tab>", ":BufferLineCycleNext<CR>", opts)
--- keymap("n", "<leader><Backspace>", ":BufferLineCyclePrev<CR>", opts)
+-- keymap("n", "<leader><tab>", ":BufferLineCycleNext<cr>", opts)
+-- keymap("n", "<leader><Backspace>", ":BufferLineCyclePrev<cr>", opts)
 
 -- ToggleTerm
-keymap("n", "<C-s>", "<cmd> ToggleTerm<CR>", opts)
-keymap("n", "<M-g>", "<cmd> lua _LAZYGIT_TOGGLE()<CR>", opts)
+map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<cr>", opts)
+map("n", "<M-g>", "<cmd>lua _LAZYGIT_TOGGLE()<cr>", opts)
+
+-- WhichKey
+-- keymap("n", "<C-_>", "<cmd>WhichKey<cr>", opts)
+map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<cr>", opts)
