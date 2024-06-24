@@ -25,6 +25,16 @@ cmd on-cd &{{
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
+cmd on-redraw %{{
+    if [ $lf_width -le 80 ]; then
+        lf -remote "send $id set ratios 1:2"
+    elif [ $lf_width -le 160 ]; then
+        lf -remote "send $id set ratios 1:2:3"
+    else
+        lf -remote "send $id set ratios 2:3:5"
+    fi
+}}
+
 on-cd &{{
 # display git repository status in your prompt
   source /usr/share/git/completion/git-prompt.sh
@@ -180,7 +190,7 @@ map <c-s> $tmux split-window -l 15
 map a push :mkdir<space>
 
 #FuzzyFinder
-map f $vi $(fzf)
+map f $nvim $(fzf --preview 'bat --color=always {} -p' --preview-window '~3')
 
 cmd fzf_jump ${{
     res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
