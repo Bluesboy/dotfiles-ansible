@@ -30,6 +30,7 @@ return {
           "terraformls",
           "yamlls",
           "helm_ls",
+          "gopls",
         },
         auto_install = true,
       })
@@ -69,7 +70,8 @@ return {
             workspace = {
               library = {
                 vim.api.nvim_get_runtime_file("", true),
-                ["/usr/share/awesome/lib"] = true,
+                vim.fn.expand("$VIMRUNTIME/lua"),
+                vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
               },
             },
             telemetry = {
@@ -121,6 +123,8 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       lspconfig.lua_ls.setup(lua_ls_setup)
+
+      lspconfig.gopls.setup{}
 
       lspconfig.pyright.setup({
         capabilities = capabilities,
