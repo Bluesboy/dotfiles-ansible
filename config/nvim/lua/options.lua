@@ -43,6 +43,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.shortmess:append("c")
+vim.lsp.set_log_level("off")
 
 for key, value in pairs(options) do
   vim.opt[key] = value
