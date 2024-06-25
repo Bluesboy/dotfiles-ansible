@@ -95,4 +95,12 @@ return {
       vim.g.rainbow_delimiters = { highlight = highlight }
     end,
   },
+  {
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true,
+    keys = {
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  }
 }
