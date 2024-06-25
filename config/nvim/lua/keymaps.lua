@@ -96,3 +96,6 @@ map("n", "<M-g>", "<cmd>lua _LAZYGIT_TOGGLE()<cr>")
 
 -- WhichKey
 map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<cr>")
+
+-- GitBlame
+map("n", "<leader>b", "<cmd>GitBlameToggle<cr>")
