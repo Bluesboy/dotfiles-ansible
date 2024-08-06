@@ -2,7 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    require("bufferline").setup({ ---@diagnostic disable-line: redundant-parameter
+    require("bufferline").setup({
       options = {
         numbers = "both",
         middle_mouse_command = nil,
@@ -19,7 +19,7 @@ return {
         max_prefix_length = 30,
         tab_size = 21,
         diagnostics = "nvim_lsp",
-        diagnostics_update_in_insert = true,
+        diagnostics_update_on_event = true, -- use nvim's diagnostic handler
         offsets = {
           {
             filetype = "NvimTree",

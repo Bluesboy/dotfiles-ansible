@@ -32,7 +32,7 @@ return {
           darken = {
             floats = false,
             sidebars = {
-              enabled = false,
+              enable = false,
               list = {},
             },
           },
