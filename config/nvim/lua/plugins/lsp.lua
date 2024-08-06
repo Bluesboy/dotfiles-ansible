@@ -124,7 +124,7 @@ return {
 
       lspconfig.lua_ls.setup(lua_ls_setup)
 
-      lspconfig.gopls.setup{}
+      lspconfig.gopls.setup({})
 
       lspconfig.pyright.setup({
         capabilities = capabilities,
@@ -163,8 +163,7 @@ return {
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          -- vim.keymap.set("n", "gl", vim.diagnostic.open_float)
-          -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', "gk", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
           vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
           vim.keymap.set("n", "<leader>wl", function()
@@ -189,7 +188,7 @@ return {
       local config = {
         virtual_text = true, -- enable virtual text
         signs = {
-          active = signs, -- show signs
+          active = signs,    -- show signs
         },
         update_in_insert = true,
         underline = true,
@@ -220,5 +219,25 @@ return {
   {
     "towolf/vim-helm",
     ft = "helm",
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup({
+        run_in_floaterm = true,
+        floaterm = {
+          posititon = 'bottom',
+          height = 0.25
+        }
+      })
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()',
   },
 }
