@@ -135,17 +135,24 @@
       enabled: yes
     become: yes
 
-  - name: "Pinentry for Dmenu"
+  - name: "Install Rofi"
+    community.general.pacman:
+      name:
+      - rofi # A window switcher, application launcher and dmenu replacement
+      state: latest
+    become: yes
+
+  - name: "Pinentry for Rofi"
     kewlfft.aur.aur:
       name:
-      - pinentry-dmenu # A pinentry program with the charm of dmenu
+      - pinentry-rofi # rofi-based pinentry implementation
       state: latest
     become: yes
     become_user: aur_builder
 
   - name: "Install FFmpegthumbnailer"
     community.general.pacman:
-      name: 
+      name:
       - ffmpegthumbnailer # Lightweight video thumbnailer that can be used by file managers
       state: latest
     become: yes
