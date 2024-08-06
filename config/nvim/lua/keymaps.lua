@@ -99,3 +99,6 @@ map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<cr>")
 
 -- GitBlame
 map("n", "<leader>b", "<cmd>GitBlameToggle<cr>")
+
+-- Golang
+map("n", "<F5>", "<cmd>GoRun<cr>")
