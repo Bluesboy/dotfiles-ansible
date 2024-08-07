@@ -23,6 +23,8 @@ cmd on-cd &{{
   export STARSHIP_SHELL=
   fmt="$(starship prompt)"
   lf -remote "send $id set promptfmt \"$fmt\""
+
+  zoxide add "$PWD"
 }}
 
 cmd on-redraw %{{
@@ -236,8 +238,4 @@ cmd z %{{
 cmd zi ${{
     result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
-}}
-
-cmd on-cd &{{
-    zoxide add "$PWD"
 }}
