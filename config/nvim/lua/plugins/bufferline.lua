@@ -1,10 +1,11 @@
 return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  event = "VeryLazy",
   config = function()
     require("bufferline").setup({
       options = {
-        -- numbers = "both",
+        numbers = "both",
         middle_mouse_command = nil,
         indicator = {
           icon = "▎",
@@ -23,8 +24,10 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = "",
+            text = "Neo-Tree",
             padding = 1,
+            highlight = "Directory",
+            text_align = "left",
           },
         },
         show_buffer_icons = true,
