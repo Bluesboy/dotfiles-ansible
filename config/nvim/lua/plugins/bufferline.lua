@@ -4,7 +4,7 @@ return {
   config = function()
     require("bufferline").setup({
       options = {
-        numbers = "both",
+        -- numbers = "both",
         middle_mouse_command = nil,
         indicator = {
           icon = "▎",
@@ -22,7 +22,7 @@ return {
         diagnostics_update_on_event = true, -- use nvim's diagnostic handler
         offsets = {
           {
-            filetype = "NvimTree",
+            filetype = "neo-tree",
             text = "",
             padding = 1,
           },
