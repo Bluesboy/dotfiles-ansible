@@ -1,8 +1,9 @@
 return {
   {
     "projekt0n/github-nvim-theme",
+    lazy = false,
+    priority = 1000,
     config = function()
-      -- Default options
       require("github-theme").setup({
         options = {
           -- Compiled file's destination location
@@ -42,10 +43,8 @@ return {
         specs = {},
         groups = {},
       })
-
       -- setup must be called before loading
       vim.cmd("colorscheme github_dark")
     end,
   },
 }
--- Default options
