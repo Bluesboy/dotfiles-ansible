@@ -37,6 +37,11 @@
       name: ipython
       state: latest
 
+  - name: "Install Euporie"
+    community.general.pipx:
+      name: euporie
+      state: absent
+
   - name: "Install Jupyterlab"
     community.general.pipx:
       name: jupyterlab
@@ -67,7 +72,6 @@
       state: latest
     become: yes
     become_user: aur_builder
-
 
   - name: "Install Cairosvg"
     community.general.pacman:
@@ -223,6 +227,14 @@
       state: latest
     become: yes
 
+  - name: "Apache Bechch"
+    kewlfft.aur.aur:
+      name:
+      - apache-tools
+      state: latest
+    become: yes
+    become_user: aur_builder
+
   - name: "Task"
     community.general.pacman:
       name:
@@ -260,4 +272,20 @@
     ansible.builtin.file:
       path: /tmp/g-install
       state: absent
+
+  - name: "Install ACT"
+    kewlfft.aur.aur:
+      name:
+      - act
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install Exercism CLI"
+    kewlfft.aur.aur:
+      name:
+      - exercism
+      state: latest
+    become: yes
+    become_user: aur_builder
 ...

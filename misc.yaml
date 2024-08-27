@@ -10,13 +10,6 @@
     become: yes
     become_user: aur_builder
 
-  - name: "Install Signal-Desktop"
-    community.general.pacman:
-      name:
-      - signal-desktop
-      state: latest
-    become: yes
-
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom
@@ -74,6 +67,75 @@
       name:
       - libreoffice-fresh
       - libreoffice-fresh-ru
+      state: latest
+    become: yes
+
+  - name: "Install VPN clients"
+    community.general.pacman:
+      name:
+      - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+      - wireguard-tools # next generation secure network tunnel - tools for configuration
+      update_cache: yes
+      state: latest
+    become: yes
+
+  - name: "Install Nekoray"
+    kewlfft.aur.aur:
+      name: nekoray-git
+      state: latest
+      update_cache: yes
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install sing-geoip"
+    kewlfft.aur.aur:
+      name: sing-geoip-git
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install sing-geoip-db"
+    kewlfft.aur.aur:
+      name: sing-geoip-db-git
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install sing-geosite"
+    kewlfft.aur.aur:
+      name: sing-geosite-git
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Install sing-geosite-db"
+    kewlfft.aur.aur:
+      name: sing-geosite-db-git
+      state: latest
+    become: yes
+    become_user: aur_builder
+
+  - name: "Add pritunl repo for pacman"
+    ansible.builtin.blockinfile:
+      path: /etc/pacman.conf
+      prepend_newline: true
+      backup: true
+      block: |
+        [pritunl]
+        Server = https://repo.pritunl.com/stable/pacman
+    become: yes
+
+  - name: "Import pritunl repo key"
+    community.general.pacman_key:
+      id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+      keyserver: keyserver.ubuntu.com
+      state: present
+    become: yes
+
+  - name: "Install pritunl-client-electron"
+    community.general.pacman:
+      name: 
+      - pritunl-client-electron
       state: latest
     become: yes
 
