@@ -52,7 +52,7 @@ README    
 *.el     
 *.clj    
 *.py      
-*.lua    🌙
+*.lua    
 *.rb     
 *.go     
 *.html   
