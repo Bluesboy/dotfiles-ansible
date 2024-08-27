@@ -221,7 +221,6 @@ cmd fzf_search ${{
 map gf :fzf_search
 
 #Archivemount
-
 map zm ${{
     mntdir="${f}.mnt"
     mkdir -p "$mntdir"
