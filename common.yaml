@@ -109,6 +109,7 @@
       - thefuck # Magnificent app which corrects your previous console command
       - tmux # A terminal multiplexer
       - trash-cli # Command line trashcan (recycle bin) interface
+      - unrar # The RAR uncompression program
       - unzip # For extracting and viewing files in .zip archives
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
       - wget # Network utility to retrieve files from the Web
