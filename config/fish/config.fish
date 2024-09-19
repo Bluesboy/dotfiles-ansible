@@ -74,5 +74,7 @@ set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $
 # Created by `pipx` on 2024-04-29 19:26:34
 set PATH $PATH /home/bluesboy/.local/bin
 
+fish_add_path -m ~/.luarocks/bin/
+
 # Initiate Zoxide
 zoxide init fish | source
