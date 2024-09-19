@@ -111,7 +111,7 @@ return {
                   name = "kubernetes",
                   description = "Kubernetes",
                   fileMatch = { "*.yaml", "*.yml" },
-                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.29.3/_definitions.json",
+                  url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1/_definitions.json",
                 },
               },
             }),
