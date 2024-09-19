@@ -16,6 +16,13 @@
       group: 1000
     loop: "{{ configs }}"
 
+  - name: "Install bats"
+    community.general.pacman:
+      name: 
+      - bats
+      state: latest
+    become: yes
+
   - name: "Install pipx"
     community.general.pacman:
       name: python-pipx
@@ -116,7 +123,7 @@
 
   - name: "Paru"
     kewlfft.aur.aur:
-      name: paru # Feature packed AUR helper
+      name: paru-git # Feature packed AUR helper
       state: latest
     become: yes
     become_user: aur_builder
