@@ -116,13 +116,6 @@
       state: latest
     become: yes
 
-  - name: "Install Fluffychat"
-    kewlfft.aur.aur:
-      name: fluffychat-bin # Open. Nonprofit. Cute. Easy to use (matrix) messenger. Secure and decentralized.
-      state: latest
-    become: yes
-    become_user: aur_builder
-
   - name: "Install Slack"
     kewlfft.aur.aur:
       name: slack-desktop # Slack Desktop (Beta) for Linux
