@@ -81,6 +81,7 @@
       - broot # Fuzzy Search + tree + cd
       - btop # A monitor of system resources, bpytop ported to C++ 
       - curl # It's fucking cURL, questions?
+      - difftastic # An experimental diff tool that compares files based on their syntax
       - dust # A more intuitive version of du in rust
       - eza # ls replacement
       - fd # Simple, fast and user-friendly alternative to find
