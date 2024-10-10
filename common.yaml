@@ -4,6 +4,7 @@
   vars:
     ansible_ask_become_pass: true
     configs:
+    - bat
     - fish
     - git
     - lazygit
@@ -11,6 +12,7 @@
     - nvim
     - starship
     - tmux
+    - tmux-powerline
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -64,11 +66,6 @@
       group: root
       mode: '0644'
     become: yes
-
-  - name: "Clone tmux-powerline"
-    ansible.builtin.git:
-      repo: 'https://github.com/erikw/tmux-powerline.git'
-      dest: "~/.local/share/tmux-powerline"
 
   - name: "Install common packages"
     community.general.pacman:
