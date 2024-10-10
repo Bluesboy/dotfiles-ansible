@@ -23,8 +23,7 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
-
-map("n", "<leader>sf", ":source %<cr>")
+map("n", "<leader>sf", ":source %<cr>") -- Source currnt file
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h")
@@ -82,9 +81,6 @@ map("n", "<C-t>", "<cmd>Telescope live_grep<cr>")
 
 -- Backspace turn off search highlitning
 map("n", "<BS>", ":nohlsearch<cr>")
-
--- Nvimtree
-map("n", "<C-n>", ":Neotree toggle<cr>")
 
 -- Null-ls
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<cr>")
