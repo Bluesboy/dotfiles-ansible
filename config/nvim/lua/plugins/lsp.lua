@@ -3,7 +3,11 @@ return {
     "williamboman/mason.nvim",
     lazy = false,
     config = function()
-      require("mason").setup()
+      require("mason").setup({
+        ensure_installed = {
+          "typescript-language-server",
+        },
+      })
     end,
   },
   {
@@ -31,6 +35,8 @@ return {
           "yamlls",
           "helm_ls",
           "gopls",
+          "ts_ls",
+          "ansiblels",
         },
         auto_install = true,
       })
@@ -72,6 +78,7 @@ return {
                 vim.api.nvim_get_runtime_file("", true),
                 vim.fn.expand("$VIMRUNTIME/lua"),
                 vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+                vim.fn.expand("/usr/share/awesome/lib"),
               },
             },
             telemetry = {
@@ -130,6 +137,10 @@ return {
         capabilities = capabilities,
       })
 
+      lspconfig.ts_ls.setup({})
+
+      lspconfig.ansiblels.setup({})
+
       lspconfig.terraformls.setup({
         capabilities = capabilities,
       })
@@ -163,7 +174,7 @@ return {
           vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-          vim.keymap.set('n', "gk", vim.lsp.buf.signature_help, opts)
+          vim.keymap.set("n", "gk", vim.lsp.buf.signature_help, opts)
           vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
           vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
           vim.keymap.set("n", "<leader>wl", function()
@@ -231,9 +242,9 @@ return {
       require("go").setup({
         run_in_floaterm = true,
         floaterm = {
-          posititon = 'bottom',
-          height = 0.25
-        }
+          posititon = "bottom",
+          height = 0.25,
+        },
       })
     end,
     event = { "CmdlineEnter" },
