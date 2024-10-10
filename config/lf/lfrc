@@ -186,7 +186,15 @@ set dircounts
 map <backspace2> set hidden!
 
 # Open new pane in Tmux
-map <c-s> $tmux split-window -l 15
+cmd open_shell ${{
+  if tmux list-panes | grep ^2: ; then
+    tmux select-pane -t 2
+  else
+    tmux split-window -l 15
+  fi
+}}
+
+map <c-s> :open_shell
 
 # Create directory
 map a push :mkdir<space>
@@ -238,3 +246,10 @@ cmd zi ${{
     result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
     lf -remote "send $id cd \"$result\""
 }}
+
+cmd edit-config ${{
+    $EDITOR ~/.config/lf/lfrc
+    lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+map C edit-config
