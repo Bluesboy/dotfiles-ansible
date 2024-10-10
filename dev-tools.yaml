@@ -66,6 +66,16 @@
       state: latest
     become: yes
 
+  - name: "Install ansible-lint"
+    community.general.pipx:
+      name: ansible-lint
+      state: latest
+
+  - name: "Install ansible-dev-tools"
+    community.general.pipx:
+      name: ansible-dev-tools
+      state: latest
+
   - name: "Install Ueberzug"
     community.general.pacman:
       name: ueberzug
