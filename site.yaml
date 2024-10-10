@@ -1,11 +1,17 @@
 #!/usr/bin/env ansible-playbook
 ---
-- name: Install and configure common packages
+- name: "Install and configure common packages"
   import_playbook: common.yaml
-- import_playbook: dev-tools.yaml
-- import_playbook: display.yaml
-- import_playbook: audio.yaml
-- import_playbook: apps.yaml
-- import_playbook: virt.yaml
-- import_playbook: misc.yaml
+- name: "Install developer tools"
+  import_playbook: dev-tools.yaml
+- name: "Install GUI tools and Apps"
+  import_playbook: display.yaml
+- name: "Install Audio Apps and Utilities"
+  import_playbook: audio.yaml
+- name: "Install different Applications"
+  import_playbook: apps.yaml
+- name: "Virtualization Utilities and Tools"
+  import_playbook: virt.yaml
+- name: "Other Apps"
+  import_playbook: misc.yaml
 ...
