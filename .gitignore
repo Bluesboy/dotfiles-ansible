@@ -26,3 +26,4 @@ config/fish/completions/gopass.fish
 config/fish/completions/kind.fish
 config/nvim/lazy-lock.json
 config/lazygit/state.yml
+roles
