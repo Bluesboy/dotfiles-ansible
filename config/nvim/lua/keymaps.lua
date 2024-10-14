@@ -68,22 +68,11 @@ map("n", "<leader>Q", ":wq<CR>", { desc = "Save buffer and exit" })
 -- Backspace turn off search highlight
 map("n", "<BS>", ":nohlsearch<CR>", { desc = "Disable search highlight" })
 
--- Telescope
-map("n", "<C-f>", "<cmd>Telescope find_files<CR>")
-map("n", "<C-t>", "<cmd>Telescope live_grep<CR>")
-
--- Null-ls
-map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
-map("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_format()<CR>")
-
 -- ToggleTerm
 map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 
 -- WhichKey
 map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
-
--- GitBlame
-map("n", "<leader>b", "<cmd>GitBlameToggle<CR>", { desc = "Toggle GitBlame" })
 
 -- Golang
 map("n", "<F5>", "<cmd>GoRun<CR>")

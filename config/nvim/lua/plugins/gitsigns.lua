@@ -11,19 +11,19 @@ return {
           changedelete = { text = "~" },
         },
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-        numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-        linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
+        numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
         word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
         watch_gitdir = {
           interval = 1000,
           follow_files = true,
         },
         attach_to_untracked = true,
-        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_opts = {
           virt_text = true,
           virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-          delay = 1000,
+          delay = 300,
           ignore_whitespace = false,
         },
         sign_priority = 6,
@@ -41,14 +41,14 @@ return {
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
 
-          local function keymap(mode, l, r, opts)
+          local function map(mode, lhs, rhs, opts)
             opts = opts or {}
             opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
+            vim.keymap.set(mode, lhs, rhs, opts)
           end
 
           -- Navigation
-          keymap("n", "]c", function()
+          map("n", "]c", function()
             if vim.wo.diff then
               return "]c"
             end
@@ -58,7 +58,7 @@ return {
             return "<Ignore>"
           end, { expr = true })
 
-          keymap("n", "[c", function()
+          map("n", "[c", function()
             if vim.wo.diff then
               return "[c"
             end
@@ -69,44 +69,33 @@ return {
           end, { expr = true })
 
           -- Actions
-          keymap("n", "<leader>hs", gs.stage_hunk)
-          keymap("n", "<leader>hr", gs.reset_hunk)
-          keymap("v", "<leader>hs", function()
-            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          keymap("v", "<leader>hr", function()
-            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-          end)
-          keymap("n", "<leader>hS", gs.stage_buffer)
-          keymap("n", "<leader>hu", gs.undo_stage_hunk)
-          keymap("n", "<leader>hR", gs.reset_buffer)
-          keymap("n", "<leader>hp", gs.preview_hunk)
-          keymap("n", "<leader>hb", function()
+          map("n", "<leader>hs", gs.stage_hunk)
+          map("n", "<leader>hr", gs.reset_hunk)
+          map("n", "<leader>hS", gs.stage_buffer)
+          map("n", "<leader>hu", gs.undo_stage_hunk)
+          map("n", "<leader>hR", gs.reset_buffer)
+          map("n", "<leader>hp", gs.preview_hunk)
+          map("n", "<leader>hb", function()
             gs.blame_line({ full = true })
           end)
-          keymap("n", "<leader>hd", gs.diffthis)
-          keymap("n", "<leader>hD", function()
+          map("n", "<leader>hd", gs.diffthis)
+          map("n", "<leader>hD", function()
             gs.diffthis("~")
           end)
-          keymap("n", "<leader>tb", gs.toggle_current_line_blame)
-          keymap("n", "<leader>td", gs.toggle_deleted)
+          map("n", "<leader>tb", gs.toggle_current_line_blame)
+          map("n", "<leader>td", gs.toggle_deleted)
+
+          map("v", "<leader>hs", function()
+            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end)
+          map("v", "<leader>hr", function()
+            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end)
 
           -- Text object
-          keymap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
         end,
       })
     end,
-  },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = true,
-  },
-  {
-    "f-person/git-blame.nvim",
   },
 }
