@@ -84,15 +84,15 @@ return {
 
           -- map("K", vim.lsp.buf.hover, "Show help")
           map("gk", vim.lsp.buf.signature_help, "Show signature help")
+
           -- map("<leader>wa", vim.lsp.buf.add_workspace_folder)
           -- map("<leader>wr", vim.lsp.buf.remove_workspace_folder)
           -- map("<leader>wl", function()
           --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
           -- end)
+          --
           -- map("<leader>D", vim.lsp.buf.type_definition)
-          map("<leader>f", function()
-            vim.lsp.buf.format({ async = true })
-          end, "[Format] code")
+          --
           map("gn", function()
             vim.diagnostic.goto_next({ buffer = 0 })
           end, "[G]oto [N]ext diagnostic")
@@ -166,6 +166,7 @@ return {
         "ts_ls",
         "ansiblels",
         "typescript-language-server",
+        "yamllint",
         yamlls = {
           settings = {
             yaml = {
@@ -244,6 +245,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         "stylua", -- Used to format Lua code
+        "yamlfmt",
       })
 
       require("mason-lspconfig").setup({
