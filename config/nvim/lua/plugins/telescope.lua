@@ -144,4 +144,7 @@ return {
       end, { desc = "[S]earch [N]eovim files" })
     end,
   },
+  {
+    "sopa0/telescope-makefile",
+  },
 }
