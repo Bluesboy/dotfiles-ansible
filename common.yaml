@@ -19,30 +19,37 @@
     ansible.builtin.replace:
       path: /etc/inputrc
       regexp: '^#(set bell-style none)$'
-      replace: '\1' 
-    become: yes
+      replace: '\1'
+    become: true
+
+  - name: "Create stub link for resolv.conf"
+    ansible.builtin.file:
+      src: "/run/systemd/resolve/resolv.conf"
+      dest: "/etc/resolv.conf"
+      state: link
+    become: true
 
   - name: "Enable TimesyncD"
     ansible.builtin.systemd:
       name: systemd-timesyncd
       enabled: yes
-    become: yes
+    become: true
 
   - name: "Upgrade all packages"
     community.general.pacman:
       update_cache: yes
       upgrade: yes
-    become: yes
+    become: true
 
   - name: "Create the `aur_builder` user"
-    become: yes
+    become: true
     ansible.builtin.user:
       name: aur_builder
       create_home: yes
       group: wheel
 
   - name: "Allow the `aur_builder` user to run `sudo pacman` without a password"
-    become: yes
+    become: true
     ansible.builtin.lineinfile:
       path: /etc/sudoers.d/11-install-aur_builder
       line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
@@ -65,18 +72,18 @@
       owner: root
       group: root
       mode: '0644'
-    become: yes
+    become: true
 
   - name: "Install common packages"
     community.general.pacman:
-      name: 
+      name:
       - atool # A script for managing file archives of various types
       - bash-completion # Programmable completion for the bash shell
       - bat # Cat clone with syntax highlighting and git integration
       - bind # A complete, highly portable implementation of the DNS protocol
       - bottom # A graphical process/system monitor
       - broot # Fuzzy Search + tree + cd
-      - btop # A monitor of system resources, bpytop ported to C++ 
+      - btop # A monitor of system resources, bpytop ported to C++
       - curl # It's fucking cURL, questions?
       - difftastic # An experimental diff tool that compares files based on their syntax
       - dust # A more intuitive version of du in rust
@@ -115,24 +122,24 @@
       - zoxide # A smarter cd command for your terminal
       update_cache: yes
       state: latest
-    become: yes
+    become: true
 
   - name: "Set fish as default shell for current user"
     ansible.builtin.user:
       name: "{{ ansible_user_id }}"
       shell: /usr/bin/fish
-    become: yes
+    become: true
 
   - name: "Install disk utilities"
     community.general.pacman:
-      name: 
+      name:
       - btrfs-progs # Btrfs filesystem utilities
       - lvm2 # Logical Volume Manager 2 utilities
       - mdadm # A tool for managing/monitoring Linux md device arrays, also known as Software RAID
       - ntfs-3g # NTFS filesystem driver and utilities
       - xfsprogs # XFS filesystem utilities
       state: latest
-    become: yes
+    become: true
 
   - name: "Set email for mdmonitor service"
     ansible.builtin.lineinfile:
@@ -140,10 +147,9 @@
       regexp: '^#MAILADDR'
       line: 'MAILADDR root'
       state: present
-    become: yes
+    become: true
 
   - name: Instal Tmux Plugin Manager
     ansible.builtin.git:
-      repo:  https://github.com/tmux-plugins/tpm.git
+      repo: https://github.com/tmux-plugins/tpm.git
       dest: ~/.config/tmux/plugins/tpm
-...
