@@ -170,24 +170,21 @@ return {
         yamlls = {
           settings = {
             yaml = {
-              hover = true,
-              completion = true,
-              validate = true,
+              validate = false,
               schemaStore = {
-                enable = false,
-                url = "",
+                enable = true,
               },
-              schemas = require("schemastore").yaml.schemas({
-                extra = {
-                  {
-                    name = "kubernetes",
-                    description = "Kubernetes",
-                    fileMatch = { "*.yaml", "*.yml" },
-                    url = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1/_definitions.json",
-                  },
-                },
-              }),
-              singleQuote = true,
+              schemas = {
+                kubernetes = "k8s-*.yaml",
+                -- ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/_definitions.json"] = "kest-*.yaml",
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+              },
             },
           },
         },
@@ -195,6 +192,16 @@ return {
           settings = {
             yamlls = {
               path = "yaml-language-server",
+              config = {
+                schemaStore = {
+                  -- You must disable built-in schemaStore support if you want to use
+                  -- this plugin and its advanced options like `ignore`.
+                  enable = false,
+                  -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                  url = "",
+                },
+                schemas = require("schemastore").yaml.schemas({}),
+              },
             },
           },
         },
