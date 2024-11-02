@@ -1,30 +1,41 @@
 [user]
-	name = Bluesboy
-	email = youngreg@ya.ru
+  name = Bluesboy
+  email = youngreg@ya.ru
+
 [pull]
-	ff = only
+  ff = only
+
 [core]
-	editor = $EDITOR
+  editor = $EDITOR
+
 [alias]
-	lo = log --oneline -10
-	s = status
-  dft = difftool
+  lo = log -10
+  s = status
+  d = difftool
+
 [credential]
-	helper = gopass
+  helper = gopass
+
 [credential "https://bitbucket.org"]
   username = Bluesboy
+
 [credential "https://github.com"]
   username = Bluesboy
+
 [init]
   defaultBranch = master
+
 [diff]
-        tool = difftastic
+  tool = difftastic
 
 [difftool]
-        prompt = false
+  prompt = false
 
 [difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
+  cmd = difft "$LOCAL" "$REMOTE"
 
 [pager]
-        difftool = true
+  difftool = true
+
+[format]
+  pretty = format:%C(auto)%h%Creset %C(blue)%ah%Creset %C(green)%C(dim)(%cr)%Creset%C(auto)%d%Creset %C(green)%C(bold)%an%Creset %C(auto)%s%Creset
