@@ -54,6 +54,8 @@ if status --is-interactive
   abbr --add --global -- gp 'git push'
   abbr --add --global -- gpu 'git pull'
   abbr --add --global -- gs 'git status'
+  abbr --add --global -- gsw 'git switch'
+  abbr --add --global -- gd 'git difftool'
   abbr --add --global -- hl 'helm ls'
   abbr --add --global -- k kubectl
   abbr --add --global -- kc kubectx
