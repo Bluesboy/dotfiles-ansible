@@ -7,50 +7,50 @@
     kewlfft.aur.aur:
       name: brave-bin
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install OBS"
     community.general.pacman:
-      name: 
+      name:
       - obs-studio
       state: latest
-    become: yes
+    become: true
 
   - name: "Install CUPS"
     community.general.pacman:
       name:
       - cups
       state: latest
-    become: yes
+    become: true
 
   - name: "Enable CUPS"
     ansible.builtin.systemd:
       name: cups
       state: started
-      enabled: yes
-    become: yes
+      enabled: true
+    become: true
 
   - name: "Install SANE"
     community.general.pacman:
       name:
       - sane
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Skanpage"
     community.general.pacman:
       name:
       - skanpage
       state: latest
-    become: yes
+    become: true
 
   - name: "Install PacCap"
     community.general.pacman:
@@ -60,7 +60,7 @@
       - wireshark-cli
       - termshark
       state: latest
-    become: yes
+    become: true
 
   - name: "Install LibreOffice"
     community.general.pacman:
@@ -68,51 +68,51 @@
       - libreoffice-fresh
       - libreoffice-fresh-ru
       state: latest
-    become: yes
+    become: true
 
   - name: "Install VPN clients"
     community.general.pacman:
       name:
       - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
       - wireguard-tools # next generation secure network tunnel - tools for configuration
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Nekoray"
     kewlfft.aur.aur:
       name: nekoray-git
       state: latest
-      update_cache: yes
-    become: yes
+      update_cache: true
+    become: true
     become_user: aur_builder
 
   - name: "Install sing-geoip"
     kewlfft.aur.aur:
       name: sing-geoip-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install sing-geoip-db"
     kewlfft.aur.aur:
       name: sing-geoip-db-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install sing-geosite"
     kewlfft.aur.aur:
       name: sing-geosite-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install sing-geosite-db"
     kewlfft.aur.aur:
       name: sing-geosite-db-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Add pritunl repo for pacman"
@@ -123,26 +123,25 @@
       block: |
         [pritunl]
         Server = https://repo.pritunl.com/stable/pacman
-    become: yes
+    become: true
 
   - name: "Import pritunl repo key"
     community.general.pacman_key:
       id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
       keyserver: keyserver.ubuntu.com
       state: present
-    become: yes
+    become: true
 
   - name: "Install pritunl-client-electron"
     community.general.pacman:
-      name: 
+      name:
       - pritunl-client-electron
       state: latest
-    become: yes
+    become: true
 
   - name: "Install ExpressVPN"
     kewlfft.aur.aur:
       name: expressvpn
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
-...

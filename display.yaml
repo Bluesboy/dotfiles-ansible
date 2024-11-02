@@ -11,7 +11,7 @@
   tasks:
   - name: "Install Xorg"
     community.general.pacman:
-      name: 
+      name:
       - xorg
       - xorg-xinit # X.Org initialisation program
       - mesa # An open-source implementation of the OpenGL specification
@@ -22,18 +22,18 @@
       - arandr # Provide a simple visual front end for XRandR 1.2.
       - autorandr # Auto-detect connected display hardware and load appropiate X11 setup using xrandr
       state: latest
-    become: yes
+    become: true
 
   - name: "Enable Autorandr"
     ansible.builtin.systemd:
       name: autorandr
-      enabled: yes
-    become: yes
+      enabled: true
+    become: true
 
   - name: "Lookup for HiDPI configs"
-    ansible.builtin.find: 
+    ansible.builtin.find:
       paths: "{{ playbook_dir }}/config/hidpi"
-      hidden: yes
+      hidden: true
     register: hidpi
 
   - name: "Create symlinks for configurations"
@@ -47,13 +47,13 @@
 
   - name: "Install Fonts"
     community.general.pacman:
-      name: 
+      name:
       - noto-fonts # Google Noto TTF fonts
       - noto-fonts-emoji # Google Noto emoji fonts
       - noto-fonts-cjk # Google Noto CJK fonts
       - noto-fonts-extra # Google Noto TTF fonts - additional variants
       - ttf-ubuntu-mono-nerd # Patched font Ubuntu Mono from nerd fonts library
-      - ttf-ubuntu-nerd # Patched font Ubuntu from nerd fonts library 
+      - ttf-ubuntu-nerd # Patched font Ubuntu from nerd fonts library
       - ttf-dejavu-nerd # Patched font Dejavu Sans Mono from nerd fonts library
       - ttf-firacode-nerd # Patched font Fira (Fura) Code from nerd fonts library
       - ttf-nerd-fonts-symbols # High number of extra glyphs from popular 'iconic fonts'
@@ -61,16 +61,16 @@
       - ttf-nerd-fonts-symbols-mono # High number of extra glyphs from popular 'iconic fonts' (monospace)
       - ttf-noto-nerd # Patched font Noto from nerd fonts library
       - otf-firamono-nerd # Patched font Fira (Fura) Mono from nerd fonts library
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Ubuntu Mono Ligaturized"
     kewlfft.aur.aur:
       name:
       - ttf-ubuntu-mono-ligaturized-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Create symlinks for configurations"
@@ -87,67 +87,67 @@
       name:
       - awesome-git # Highly configurable framework window manager
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Awesome"
     community.general.pacman:
-      name: 
+      name:
       # - awesome # Highly configurable framework window manager
       - picom # X compositor that may fix tearing issues
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Auxiliary WM applications"
     community.general.pacman:
-      name: 
+      name:
       - dmenu # Generic menu for X
       - clipmenu # Clipboard management using dmenu
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: "Install SDDM"
     community.general.pacman:
-      name: 
+      name:
       - sddm # QML based X11 and Wayland display manager
       state: latest
-    become: yes
+    become: true
 
   - name: "Install SDDM theme"
     kewlfft.aur.aur:
       name:
       - sddm-sugar-dark
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Copy SDDM configuration"
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/config/sddm/"
       dest: "/etc/sddm.conf.d/"
-    become: yes
+    become: true
 
   - name: "Enable SDDM"
     ansible.builtin.systemd:
       name: sddm
-      enabled: yes
-    become: yes
+      enabled: true
+    become: true
 
   - name: "Install Rofi"
     community.general.pacman:
       name:
       - rofi # A window switcher, application launcher and dmenu replacement
       state: latest
-    become: yes
+    become: true
 
   - name: "Pinentry for Rofi"
     kewlfft.aur.aur:
       name:
       - pinentry-rofi # rofi-based pinentry implementation
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install FFmpegthumbnailer"
@@ -155,7 +155,7 @@
       name:
       - ffmpegthumbnailer # Lightweight video thumbnailer that can be used by file managers
       state: latest
-    become: yes
+    become: true
 
   - name: "Symlink .gnupg configuration"
     ansible.builtin.file:
@@ -167,16 +167,15 @@
 
   - name: "Install Redshift"
     community.general.pacman:
-      name: 
+      name:
       - redshift # Adjusts the color temperature of your screen according to your surroundings.
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: Enable Redshift
     ansible.builtin.systemd:
       name: redshift
       state: started
-      enabled: yes
+      enabled: true
       scope: user
-...

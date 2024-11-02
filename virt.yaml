@@ -31,21 +31,21 @@
       - kubectl # A command line tool for communicating with a Kubernetes API server
       - kubectx # Utility to manage and switch between kubectl contexts and Kubernetes namespaces
       state: latest
-    become: yes
+    become: true
 
   - name: "Copy Docker Configuration file"
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/config/docker/daemon.json"
       dest: /etc/docker/daemon.json
       mode: "0644"
-    become: yes
+    become: true
 
   - name: "Enable nested virtualization"
     community.general.modprobe:
       name: kvm_intel
       params: "nested=1"
       state: present
-    become: yes
+    become: true
 
   - name: "Install Libvirt and Virtualization tools"
     community.general.pacman:
@@ -55,7 +55,7 @@
       - dmidecode # Desktop Management Interface table related utilities
       - dnsmasq # Lightweight, easy to configure DNS forwarder and DHCP server
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Additional tools for libvirt"
     community.general.pacman:
@@ -64,7 +64,7 @@
       - virt-viewer # A lightweight interface for interacting with the graphical display of virtualized guest OS.
       - libguestfs # Access and modify virtual machine disk images
       state: latest
-    become: yes
+    become: true
 
   - name: "Install DevOps tools"
     community.general.pacman:
@@ -72,14 +72,14 @@
       - minikube # A tool that makes it easy to run Kubernetes locally
       - vagrant # Build and distribute virtualized development environments
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Icedtea-web"
     community.general.pacman:
       name:
       - icedtea-web
       state: latest
-    become: yes
+    become: true
 
   - name: "Set the UNIX domain socket group ownership to libvirt"
     ansible.builtin.lineinfile:
@@ -87,7 +87,7 @@
       regexp: '^#unix_sock_group'
       line: 'unix_sock_group = "libvirt"'
       state: present
-    become: yes
+    become: true
 
   - name: "Set the UNIX domain socket group ownership to libvirt"
     ansible.builtin.lineinfile:
@@ -95,7 +95,7 @@
       regexp: '^#unix_sock_rw_perms'
       line: 'unix_sock_rw_perms = "0770"'
       state: present
-    become: yes
+    become: true
 
   - name: "Install Cockpit"
     community.general.pacman:
@@ -105,31 +105,31 @@
       - cockpit-podman # Cockpit UI for podman containers
       - cockpit-pcp # Cockpit support for reading PCP metrics and loading PCP archives
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Cockpit plugins from AUR"
     kewlfft.aur.aur:
-      name: 
+      name:
       - cockpit-zfs-manager # An interactive ZFS on Linux admin package for Cockpit
       - cockpit-file-sharing # A Cockpit plugin to easily manage samba and NFS file sharing.
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install kind for kubernetes"
     kewlfft.aur.aur:
-      name: 
+      name:
       - kind # Kubernetes IN Docker - local clusters for testing Kubernetes
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Configure groups for current user"
     ansible.builtin.user:
       name: "{{ ansible_user_id }}"
       groups: "{{ item }}"
-      append: yes
-    become: yes
+      append: true
+    become: true
     loop:
     - docker
     - libvirt
@@ -138,11 +138,10 @@
     ansible.builtin.systemd:
       name: "{{ item }}"
       state: started
-      enabled: yes
-    become: yes
+      enabled: true
+    become: true
     loop:
     - docker.socket
     - podman.socket
     - libvirtd.socket
     - cockpit.socket
-...

@@ -14,7 +14,7 @@
       - wireplumber # Session / policy manager implementation for PipeWire
       - helvum # GTK patchbay for PipeWire
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Bluez"
     community.general.pacman:
@@ -22,12 +22,12 @@
       - bluez # Daemons for the bluetooth protocol stack
       - bluez-utils # Development and debugging utilities for the bluetooth protocol stack
       state: latest
-    become: yes
+    become: true
 
   - name: "Enable Bluetooth"
     ansible.builtin.systemd:
       name: bluetooth
       state: started
-      enabled: yes
-    become: yes
+      enabled: true
+    become: true
 ...

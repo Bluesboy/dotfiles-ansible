@@ -24,14 +24,14 @@
     kewlfft.aur.aur:
       name: ctpv-git
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Archivemount"
     kewlfft.aur.aur:
       name: archivemount
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Common GUI tools"
@@ -44,9 +44,9 @@
       - zathura # Minimalistic document viewer
       - zathura-pdf-mupdf # PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
       - zathura-ps # Adds ps support to zathura by using the libspectre library
-      update_cache: yes
+      update_cache: true
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Pass"
     community.general.pacman:
@@ -54,7 +54,7 @@
       - pass # Stores, retrieves, generates, and synchronizes passwords securely
       - pass-otp # A pass extension for managing one-time-password (OTP) tokens.
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Gopass"
     community.general.pacman:
@@ -64,27 +64,27 @@
       - git-credential-gopass # git-credentials helper for gopass
       - zbar # Application and library for reading bar codes from various sources
       state: latest
-    become: yes
+    become: true
 
   - name: "Install pass-git-helper"
     kewlfft.aur.aur:
       name: pass-git-helper
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Opera"
     kewlfft.aur.aur:
       name: opera # A fast and secure web browser
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install FFMPEG for Opera"
     kewlfft.aur.aur:
       name: opera-ffmpeg-codecs # additional support for proprietary codecs for opera
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install browserpass"
@@ -93,14 +93,14 @@
       - browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
       - browserpass-chromium # Chromium extension for Browserpass, browser extension for zx2c4's pass (password manager)
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Firefox"
     community.general.pacman:
       name:
       - firefox
       state: latest
-    become: yes
+    become: true
 
   - name: "Make browserpass host config"
     make:
@@ -114,20 +114,20 @@
       - element-desktop # Glossy Matrix collaboration client — desktop version.
       - discord # All-in-one voice and text chat for gamers
       state: latest
-    become: yes
+    become: true
 
   - name: "Install Slack"
     kewlfft.aur.aur:
       name: slack-desktop # Slack Desktop (Beta) for Linux
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Skype"
     kewlfft.aur.aur:
       name: skypeforlinux-stable-bin # Skype for Linux - Stable/Release Version
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Thunderbird"
@@ -137,27 +137,27 @@
       - thunderbird-i18n-ru # Russian language pack for Thunderbird
       - thunderbird-i18n-en-us # English (US) language pack for Thunderbird
       state: latest
-    become: yes
+    become: true
 
   - name: "Install tfswitch"
     kewlfft.aur.aur:
       name: tfswitch-bin
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Postman"
     kewlfft.aur.aur:
       name: postman-bin
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Git Extras"
     kewlfft.aur.aur:
       name: git-extras
       state: latest
-    become: yes
+    become: true
     become_user: aur_builder
 
   - name: "Install Transmission"
@@ -165,12 +165,12 @@
       name:
       - transmission-cli # Fast, easy, and free BitTorrent client (CLI tools, daemon and web client)
       state: latest
-    become: yes
+    become: true
 
   - name: "Add current user to transmission group"
     ansible.builtin.user:
       name: "{{ ansible_user_id }}"
       groups: transmission
-      append: yes
-    become: yes
+      append: true
+    become: true
 ...
