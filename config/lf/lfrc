@@ -188,7 +188,17 @@ map <backspace2> set hidden!
 # Open new pane in Tmux
 cmd open_shell ${{
   if tmux list-panes | grep ^2: ; then
-    tmux select-pane -t 2
+    SECOND_PANE_APP=$(tmux list-panes -F "#{pane_current_command}" | tail -n 1)
+
+    if [ $SECOND_PANE_APP == "fish" ] || [ $SECOND_PANE_APP == "tmux" ]
+    then
+      CURRENT_DIR=$(tmux display-message -p -F "#{pane_current_path}" -t1)
+
+      tmux send-keys -t 2 "cd \"$CURRENT_DIR\"" C-m
+      tmux select-pane -t 2
+    else
+      tmux select-pane -t 2
+    fi
   else
     tmux split-window -l 15
   fi
