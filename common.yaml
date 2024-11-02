@@ -102,6 +102,7 @@
       - mediainfo # Supplies technical and tag information about a video or audio file (CLI interface)
       - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
       - nmap # Utility for network discovery and security auditing
+      - obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
       - openbsd-netcat # TCP/IP swiss army knife. OpenBSD variant.
       - p7zip # Command-line file archiver with high compression ratio
       - parallel # A shell tool for executing jobs in parallel
