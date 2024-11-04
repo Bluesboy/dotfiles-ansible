@@ -77,6 +77,31 @@ awful.layout.layouts = {
   -- awful.layout.suit.corner.se,
 }
 
+local function scandir(directory)
+  local i, t, popen = 0, {}, io.popen
+  local pfile = popen('ls -a "' .. directory .. '"')
+  for filename in pfile:lines() do
+    i = i + 1
+    t[i] = filename
+  end
+  pfile:close()
+  return t
+end
+
+local function randomFile(directoryFullPath)
+  local files = scandir(directoryFullPath)
+  return directoryFullPath .. "/" .. files[math.random(#files)]
+end
+
+local wallpapersDir = "/Pictures/wallpapers"
+local wallpapersDirFullPath = os.getenv("HOME") .. wallpapersDir
+
+local function setWallpaper(wallpapersDir, displayCount)
+  for i = 1, displayCount do
+    gears.wallpaper.maximized(randomFile(wallpapersDir), i)
+  end
+end
+
 ruled.client.connect_signal("request::rules", function()
   -- All clients will match this rule.
   ruled.client.append_rule({
@@ -331,7 +356,9 @@ local function setup_root_interactions()
     awful.spawn("dmenu_run -fn 'UbuntuMono Nerd Font 16'")
   end
 
-  -- local c = awful.client.restore()
+  local function setWall()
+    setWallpaper(wallpapersDirFullPath, 3)
+  end
 
   local keys = gears.table.join(
     -- Launch terminal
@@ -346,7 +373,7 @@ local function setup_root_interactions()
     -- Start Opera Browser
     awful.key({ meta }, "o", start_browser),
 
-    awful.key({ meta }, "w", setWallpaper),
+    awful.key({ meta }, "w", setWall),
 
     -- Start Slack
     awful.key({ meta }, "s", start_slack),
@@ -588,6 +615,8 @@ local function setup_client_interactions(client)
   client:keys(keys)
 end
 
+setWallpaper(wallpapersDirFullPath, 3)
+
 setup_root_interactions()
 client.connect_signal("manage", setup_client_interactions)
 client.connect_signal("manage", setup_client_placement)
@@ -596,7 +625,6 @@ awful.screen.connect_for_each_screen(setup_screen_tags)
 local autostart = {
   "picom",
   "flameshot",
-  "feh --randomize --bg-fill " .. os.getenv("HOME") .. "/Pictures/wallpapers/",
   "clipmenud",
   "slack",
   "element-desktop",
