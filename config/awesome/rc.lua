@@ -311,12 +311,12 @@ local function setup_root_interactions()
     awesome.restart()
   end
 
-  local function start_opera()
+  local function start_browser()
     local matcher = function(c)
       return ruled.client.match(c, { class = "Opera" })
     end
 
-    awful.client.run_or_raise(browser, matcher)
+    awful.spawn.raise_or_spawn(browser, nil, matcher, "opera")
   end
 
   local function start_slack()
@@ -344,7 +344,9 @@ local function setup_root_interactions()
     awful.key({ meta }, "p", dmenu),
 
     -- Start Opera Browser
-    awful.key({ meta }, "o", start_opera),
+    awful.key({ meta }, "o", start_browser),
+
+    awful.key({ meta }, "w", setWallpaper),
 
     -- Start Slack
     awful.key({ meta }, "s", start_slack),
