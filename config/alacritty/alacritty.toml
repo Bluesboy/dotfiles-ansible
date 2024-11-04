@@ -33,4 +33,4 @@ history = 100000
 
 [window]
 decorations = "none"
-opacity = 0.92
+opacity = 0.8
