@@ -30,8 +30,7 @@ local theme = {}
 theme.bg_focus = "#4d6d91"
 
 local terminal = "alacritty"
--- local editor = os.getenv("EDITOR")
--- local home_path = os.getenv("HOME")
+local wallpapersDir = "/Pictures/wallpapers"
 local browser = "opera"
 local meta = "Mod4"
 local alt = "Mod1"
@@ -79,26 +78,23 @@ awful.layout.layouts = {
 
 local function scandir(directory)
   local i, t, popen = 0, {}, io.popen
-  local pfile = popen('ls -a "' .. directory .. '"')
+  local pfile = popen('find "' .. directory .. '" -maxdepth 1 -type f')
+
   for filename in pfile:lines() do
     i = i + 1
-    t[i] = filename
+    table.insert(t, filename)
   end
   pfile:close()
+
   return t
 end
 
-local function randomFile(directoryFullPath)
-  local files = scandir(directoryFullPath)
-  return directoryFullPath .. "/" .. files[math.random(#files)]
-end
+local function setWallpaper(directory, displayCount)
+  local wallpapersDirFullPath = os.getenv("HOME") .. directory
+  local wallpapers = scandir(wallpapersDirFullPath)
 
-local wallpapersDir = "/Pictures/wallpapers"
-local wallpapersDirFullPath = os.getenv("HOME") .. wallpapersDir
-
-local function setWallpaper(wallpapersDir, displayCount)
   for i = 1, displayCount do
-    gears.wallpaper.maximized(randomFile(wallpapersDir), i)
+    gears.wallpaper.maximized(wallpapers[math.random(#wallpapers)], i)
   end
 end
 
@@ -357,7 +353,7 @@ local function setup_root_interactions()
   end
 
   local function setWall()
-    setWallpaper(wallpapersDirFullPath, 3)
+    setWallpaper(wallpapersDir, 3)
   end
 
   local keys = gears.table.join(
@@ -615,7 +611,7 @@ local function setup_client_interactions(client)
   client:keys(keys)
 end
 
-setWallpaper(wallpapersDirFullPath, 3)
+setWallpaper(wallpapersDir, 3)
 
 setup_root_interactions()
 client.connect_signal("manage", setup_client_interactions)
