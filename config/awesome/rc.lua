@@ -622,11 +622,34 @@ local autostart = {
   "picom",
   "flameshot",
   "clipmenud",
-  "slack",
-  "element-desktop",
-  "telegram-desktop",
-  "thunderbird",
 }
+
+local autostart_desktop = {
+  {
+    command = "slack",
+    class = "Slack",
+  },
+  {
+    command = "element-desktop",
+    class = "element",
+  },
+  {
+    command = "telegram-desktop",
+    class = "telegram-desktop",
+  },
+  {
+    command = "thunderbird",
+    class = "thunderbird",
+  },
+}
+
+for _, i in pairs(autostart_desktop) do
+  local matcher = function(c)
+    return ruled.client.match(c, { class = i.class })
+  end
+
+  awful.spawn.single_instance(i.command, nil, matcher)
+end
 
 for _, i in pairs(autostart) do
   awful.spawn(i)
