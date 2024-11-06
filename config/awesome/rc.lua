@@ -89,7 +89,7 @@ local function scandir(directory)
   return t
 end
 
-local function setWallpaper(directory, displayCount)
+local function set_wallpaper(directory, displayCount)
   local wallpapersDirFullPath = os.getenv("HOME") .. directory
   local wallpapers = scandir(wallpapersDirFullPath)
 
@@ -353,7 +353,7 @@ local function setup_root_interactions()
   end
 
   local function setWall()
-    setWallpaper(wallpapersDir, 3)
+    set_wallpaper(wallpapersDir, 3)
   end
 
   local keys = gears.table.join(
@@ -611,7 +611,7 @@ local function setup_client_interactions(client)
   client:keys(keys)
 end
 
-setWallpaper(wallpapersDir, 3)
+set_wallpaper(wallpapersDir, 3)
 
 setup_root_interactions()
 client.connect_signal("manage", setup_client_interactions)
