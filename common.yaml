@@ -1,5 +1,4 @@
 #!/usr/bin/env ansible-playbook
----
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
@@ -107,6 +106,7 @@
       - p7zip # Command-line file archiver with high compression ratio
       - parallel # A shell tool for executing jobs in parallel
       - pcmanfm-gtk3 # Extremely fast and lightweight file manager (GTK+ 3 version)
+      - rebuild-detector # Detects which packages need to be rebuilt
       - reflector # A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
       - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
       - rmlint # Tool to remove duplicates and other lint, being much faster than fdupes
