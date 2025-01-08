@@ -25,6 +25,9 @@ set -gx USE_GKE_GCLOUD_AUTH_PLUGIN True
 # Use system URI for libvirt by default
 set -gx LIBVIRT_DEFAULT_URI qemu:///system
 
+# Use Nix daemon
+set -gx NIX_REMOTE daemon
+
 # Setup PATH from .bash_profile
 fish_add_path -m ~/.local/bin
 fish_add_path -m $N_PREFIX

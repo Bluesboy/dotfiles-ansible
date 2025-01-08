@@ -1,10 +1,10 @@
 #!/usr/bin/env ansible-playbook
----
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:
     - k9s
+    - nix
 
   tasks:
   - name: "Create symlink for configuration directories"
@@ -19,17 +19,18 @@
   - name: "Install Docker tools"
     community.general.pacman:
       name:
-      - docker # Pack, ship and run any application as a lightweight container
-      - docker-compose # Fast, isolated development environments using Docker
-      - docker-buildx # Docker CLI plugin for extended build capabilities with BuildKit
       - buildkit # A toolkit for converting source code to build artifacts in a repeatable manner
-      - podman # Tool and library for running OCI-based containers in pods
-      - podman-compose # A script to run docker-compose.yml using podman
-      - skopeo # A command line utility for various operations on container images and image repositories.
+      - docker # Pack, ship and run any application as a lightweight container
+      - docker-buildx # Docker CLI plugin for extended build capabilities with BuildKit
+      - docker-compose # Fast, isolated development environments using Docker
       - helm # The Kubernetes Package Manager
       - k9s # TUI for managing Kubernetes clusters and pods
       - kubectl # A command line tool for communicating with a Kubernetes API server
       - kubectx # Utility to manage and switch between kubectl contexts and Kubernetes namespaces
+      - nix # A purely functional package manager
+      - podman # Tool and library for running OCI-based containers in pods
+      - podman-compose # A script to run docker-compose.yml using podman
+      - skopeo # A command line utility for various operations on container images and image repositories.
       state: latest
     become: true
 
@@ -133,6 +134,8 @@
     loop:
     - docker
     - libvirt
+    - nix-users
+    - nixbld
 
   - name: "Enable Docker"
     ansible.builtin.systemd:
@@ -141,7 +144,9 @@
       enabled: true
     become: true
     loop:
-    - docker.socket
-    - podman.socket
-    - libvirtd.socket
     - cockpit.socket
+    - docker.socket
+    - libvirtd.socket
+    # - nix-daemon.service
+    - nix-daemon.socket
+    - podman.socket
