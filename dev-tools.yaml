@@ -321,3 +321,11 @@
   - name: Install "texlab" Rust package
     community.general.cargo:
       name: texlab
+
+  - name: "Install k3d"
+    kewlfft.aur.aur:
+      name:
+      - rancher-k3d-bin
+      state: latest
+    become: true
+    become_user: aur_builder
