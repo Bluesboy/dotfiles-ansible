@@ -1,5 +1,4 @@
 #!/usr/bin/env ansible-playbook
----
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
@@ -331,6 +330,10 @@
       - texlive-meta
       state: latest
     become: true
+
+  - name: Install "tree-sitter-cli" Rust package
+    community.general.cargo:
+      name: tree-sitter-cli
 
   - name: Install "texlab" Rust package
     community.general.cargo:
