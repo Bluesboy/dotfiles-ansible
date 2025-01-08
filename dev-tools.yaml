@@ -260,6 +260,12 @@
       state: latest
     become: true
 
+  - name: "ArgoCD"
+    community.general.pacman:
+      name:
+      - argocd # Declarative continuous deployment for Kubernetes
+      state: latest
+    become: true
 
   - name: "Install terragrunt"
     community.general.pacman:
