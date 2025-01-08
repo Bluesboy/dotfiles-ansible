@@ -164,6 +164,7 @@ return {
         "terraformls",
         "gopls",
         "ts_ls",
+        "texlab",
         "ansiblels",
         "typescript-language-server",
         "yamllint",

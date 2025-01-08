@@ -306,3 +306,18 @@
       state: latest
     become: true
     become_user: aur_builder
+
+  - name: "Install TeXlive"
+    community.general.pacman:
+      name:
+      - texlive-bin
+      - texlive-latex
+      - texlive-latexextra
+      - texlive-plaingeneric
+      - texlive-meta
+      state: latest
+    become: true
+
+  - name: Install "texlab" Rust package
+    community.general.cargo:
+      name: texlab
