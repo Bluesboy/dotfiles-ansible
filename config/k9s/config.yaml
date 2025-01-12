@@ -9,7 +9,7 @@ k9s:
     skin: catppuccin-macchiato
     enableMouse: false
     headless: false
-    logoless: false
+    logoless: true
     crumbsless: false
     reactive: false
     noIcons: false
