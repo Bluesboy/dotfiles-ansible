@@ -46,6 +46,7 @@ if status --is-interactive
   abbr --add --global -- aurox 'gcloud config configurations activate aurox && kubectx aurox'
   abbr --add --global -- dr 'docker run -it --rm'
   abbr --add --global -- flux 'gcloud config configurations activate flux && kubectx flux'
+  abbr --add --global -- tta 'gcloud config configurations activate tta && kubectx tta'
   abbr --add --global -- swaps 'gcloud config configurations activate aurox-swaps && kubectx swaps'
   abbr --add --global -- stage 'gcloud config configurations activate stage && kubectx stage'
   abbr --add --global -- g git
@@ -63,6 +64,7 @@ if status --is-interactive
   abbr --add --global -- k kubectl
   abbr --add --global -- kc kubectx
   abbr --add --global -- kn kubens
+  abbr --add --global -- ka 'kubectl apply -f'
   abbr --add --global -- lg lazygit
   abbr --add --global -- tf terraform
   abbr --add --global -- tp 'terraform plan'
