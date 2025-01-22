@@ -45,6 +45,8 @@ return {
             "trim_trailing_whitespace=true",
             "-formatter",
             "include_document_start=false",
+            "-formatter",
+            "scan_folded_as_literal=true",
           },
         },
       },
