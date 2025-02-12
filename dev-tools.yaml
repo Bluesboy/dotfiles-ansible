@@ -28,6 +28,11 @@
       state: latest
     become: true
 
+  - name: "Install UV"
+    community.general.pipx:
+      name: uv
+      state: latest
+
   - name: "Install Virtualenv"
     community.general.pipx:
       name: virtualenv
