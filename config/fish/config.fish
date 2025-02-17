@@ -71,6 +71,7 @@ if status --is-interactive
   abbr --add --global -- fishconf 'vim ~/.config/fish/config.fish'
   abbr --add --global -- ck 'kubectl get pod --all-namespaces | grep -i \'terminated\|nodeshutdown\|error\|nodeaffinity\|completed\' | awk \'{ print $1, $2 }\' | xargs -n2 kubectl delete pod -n'
   abbr --add --global -- tm 'tmux'
+  abbr --add --global -- c 'clear'
 end
 
 set -gx GOPATH $HOME/go; set -gx GOROOT $HOME/.go; set -gx PATH $GOPATH/bin $PATH; # g-install: do NOT edit, see https://github.com/stefanmaric/g
