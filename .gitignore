@@ -27,3 +27,4 @@ config/fish/completions/kind.fish
 config/nvim/lazy-lock.json
 config/lazygit/state.yml
 roles
+btop.log

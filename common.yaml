@@ -4,6 +4,7 @@
     ansible_ask_become_pass: true
     configs:
     - bat
+    - btop
     - fish
     - git
     - lazygit
