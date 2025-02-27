@@ -371,3 +371,11 @@
       extra_opts:
       - --no-anchored
       - yaml-diff
+
+  - name: 'Install "cloud-sql-proxy"'
+    kewlfft.aur.aur:
+      name:
+      - cloud-sql-proxy-bin # Google Cloud SQL Auth proxy
+      state: latest
+    become: true
+    become_user: aur_builder
