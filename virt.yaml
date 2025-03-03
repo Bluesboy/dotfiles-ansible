@@ -105,6 +105,7 @@
       - cockpit-machines # Cockpit UI for virtual machines
       - cockpit-podman # Cockpit UI for podman containers
       - cockpit-pcp # Cockpit support for reading PCP metrics and loading PCP archives
+      - cockpit-storaged # Cockpit user interface for storage, using udisks
       state: latest
     become: true
 
@@ -113,6 +114,7 @@
       name:
       - cockpit-zfs-manager # An interactive ZFS on Linux admin package for Cockpit
       - cockpit-file-sharing # A Cockpit plugin to easily manage samba and NFS file sharing.
+      - cockpit-navigator # A Featureful File Browser for Cockpit
       state: latest
     become: true
     become_user: aur_builder
@@ -147,6 +149,5 @@
     - cockpit.socket
     - docker.socket
     - libvirtd.socket
-    # - nix-daemon.service
     - nix-daemon.socket
     - podman.socket
