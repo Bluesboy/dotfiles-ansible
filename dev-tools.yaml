@@ -288,14 +288,6 @@
     become: true
     become_user: aur_builder
 
-  - name: 'Install "ddosify"'
-    kewlfft.aur.aur:
-      name:
-      - ddosify # High-performance load testing tool
-      state: latest
-    become: true
-    become_user: aur_builder
-
   - name: 'Download "g" install script'
     ansible.builtin.get_url:
       url: https://git.io/g-install
