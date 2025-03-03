@@ -20,6 +20,7 @@
     community.general.pacman:
       name:
       - buildkit # A toolkit for converting source code to build artifacts in a repeatable manner
+      - cilium-cli # install, manage & troubleshoot Kubernetes clusters running Cilium
       - docker # Pack, ship and run any application as a lightweight container
       - docker-buildx # Docker CLI plugin for extended build capabilities with BuildKit
       - docker-compose # Fast, isolated development environments using Docker
