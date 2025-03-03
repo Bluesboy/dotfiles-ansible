@@ -125,7 +125,7 @@
 
   - name: "Install Skype"
     kewlfft.aur.aur:
-      name: skypeforlinux-stable-bin # Skype for Linux - Stable/Release Version
+      name: skypeforlinux-bin # Skype for Linux - Stable/Release Version
       state: latest
     become: true
     become_user: aur_builder
