@@ -35,6 +35,22 @@
       state: latest
     become: true
 
+  - name: "Set subuids for Podman"
+    ansible.builtin.lineinfile:
+      path: "/etc/subuid"
+      regexp: "{{ ansible_user_id }}"
+      line: "{{ ansible_user_id }}:100000:65535"
+      backup: true
+    become: true
+
+  - name: "Set subgids for Podman"
+    ansible.builtin.lineinfile:
+      path: "/etc/subgid"
+      regexp: "{{ ansible_user_id }}"
+      line: "{{ ansible_user_id }}:100000:65535"
+      backup: true
+    become: true
+
   - name: "Copy Docker Configuration file"
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/config/docker/daemon.json"
