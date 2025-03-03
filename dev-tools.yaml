@@ -356,6 +356,12 @@
       - --no-anchored
       - yaml-diff
 
+  - name: "Install lnav"
+    community.general.pacman:
+      name: lnav
+      state: latest
+    become: true
+
   - name: 'Install "cloud-sql-proxy"'
     kewlfft.aur.aur:
       name:
