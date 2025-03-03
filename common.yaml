@@ -140,6 +140,10 @@
       - mdadm # A tool for managing/monitoring Linux md device arrays, also known as Software RAID
       - ntfs-3g # NTFS filesystem driver and utilities
       - xfsprogs # XFS filesystem utilities
+      - udisks2 # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies
+      - udisks2-btrfs # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - BTRFS module
+      - udisks2-lvm2 # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - LVM2 module
+      - udisks2-docs # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - documentation
       state: latest
     become: true
 
