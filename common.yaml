@@ -13,6 +13,7 @@
     - starship
     - tmux
     - tmux-powerline
+    - yazi
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -121,6 +122,7 @@
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
       - wget # Network utility to retrieve files from the Web
       - which # A utility to show the full path of commands
+      - yazi # Blazing fast terminal file manager written in Rust, based on async I/O
       - zoxide # A smarter cd command for your terminal
       update_cache: yes
       state: latest
