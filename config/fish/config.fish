@@ -28,6 +28,12 @@ set -gx LIBVIRT_DEFAULT_URI qemu:///system
 # Use Nix daemon
 set -gx NIX_REMOTE daemon
 
+# Use Nix daemon
+set -gx CLIPBOARD_THEME ansi
+
+# Set go-task binary name
+set -gx GO_TASK_PROGNAME go-task
+
 # Setup PATH from .bash_profile
 fish_add_path -m ~/.local/bin
 fish_add_path -m $N_PREFIX

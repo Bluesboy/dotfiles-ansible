@@ -1,4 +1,4 @@
-# Defined in /home/ssattarov/.config/fish/functions/ll.fish @ line 1
+# Defined in /home/ssattarov/.config/fish/functions/task.fish @ line 1
 function task --wraps=go-task
-    go-task $argv
+    go-task $argv;
 end
