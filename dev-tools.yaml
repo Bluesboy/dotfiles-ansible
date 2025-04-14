@@ -259,6 +259,13 @@
     become: true
     become_user: aur_builder
 
+  - name: "Libwebkit 4.1"
+    community.general.pacman:
+      name:
+      - webkit2gtk-4.1
+      state: latest
+    become: true
+
   - name: "Apache Bechch"
     kewlfft.aur.aur:
       name:

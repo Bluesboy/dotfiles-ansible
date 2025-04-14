@@ -22,7 +22,7 @@
 
   - name: "Install CTPV Git"
     kewlfft.aur.aur:
-      name: ctpv-git
+      name: ctpv-git # Fast image previews for lf
       state: latest
     become: true
     become_user: aur_builder
