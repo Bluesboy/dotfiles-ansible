@@ -174,4 +174,11 @@
       groups: transmission
       append: true
     become: true
+
+  - name: "Install Stig"
+    kewlfft.aur.aur:
+      name: stig # TUI and CLI client for the Transmission daemon
+      state: latest
+    become: true
+    become_user: aur_builder
 ...
