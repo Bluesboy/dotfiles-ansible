@@ -150,6 +150,14 @@
     become: true
     become_user: aur_builder
 
+  - name: "Clipboard"
+    kewlfft.aur.aur:
+      name:
+      - clipboard # Cut, copy, and paste anything in your terminal.
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install FFmpegthumbnailer"
     community.general.pacman:
       name:
