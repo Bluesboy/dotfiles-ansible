@@ -49,3 +49,9 @@ format = ' [$symbol$active]($style) '
 
 [kubernetes]
 disabled = false
+
+[env_var.yazi_level]
+description = "Indicate the shell was launched by `yazi`"
+variable = "YAZI_LEVEL"
+symbol = " "
+format = '[$symbol]($style)'

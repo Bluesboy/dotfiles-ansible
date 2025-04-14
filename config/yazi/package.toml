@@ -1,0 +1,57 @@
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "c76bf4f"
+hash = "a6b78bf9af5390e3a85a6951fbb7b93"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "9f924e3"
+hash = "2b0c33928986f126d5c5a4cac31a6b46"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "95b2c58"
+hash = "17a094653b7d0db4ac68ed531d2e1412"
+
+[[plugin.deps]]
+use = "iynaix/time-travel"
+rev = "7e0179e"
+hash = "69967963fba96295a07b68354fc91ea9"
+
+[[plugin.deps]]
+use = "MasouShizuka/projects"
+rev = "4f11ecc"
+hash = "17fa17295d27864f62875f06a77f72e7"
+
+[[plugin.deps]]
+use = "pirafrank/what-size"
+rev = "b23e3a4"
+hash = "98e5f5af3efd3ba8bc2db0720187cc83"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "6c639b4"
+hash = "5614c46d5de76623c283d415bfac8025"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "a1b678d"
+hash = "bcbf72738d4b7fb9a03cac84465b9ba4"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/bypass"
+rev = "ecb1f7f"
+hash = "905054b2df08ff79af223e0b6f249fa3"
+
+[[plugin.deps]]
+use = "orhnk/system-clipboard"
+rev = "7775a80"
+hash = "9b8f2573da54334b04747e51556040cc"
+
+[[plugin.deps]]
+use = "kirasok/torrent-preview"
+rev = "4ca5996"
+hash = "6af40ce6b2cd849b5fa32de04a598b06"
+
+[flavor]
+deps = []
