@@ -29,14 +29,13 @@ end
 local theme = {}
 theme.bg_focus = "#4d6d91"
 
-local terminal = "alacritty"
+local terminal = "wezterm start"
 local wallpapersDir = "/Pictures/wallpapers"
 local browser = "opera"
 local meta = "Mod4"
 local alt = "Mod1"
 local tag_count = 5
 
--- beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default"))
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.font = "UbuntuMono Nerd Font 14"
 beautiful.useless_gap = 2
@@ -49,8 +48,7 @@ awesome.connect_signal("debug::error", notify_error)
 -- setup quake-style terminal
 local quake_term = lain.util.quake({
   app = terminal,
-  argname = "--title=%s",
-  extra = "--class QuakeDD",
+  argname = "--class %s",
   visible = true,
   height = 1,
   border = 0,
@@ -352,6 +350,10 @@ local function setup_root_interactions()
     awful.spawn("dmenu_run -fn 'UbuntuMono Nerd Font 16'")
   end
 
+  local function rofi()
+    awful.spawn("rofi -show drun")
+  end
+
   local function setWall()
     set_wallpaper(wallpapersDir, 3)
   end
@@ -365,6 +367,9 @@ local function setup_root_interactions()
 
     -- Open Dmenu
     awful.key({ meta }, "p", dmenu),
+
+    -- Open Rofi
+    awful.key({ meta }, "r", rofi),
 
     -- Start Opera Browser
     awful.key({ meta }, "o", start_browser),
