@@ -28,3 +28,4 @@ config/nvim/lazy-lock.json
 config/lazygit/state.yml
 roles
 btop.log
+config/yazi/plugins
