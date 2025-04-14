@@ -87,3 +87,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- Absolute numbers toggle
+map({ "n", "t" }, "<C-n>", function()
+  vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = "Toggle absolute numbers" })
+
+-- Diagnostic toggle
+map({ "n" }, "<leader>dd", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostic" })
