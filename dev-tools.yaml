@@ -266,6 +266,14 @@
       state: latest
     become: true
 
+  - name: "Hoppscotch"
+    kewlfft.aur.aur:
+      name:
+      - hoppscotch-bin
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Apache Bechch"
     kewlfft.aur.aur:
       name:
