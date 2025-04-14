@@ -129,6 +129,14 @@
       state: latest
     become: true
 
+  - name: "Yay"
+    kewlfft.aur.aur:
+      name: yay # Yet another yogurt. Pacman wrapper and AUR helper written in go
+      use: makepkg
+      state: present
+    become: true
+    become_user: aur_builder
+
   - name: "Paru"
     kewlfft.aur.aur:
       name: paru-git # Feature packed AUR helper
