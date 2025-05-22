@@ -34,6 +34,9 @@ set -gx CLIPBOARD_THEME ansi
 # Set go-task binary name
 set -gx GO_TASK_PROGNAME go-task
 
+# Set python3.12 for GCLOUD SDK
+set -gx CLOUDSDK_PYTHON /usr/bin/python3.12
+
 # Setup PATH from .bash_profile
 fish_add_path -m ~/.local/bin
 fish_add_path -m $N_PREFIX

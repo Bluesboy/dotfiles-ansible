@@ -167,7 +167,46 @@ ruled.client.connect_signal("request::rules", function()
     },
     properties = {
       floating = true,
+      buttons = nil,
+      keys = nil,
     },
+    callback = function(c)
+      c:buttons(gears.table.join(awful.button({}, 1, function(_, _, _, _, geometry)
+        -- Получаем абсолютные координаты курсора
+        local mouse_abs = mouse.coords()
+
+        -- Рассчитываем относительные координаты внутри окна
+        -- с учетом его позиции (geometry.x, geometry.y)
+        local rel_x = mouse_abs.x - geometry.x
+        local rel_y = mouse_abs.y - geometry.y
+
+        -- Определяем зоны ресайза
+        local edge_size = 10 -- Размер края в пикселях
+        local is_left = rel_x < edge_size
+        local is_right = rel_x > geometry.width - edge_size
+        local is_top = rel_y < edge_size
+        local is_bottom = rel_y > geometry.height - edge_size
+
+        -- Выбираем направление ресайза или перемещение
+        if is_left or is_right or is_top or is_bottom then
+          local corner = ""
+          if is_top then
+            corner = corner .. "top"
+          elseif is_bottom then
+            corner = corner .. "bottom"
+          end
+          if is_left then
+            corner = corner .. "_left"
+          elseif is_right then
+            corner = corner .. "_right"
+          end
+          corner = corner:gsub("^_", "") -- Убираем лишний символ
+          awful.mouse.client.resize(c, corner)
+        else
+          awful.mouse.client.move(c)
+        end
+      end)))
+    end,
   })
   ruled.client.append_rule({
     id = "opera",

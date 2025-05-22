@@ -95,6 +95,7 @@
       - fzf # Command-line fuzzy finder
       - github-cli # The GitHub CLI
       - go-yq # Portable command-line YAML processor
+      - atuin # Magical shell history
       - hub # cli interface for Github
       - jq # Command-line JSON processor
       - lazygit # Simple terminal UI for git commands

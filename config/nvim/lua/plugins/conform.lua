@@ -23,6 +23,7 @@ return {
           yaml = true,
           c = true,
           cpp = true,
+          go = true,
         }
 
         if disable_filetypes[vim.bo[bufnr].filetype] then

@@ -22,6 +22,14 @@
       state: latest
     become: true
 
+  - name: "Install Sipcalc"
+    kewlfft.aur.aur:
+      name:
+      - sipcalc
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install pipx"
     community.general.pacman:
       name: python-pipx
@@ -91,7 +99,7 @@
   - name: "Install Helm LS"
     kewlfft.aur.aur:
       name:
-      - helm-ls
+      - helm-ls-bin
       state: latest
     become: true
     become_user: aur_builder
@@ -237,6 +245,14 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install Python3.12 for Google Cloud Apps"
+    kewlfft.aur.aur:
+      name:
+      - python312
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Packer"
     community.general.pacman:
       name:
@@ -288,6 +304,14 @@
       - go-task # A task runner written in Go
       state: latest
     become: true
+
+  - name: "Install redisinsight"
+    kewlfft.aur.aur:
+      name:
+      - redisinsight
+      state: latest
+    become: true
+    become_user: aur_builder
 
   - name: "ArgoCD"
     community.general.pacman:

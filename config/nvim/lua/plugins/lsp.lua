@@ -143,13 +143,13 @@ return {
         yamlls = {
           settings = {
             yaml = {
-              validate = false,
+              validate = true,
               schemaStore = {
-                enable = true,
+                enable = false,
               },
               schemas = {
-                kubernetes = "k8s-*.yaml",
-                -- ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/_definitions.json"] = "kest-*.yaml",
+                -- kubernetes = "k8s-*.yaml",
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "*.{yml,yaml}",
                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
@@ -157,6 +157,10 @@ return {
                 ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
                 ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
                 ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+                ["ignore"] = "templates/*",
+              },
+              customTags = {
+                "!ignore status",
               },
             },
           },
@@ -171,9 +175,24 @@ return {
                   -- this plugin and its advanced options like `ignore`.
                   enable = false,
                   -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                  url = "",
+                  url = "https://www.schemastore.org/api/json/catalog.json",
                 },
-                schemas = require("schemastore").yaml.schemas({}),
+                schemas = {
+                  -- kubernetes = "k8s-*.yaml",
+                  ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "templates/*.{yml,yaml}",
+                  ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                  ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                  ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+                  ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                  ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                  ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                  ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+                  ["ignore"] = "templates/*",
+                },
+                -- schemas = require("schemastore").yaml.schemas({}),
+                customTags = {
+                  "!ignore status",
+                },
               },
             },
           },
@@ -189,13 +208,15 @@ return {
                   "vim",
                   "awesome",
                   "client",
+                  "fs",
+                  "Command",
                 },
               },
               workspace = {
                 library = {
-                  vim.api.nvim_get_runtime_file("", true),
-                  vim.fn.expand("$VIMRUNTIME/lua"),
-                  vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+                  vim.api.nvim_get_runtime_file("**.lua", true),
+                  vim.fn.expand("$VIMRUNTIME" .. "/lua"),
+                  vim.fn.expand("$XDG_CONFIG_HOME" .. "/nvim/lua"),
                   vim.fn.expand("/usr/share/awesome/lib"),
                 },
               },
