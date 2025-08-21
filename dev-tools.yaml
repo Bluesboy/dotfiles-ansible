@@ -72,6 +72,11 @@
       state: latest
       install_deps: true
 
+  - name: "Install TimeWeb CLI"
+    community.general.pipx:
+      name: twc-cli
+      state: latest
+
   - name: "Install Jupyter Client"
     community.general.pacman:
       name: python-jupyter-client
