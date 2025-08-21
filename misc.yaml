@@ -3,6 +3,13 @@
 - hosts: localhost
 
   tasks:
+  - name: "Install Downgrade"
+    kewlfft.aur.aur:
+      name: downgrade
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install Brave browser"
     kewlfft.aur.aur:
       name: brave-bin
@@ -86,14 +93,6 @@
       state: latest
     become: true
 
-  - name: "Install Nekoray"
-    kewlfft.aur.aur:
-      name: nekoray-git
-      state: latest
-      update_cache: true
-    become: true
-    become_user: aur_builder
-
   - name: "Install sing-geoip"
     kewlfft.aur.aur:
       name: sing-geoip-git
@@ -121,30 +120,6 @@
       state: latest
     become: true
     become_user: aur_builder
-
-  - name: "Add pritunl repo for pacman"
-    ansible.builtin.blockinfile:
-      path: /etc/pacman.conf
-      prepend_newline: true
-      backup: true
-      block: |
-        [pritunl]
-        Server = https://repo.pritunl.com/stable/pacman
-    become: true
-
-  - name: "Import pritunl repo key"
-    community.general.pacman_key:
-      id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
-      keyserver: keyserver.ubuntu.com
-      state: present
-    become: true
-
-  - name: "Install pritunl-client-electron"
-    community.general.pacman:
-      name:
-      - pritunl-client-electron
-      state: latest
-    become: true
 
   - name: "Install ExpressVPN"
     kewlfft.aur.aur:

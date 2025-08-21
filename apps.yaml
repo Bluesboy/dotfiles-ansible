@@ -1,5 +1,4 @@
 #!/usr/bin/env ansible-playbook
----
 - hosts: localhost
   vars:
     ansible_ask_become_pass: true
