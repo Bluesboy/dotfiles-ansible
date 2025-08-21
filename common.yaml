@@ -87,6 +87,7 @@
       - btop # A monitor of system resources, bpytop ported to C++
       - curl # It's fucking cURL, questions?
       - difftastic # An experimental diff tool that compares files based on their syntax
+      - dua-cli # A tool to conveniently learn about the disk usage of directories, fast!
       - dust # A more intuitive version of du in rust
       - eza # ls replacement
       - fd # Simple, fast and user-friendly alternative to find
