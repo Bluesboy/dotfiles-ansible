@@ -22,6 +22,8 @@
       - buildkit # A toolkit for converting source code to build artifacts in a repeatable manner
       - cilium-cli # install, manage & troubleshoot Kubernetes clusters running Cilium
       - docker # Pack, ship and run any application as a lightweight container
+      - dive # A tool for exploring layers in a docker image
+      - ducker # A terminal app for managing docker containers
       - docker-buildx # Docker CLI plugin for extended build capabilities with BuildKit
       - docker-compose # Fast, isolated development environments using Docker
       - helm # The Kubernetes Package Manager
