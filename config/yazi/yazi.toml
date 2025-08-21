@@ -1,25 +1,33 @@
-[manager]
+[mgr]
 ratio = [15, 40, 50 ]
 
-[[manager.prepend_keymap]]
-on   = [ "g", "i" ]
-run  = "plugin lazygit"
+[[mgr.prepend_keymap]]
+on = [ "g", "i" ]
+run = "plugin lazygit"
 desc = "run lazygit"
 
 [[plugin.prepend_previewers]]
-name = "*.md"
-run = "glow"
+name = "*.tar*"
+run = 'piper --format=url -- tar tf "$1"'
 
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
-
-[[plugin.prepend_fetchers]]
-id   = "git"
+[[plugin.prepend_previewers]]
 name = "*/"
-run  = "git"
+run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'
+
+[[plugin.prepend_fetchers]]
+id = "git"
+name = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+name = "*/"
+run = "git"
 
 [[plugin.prepend_previewers]]
 mime = "application/bittorrent"
 run = "torrent-preview"
+
+[[plugin.prepend_previewers]]
+name = "*.md"
+run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
