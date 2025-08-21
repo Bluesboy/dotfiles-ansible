@@ -678,8 +678,8 @@ local autostart_desktop = {
     class = "element",
   },
   {
-    command = "telegram-desktop",
-    class = "telegram-desktop",
+    command = "Telegram",
+    class = "Telegram",
   },
   {
     command = "thunderbird",
