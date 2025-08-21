@@ -23,6 +23,9 @@
 [credential "https://github.com"]
   username = Bluesboy
 
+[credential "https://codeberg.org"]
+  username = Bluesboy
+
 [init]
   defaultBranch = master
 
