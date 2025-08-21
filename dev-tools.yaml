@@ -241,6 +241,7 @@
       name:
       - google-cloud-cli # A set of command-line tools for the Google Cloud Platform. Includes gcloud (with beta and alpha commands), gsutil, and bq.
       - google-cloud-cli-gke-gcloud-auth-plugin # A google-cloud-sdk component that provides a kubectl authentication plugin for GKE.
+      - google-cloud-cli-gsutil # Cloud Storage Command Line Tool: gsutil is not the recommended CLI for Cloud Storage
       state: latest
     become: true
     become_user: aur_builder
