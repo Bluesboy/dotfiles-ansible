@@ -246,6 +246,13 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install Istioctl"
+    community.general.pacman:
+      name:
+      - istio
+      state: latest
+    become: true
+
   - name: "Install Python3.12 for Google Cloud Apps"
     kewlfft.aur.aur:
       name:
