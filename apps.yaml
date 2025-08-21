@@ -83,7 +83,7 @@
 
   - name: "Install FFMPEG for Opera"
     kewlfft.aur.aur:
-      name: opera-ffmpeg-codecs # additional support for proprietary codecs for opera
+      name: opera-ffmpeg-codecs-bin # additional support for proprietary codecs for opera
       state: latest
     become: true
     become_user: aur_builder
