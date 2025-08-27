@@ -37,6 +37,14 @@
       state: latest
     become: true
 
+  - name: "Install Kubecolor"
+    kewlfft.aur.aur:
+      name:
+      - kubecolor
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Set subuids for Podman"
     ansible.builtin.lineinfile:
       path: "/etc/subuid"
