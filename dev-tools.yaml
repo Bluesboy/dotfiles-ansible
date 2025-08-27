@@ -432,6 +432,12 @@
       state: latest
     become: true
 
+  - name: "Install gping"
+    community.general.pacman:
+      name: gping
+      state: latest
+    become: true
+
   - name: 'Install "cloud-sql-proxy"'
     kewlfft.aur.aur:
       name:
