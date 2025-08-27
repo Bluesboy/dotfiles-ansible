@@ -406,23 +406,25 @@
     become: true
     become_user: aur_builder
 
-  - name: "Check latest yaml-diff"
-    uri:
-      url: https://api.github.com/repos/sters/yaml-diff/releases/latest
-      return_content: false
-    register: yaml_diff_latest
+  - name: Install yaml-diff
+    quera.github.install_from_github:
+      repo: sters/yaml-diff
+      asset_regex: yaml-diff.*\.tar\.gz
+      move_rules:
+      - src_regex: yaml-diff
+        dst: "{{ ansible_env.HOME }}/.local/bin/"
+        mode: 0755
+    become: true
 
-  - name: "Installing yaml-diff {{ yaml_diff_latest.json.tag_name }}"
-    loop: "{{ yaml_diff_latest.json.assets }}"
-    when: "'linux_amd64.tar.gz' in item.name"
-    unarchive:
-      remote_src: yes
-      src: "{{ item.browser_download_url }}"
-      dest: "{{ ansible_env.HOME }}/.local/bin/"
-      keep_newer: yes
-      extra_opts:
-      - --no-anchored
-      - yaml-diff
+  - name: Install diffnest
+    quera.github.install_from_github:
+      repo: sters/diffnest
+      asset_regex: diffnest.*\.tar\.gz
+      move_rules:
+      - src_regex: diffnest
+        dst: "{{ ansible_env.HOME }}/.local/bin/"
+        mode: 0755
+    become: true
 
   - name: "Install lnav"
     community.general.pacman:
@@ -442,6 +444,14 @@
     kewlfft.aur.aur:
       name:
       - git-koji-bin
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install Posting"
+    kewlfft.aur.aur:
+      name:
+      - posting
       state: latest
     become: true
     become_user: aur_builder

@@ -1,5 +1,8 @@
----
 collections:
-  - name: community.general
-  #AUR
-  - name: kewlfft.aur
+- name: community.general
+#AUR
+- name: kewlfft.aur
+#Install from github
+- name: quira.github
+  type: git
+  source: https://github.com/QueraTeam/ansible-github
