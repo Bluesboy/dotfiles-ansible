@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "7a08a09"
-hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
+rev = "8f37dc5"
+hash = "ee71543790f0ce3951161045a3787abd"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "fbb7c00"
-hash = "1d231a808d3344546380df33daf43e91"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "iynaix/time-travel"
@@ -15,23 +15,23 @@ hash = "69967963fba96295a07b68354fc91ea9"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "82febd5"
-hash = "fe0b65b5b19663ca4a78434944c998a9"
+rev = "a5e33db"
+hash = "3de26efded35814ba3e55e28f1c389a4"
 
 [[plugin.deps]]
 use = "pirafrank/what-size"
-rev = "0a4904c"
-hash = "fca231a128488a554823374f8f6d5241"
+rev = "d896656"
+hash = "62251f94eb67648d42cdfcfb8be0fad2"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "6a0f3f7"
-hash = "d5a74d95c2e8194ac352c5e10e81e64f"
+rev = "a63550b"
+hash = "c2021386289a0cbb3e152a052f67c177"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "aeca767"
-hash = "bf6f074cd41ee33c3360341d168f9733"
+rev = "d7588f6"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/bypass"
@@ -40,22 +40,22 @@ hash = "208e77480824f62558a5b037c8569d61"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "efb8f03"
-hash = "9b8f2573da54334b04747e51556040cc"
+rev = "4f6942d"
+hash = "8e81a147e8ddfd992b10dd957d51a199"
 
 [[plugin.deps]]
 use = "kirasok/torrent-preview"
-rev = "4ca5996"
-hash = "6af40ce6b2cd849b5fa32de04a598b06"
+rev = "f465282"
+hash = "b89b46a15035a51d010a254858ba9741"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "aeca767"
-hash = "a7ab702e1ef0c097defbc976ed34c186"
+rev = "d7588f6"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "e95c7b3"
+rev = "d7588f6"
 hash = "2143a53182dbbe935a1abd1623424aa5"
 
 [flavor]

@@ -52,7 +52,17 @@ desc = "Delete all bookmarks"
 # on = ["z", "e"]
 # run = "plugin time-travel --args=exit"
 # desc = "Exit browsing snapshots"
-#
+
+[[mgr.prepend_keymap]]
+on = [ "k" ]
+run = "arrow -1"
+desc = "Move cursor up"
+
+[[mgr.prepend_keymap]]
+on = [ "j" ]
+run = "arrow 1"
+desc = "Move cursor down"
+
 [[mgr.prepend_keymap]]
 on = [ "P", "s" ]
 run = "plugin projects save"
@@ -110,7 +120,7 @@ desc = "Recursively enter parent directory, skipping parents with only a single 
 
 [[mgr.prepend_keymap]]
 on = [ "l" ]
-run = "plugin bypass smart_enter"
+run = "plugin bypass smart-enter"
 desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory"
 
 [[mgr.prepend_keymap]]
