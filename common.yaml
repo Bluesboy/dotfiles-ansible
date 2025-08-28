@@ -79,6 +79,7 @@
     community.general.pacman:
       name:
       - atool # A script for managing file archives of various types
+      - atuin # Magical shell history
       - bash-completion # Programmable completion for the bash shell
       - bat # Cat clone with syntax highlighting and git integration
       - bind # A complete, highly portable implementation of the DNS protocol
@@ -96,7 +97,6 @@
       - fzf # Command-line fuzzy finder
       - github-cli # The GitHub CLI
       - go-yq # Portable command-line YAML processor
-      - atuin # Magical shell history
       - hub # cli interface for Github
       - jq # Command-line JSON processor
       - lazygit # Simple terminal UI for git commands
@@ -119,6 +119,7 @@
       - thefuck # Magnificent app which corrects your previous console command
       - tmux # A terminal multiplexer
       - trash-cli # Command line trashcan (recycle bin) interface
+      - unarchiver # unar and lsar: Objective-C tools for uncompressing archive files
       - unrar # The RAR uncompression program
       - unzip # For extracting and viewing files in .zip archives
       - websocat # Command-line client for web sockets, like netcat/curl/socat for ws://
