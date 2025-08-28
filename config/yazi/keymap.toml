@@ -54,6 +54,11 @@ desc = "Delete all bookmarks"
 # desc = "Exit browsing snapshots"
 
 [[mgr.prepend_keymap]]
+on = [ "<Backspace>" ]
+run = "hidden toggle"
+desc = "Toggle hidden files"
+
+[[mgr.prepend_keymap]]
 on = [ "k" ]
 run = "arrow -1"
 desc = "Move cursor up"
