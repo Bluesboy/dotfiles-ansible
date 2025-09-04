@@ -78,7 +78,7 @@
 
   - name: "Enable nested virtualization"
     community.general.modprobe:
-      name: kvm_intel
+      name: kvm_amd
       params: "nested=1"
       state: present
     become: true
