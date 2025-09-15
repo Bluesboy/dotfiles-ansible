@@ -166,3 +166,17 @@
     ansible.builtin.git:
       repo: https://github.com/tmux-plugins/tpm.git
       dest: ~/.config/tmux/plugins/tpm
+
+  - name: "Install systemd-manager-tui"
+    kewlfft.aur.aur:
+      name: systemd-manager-tui # Terminal UI for managing systemd services
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install lazyjournal"
+    kewlfft.aur.aur:
+      name: lazyjournal # TUI for journalctl, file system logs, as well Docker and Podman containers for quick viewing and filtering with fuzzy find and regex support
+      state: latest
+    become: true
+    become_user: aur_builder
