@@ -30,6 +30,14 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install Doggo"
+    kewlfft.aur.aur:
+      name:
+      - doggo-bin # Command-line DNS client for humans
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install pipx"
     community.general.pacman:
       name: python-pipx
@@ -402,6 +410,14 @@
     kewlfft.aur.aur:
       name:
       - rancher-k3d-bin
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install dyff"
+    kewlfft.aur.aur:
+      name:
+      - dyff-bin
       state: latest
     become: true
     become_user: aur_builder
