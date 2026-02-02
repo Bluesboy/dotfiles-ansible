@@ -32,3 +32,4 @@ config/yazi/plugins
 config/yazi/*.toml-*
 config/wezterm/tmp
 config/fish/themes
+config/fish/fish_variables.wLp8Ex
