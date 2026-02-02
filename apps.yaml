@@ -38,6 +38,8 @@
       name:
       - alacritty # A cross-platform, GPU-accelerated terminal emulator
       - flameshot # Powerful yet simple to use screenshot software
+      - grim 
+      - swappy
       - gparted # A Partition Magic clone, frontend to GNU Parted
       - mpv # a free, open source, and cross-platform media player
       - zathura # Minimalistic document viewer
@@ -119,6 +121,25 @@
   - name: "Install Slack"
     kewlfft.aur.aur:
       name: slack-desktop # Slack Desktop (Beta) for Linux
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install tewi"
+    community.general.pipx:
+      name: tewi-transmission
+      state: latest
+
+  - name: "Install trgui-ng"
+    kewlfft.aur.aur:
+      name: trgui-ng
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install gh-dash"
+    kewlfft.aur.aur:
+      name: gh-dash # A beautiful CLI dashboard extension for GitHub to display pull requests and issues with filters you care about
       state: latest
     become: true
     become_user: aur_builder
