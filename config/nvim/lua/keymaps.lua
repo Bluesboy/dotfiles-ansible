@@ -15,7 +15,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
-map("n", "<leader>sf", ":source %<CR>") -- Source currnt file
+
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
@@ -24,14 +24,14 @@ map("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
 
 -- Resize with arrows
-map("n", "<C-Up>", ":resize +2<CR>")
-map("n", "<C-Down>", ":resize -2<CR>")
-map("n", "<C-Left>", ":vertical resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
+map("n", "<C-Up>", "<cmd>resize +2<CR>")
+map("n", "<C-Down>", "<cmd>resize -2<CR>")
+map("n", "<C-Left>", "<cmd>vertical resize -2<CR>")
+map("n", "<C-Right>", "<cmd>vertical resize +2<CR>")
 
 -- Navigate buffers
-map("n", "<S-l>", ":bnext<CR>")
-map("n", "<S-h>", ":bprevious<CR>")
+map("n", "<S-l>", "<cmd>bnext<CR>")
+map("n", "<S-h>", "<cmd>bprevious<CR>")
 
 -- Insert --
 -- Press jk fast to enter
@@ -47,10 +47,10 @@ map("v", "p", '"_dP')
 
 -- Visual Block --
 -- Move text up and down
-map("x", "J", ":move '>+1<CR>gv-gv")
-map("x", "K", ":move '<-2<CR>gv-gv")
-map("x", "<A-j>", ":move '>+1<CR>gv-gv")
-map("x", "<A-k>", ":move '<-2<CR>gv-gv")
+map("x", "J", "<cmd>move '>+1<CR>gv-gv")
+map("x", "K", "<cmd>move '<-2<CR>gv-gv")
+map("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv")
+map("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv")
 
 -- Terminal --
 -- Better terminal navigation
@@ -60,13 +60,13 @@ map("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 map("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Leader write, quit and both
-map("n", "<leader>w", ":w<CR>", { desc = "Save buffer" })
-map("n", "<leader>q", ":q<CR>", { desc = "Exit Neovim. Finally!" })
-map("n", "<leader>x", ":q!<CR>", { desc = "Exit without saving" })
-map("n", "<leader>Q", ":wq<CR>", { desc = "Save buffer and exit" })
+map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save buffer" })
+map("n", "<leader>q", "<cmd>q<CR>", { desc = "Exit Neovim. Finally!" })
+map("n", "<leader>x", "<cmd>q!<CR>", { desc = "Exit without saving" })
+map("n", "<leader>Q", "<cmd>wq<CR>", { desc = "Save buffer and exit" })
 
 -- Backspace turn off search highlight
-map("n", "<BS>", ":nohlsearch<CR>", { desc = "Disable search highlight" })
+map("n", "<BS>", "<cmd>nohlsearch<CR>", { desc = "Disable search highlight" })
 
 -- ToggleTerm
 map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
@@ -97,3 +97,6 @@ end, { desc = "Toggle absolute numbers" })
 map({ "n" }, "<leader>dd", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostic" })
+
+-- MarkDownPreview
+map({ "n", "i" }, "gm", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
