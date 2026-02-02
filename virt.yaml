@@ -188,3 +188,11 @@
     - libvirtd.socket
     - nix-daemon.socket
     - podman.socket
+
+  - name: "Install oxker"
+    kewlfft.aur.aur:
+      name:
+      - oxker # A simple TUI to view & control Docker containers
+      state: latest
+    become: true
+    become_user: aur_builder
