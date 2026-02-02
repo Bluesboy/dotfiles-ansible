@@ -1,7 +1,10 @@
 return {
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      -- "Exafunction/codeium.nvim",
+    },
     version = "1.*",
 
     ---@module 'blink.cmp'
@@ -31,7 +34,20 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = {
+          "lsp",
+          "path",
+          "snippets",
+          "buffer",
+          -- "codeium",
+        },
+        -- providers = {
+        --   codeium = {
+        --     name = "Codeium",
+        --     module = "codeium.blink",
+        --     async = true,
+        --   },
+        -- },
       },
 
       signature = { enabled = true },
