@@ -33,26 +33,6 @@ on = [ "b", "d" ]
 run = "plugin bookmarks delete"
 desc = "Delete a bookmark"
 
-# [[mgr.prepend_keymap]]
-# on = [ "b", "D" ]
-# run = "plugin bookmarks delete_all"
-# desc = "Delete all bookmarks"
-
-# [[manager.prepend_keymap]]
-# on = ["z", "h"]
-# run = "plugin time-travel --args=prev"
-# desc = "Go to previous snapshot"
-#
-# [[manager.prepend_keymap]]
-# on = ["z", "l"]
-# run = "plugin time-travel --args=next"
-# desc = "Go to next snapshot"
-#
-# [[manager.prepend_keymap]]
-# on = ["z", "e"]
-# run = "plugin time-travel --args=exit"
-# desc = "Exit browsing snapshots"
-
 [[mgr.prepend_keymap]]
 on = [ "<Backspace>" ]
 run = "hidden toggle"
