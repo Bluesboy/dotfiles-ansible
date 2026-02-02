@@ -1,5 +1,11 @@
+#Use by default
+# fish_key_bindings
+
 #Use VI mode by default
 fish_vi_key_bindings
+
+#Set Catpuccin Macchiato theme
+fish_config theme choose "Catppuccin Macchiato"
 
 # Initialize Starship prompt
 starship init fish | source
