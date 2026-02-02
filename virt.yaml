@@ -48,16 +48,16 @@
   - name: "Set subuids for Podman"
     ansible.builtin.lineinfile:
       path: "/etc/subuid"
-      regexp: "{{ ansible_user_id }}"
-      line: "{{ ansible_user_id }}:100000:65535"
+      regexp: "{{ ansible_facts['user_id'] }}"
+      line: "{{ ansible_facts['user_id'] }}:100000:65535"
       backup: true
     become: true
 
   - name: "Set subgids for Podman"
     ansible.builtin.lineinfile:
       path: "/etc/subgid"
-      regexp: "{{ ansible_user_id }}"
-      line: "{{ ansible_user_id }}:100000:65535"
+      regexp: "{{ ansible_facts['user_id'] }}"
+      line: "{{ ansible_facts['user_id'] }}:100000:65535"
       backup: true
     become: true
 
@@ -164,7 +164,7 @@
 
   - name: "Configure groups for current user"
     ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
+      name: "{{ ansible_facts['user_id'] }}"
       groups: "{{ item }}"
       append: true
     become: true

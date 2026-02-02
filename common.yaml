@@ -92,6 +92,7 @@
       - dust # A more intuitive version of du in rust
       - eza # ls replacement
       - fd # Simple, fast and user-friendly alternative to find
+      - feh # Fast and light imlib2-based image viewer
       - fish # Smart and user friendly shell intended mostly for interactive use
       - fisher # A package manager for the fish shell
       - fzf # Command-line fuzzy finder
@@ -137,7 +138,7 @@
 
   - name: "Set fish as default shell for current user"
     ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
+      name: "{{ ansible_facts['user_id'] }}"
       shell: /usr/bin/fish
     become: true
 

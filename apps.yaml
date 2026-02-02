@@ -169,7 +169,7 @@
 
   - name: "Add current user to transmission group"
     ansible.builtin.user:
-      name: "{{ ansible_user_id }}"
+      name: "{{ ansible_facts['user_id'] }}"
       groups: transmission
       append: true
     become: true

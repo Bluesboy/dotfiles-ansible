@@ -428,7 +428,7 @@
       asset_regex: yaml-diff.*\.tar\.gz
       move_rules:
       - src_regex: yaml-diff
-        dst: "{{ ansible_env.HOME }}/.local/bin/"
+        dst: "{{ ansible_facts['env'].HOME }}/.local/bin/"
         mode: 0755
     become: true
 
@@ -438,7 +438,7 @@
       asset_regex: diffnest.*\.tar\.gz
       move_rules:
       - src_regex: diffnest
-        dst: "{{ ansible_env.HOME }}/.local/bin/"
+        dst: "{{ ansible_facts['env'].HOME }}/.local/bin/"
         mode: 0755
     become: true
 
