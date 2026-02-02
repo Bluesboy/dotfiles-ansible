@@ -20,6 +20,10 @@ require("starship"):setup({
   flags_after_prompt = true,
 })
 
+require("fg"):setup({
+    default_action = "nvim",
+})
+
 require("git"):setup()
 
 require("session"):setup {

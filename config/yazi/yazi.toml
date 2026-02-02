@@ -7,6 +7,14 @@ run = "plugin lazygit"
 desc = "run lazygit"
 
 [[plugin.prepend_previewers]]
+name = "*.service"
+run  = 'piper -- bat -p --color=always "$1"'
+
+[[plugin.prepend_previewers]]
+name = "*.socket"
+run  = 'piper -- bat -p --color=always "$1"'
+
+[[plugin.prepend_previewers]]
 name = "*.tar*"
 run = 'piper --format=url -- tar tf "$1"'
 
@@ -39,3 +47,13 @@ run  = "lsar"
 [[plugin.prepend_previewers]]
 mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}"
 run  = "lsar"
+
+[[plugin.prepend_spotters]]
+name = "*"
+run = "file-extra-metadata"
+
+[tasks]
+image_bound = [ 9000, 9000 ]
+
+[preview]
+cache_dir       = "~/.cache/yazi"
