@@ -31,3 +31,4 @@ btop.log
 config/yazi/plugins
 config/yazi/*.toml-*
 config/wezterm/tmp
+config/fish/themes
