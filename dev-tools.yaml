@@ -189,6 +189,13 @@
       state: latest
     become: true
 
+  - name: "Bun"
+    community.general.pacman:
+      name:
+      - bun
+      state: latest
+    become: true
+
   - name: "Install Node version manager"
     community.general.npm:
       name: n
