@@ -5,9 +5,14 @@
     ansible_ask_become_pass: true
     configs:
     - awesome
+    - gammastep
+    - hypr
+    - mako
+    - niri
     - picom
     - redshift
     - rofi
+    - waybar
 
   tasks:
   - name: "Install Xorg"
@@ -22,6 +27,96 @@
       - upower # Abstraction for enumerating power devices, listening to device events and querying history and statistics
       - arandr # Provide a simple visual front end for XRandR 1.2.
       - autorandr # Auto-detect connected display hardware and load appropiate X11 setup using xrandr
+      state: latest
+    become: true
+
+  - name: "Install Wayland"
+    community.general.pacman:
+      name:
+      - wayland # A computer display server protocol
+      - xorg-xwayland # run X clients under wayland
+      - wayland-protocols # Specifications of extended Wayland protocols
+      - wl-clipboard # Command-line copy/paste utilities for Wayland
+      - libva # Video Acceleration (VA) API for Linux
+      - wlr-randr # Utility to manage outputs of a Wayland compositor
+      - xwayland-satellite # Xwayland outside your Wayland
+      - qt5-wayland # Provides APIs for Wayland
+      - qt6-wayland # Provides APIs for Wayland
+      - xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
+      - xdg-desktop-portal-gtk # A backend implementation for xdg-desktop-portal using GTK
+      - xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
+      - xdg-desktop-portal-hyprland # xdg-desktop-portal backend for hyprland
+      state: latest
+    become: true
+
+  - name: "Install Greetd"
+    community.general.pacman:
+      name:
+      - greetd # Generic greeter daemon
+      - greetd-regreet # Clean and customizable greeter for greetd
+      - cage # A kiosk compositor for Wayland
+      state: latest
+    become: true
+
+  - name: "Install Niri"
+    community.general.pacman:
+      name:
+      - niri # A scrollable-tiling Wayland compositor
+      state: latest
+    become: true
+
+  - name: "Copy greetd configuration"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/greetd/{{ item }}"
+      dest: "/etc/greetd/"
+      group: greeter
+      owner: greeter
+    become: true
+    loop:
+    - "config.toml"
+    - "regreet.toml"
+
+  - name: "Copy greetd startup script"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/greetd/cage.sh"
+      dest: "/usr/local/bin/"
+      group: greeter
+      owner: greeter
+    become: true
+
+  - name: "Enable SDDM"
+    ansible.builtin.systemd:
+      name: sddm
+      enabled: false
+    become: true
+
+  - name: "Enable greetd"
+    ansible.builtin.systemd:
+      name: greetd
+      enabled: true
+    become: true
+
+  - name: "Install Waybar"
+    community.general.pacman:
+      name:
+      - waybar # Highly customizable Wayland bar for Sway and Wlroots based compositors
+      update_cache: true
+      state: latest
+    become: true
+
+  - name: "Install ndrop"
+    kewlfft.aur.aur:
+      name:
+      - ndrop-git # Run, show and hide programs via keybind in niri
+      state: absent
+    become: true
+    become_user: aur_builder
+
+  - name: "Install swww"
+    community.general.pacman:
+      name:
+      - swww # Highly customizable Wayland bar for Sway and Wlroots based compositors
+      update_cache: true
       state: latest
     become: true
 
@@ -129,12 +224,6 @@
       dest: "/etc/sddm.conf.d/"
     become: true
 
-  - name: "Enable SDDM"
-    ansible.builtin.systemd:
-      name: sddm
-      enabled: true
-    become: true
-
   - name: "Install Rofi"
     community.general.pacman:
       name:
@@ -149,6 +238,20 @@
       state: latest
     become: true
     become_user: aur_builder
+
+  - name: "Install Vicinae"
+    kewlfft.aur.aur:
+      name:
+      - vicinae-bin # A focused launcher for your desktop — native, fast, extensible
+    become: true
+    become_user: aur_builder
+
+  - name: Enable vicinae
+    ansible.builtin.systemd:
+      name: vicinae
+      state: started
+      enabled: true
+      scope: user
 
   - name: "Clipboard"
     kewlfft.aur.aur:
@@ -173,6 +276,53 @@
       owner: 1000
       group: 1000
 
+  - name: "Install gammastep"
+    community.general.pacman:
+      name:
+      - gammastep  # Adjusts the color temperature of your screen according to your surroundings.
+      update_cache: true
+      state: latest
+    become: true
+
+  - name: Enable gammastep
+    ansible.builtin.systemd:
+      name: gammastep
+      state: started
+      enabled: true
+      scope: user
+
+  - name: "Install hypridle"
+    community.general.pacman:
+      name:
+      - hypridle  # Idle management daemon for Wayland
+      - swayidle  # Idle management daemon for Wayland
+      - hyprland-protocols
+      update_cache: true
+      state: latest
+    become: true
+
+  - name: "Install mako"
+    community.general.pacman:
+      name:
+      - mako
+      update_cache: true
+      state: latest
+    become: true
+
+  - name: "Enable mako for the niri user session"
+    ansible.builtin.systemd_service:
+      name: mako.service
+      scope: user
+      enabled: true
+      state: started
+
+  - name: "Enable hypridle"
+    ansible.builtin.systemd:
+      name: hypridle
+      state: started
+      enabled: true
+      scope: user
+
   - name: "Install Redshift"
     community.general.pacman:
       name:
@@ -184,6 +334,6 @@
   - name: Enable Redshift
     ansible.builtin.systemd:
       name: redshift
-      state: started
-      enabled: true
+      state: stopped
+      enabled: false
       scope: user
