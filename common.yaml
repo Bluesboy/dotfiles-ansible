@@ -118,7 +118,6 @@
       - rebuild-detector # Detects which packages need to be rebuilt
       - reflector # A Python 3 module and script to retrieve and filter the latest Pacman mirror list.
       - ripgrep # A search tool that combines the usability of ag with the raw speed of grep
-      - rmlint # Tool to remove duplicates and other lint, being much faster than fdupes
       - rsync #  A fast and versatile file copying tool for remote and local files
       - starship # The cross-shell prompt for astronauts
       - thefuck # Magnificent app which corrects your previous console command
@@ -180,6 +179,13 @@
   - name: "Install lazyjournal"
     kewlfft.aur.aur:
       name: lazyjournal # TUI for journalctl, file system logs, as well Docker and Podman containers for quick viewing and filtering with fuzzy find and regex support
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install rmlint"
+    kewlfft.aur.aur:
+      name: rmlint-git # Tool to remove duplicates and other lint, being much faster than fdupes
       state: latest
     become: true
     become_user: aur_builder
