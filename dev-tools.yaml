@@ -512,6 +512,14 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install DevBox"
+    kewlfft.aur.aur:
+      name:
+      - devbox-bin
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install AI Agents"
     kewlfft.aur.aur:
       name:
