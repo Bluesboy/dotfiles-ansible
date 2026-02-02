@@ -22,6 +22,23 @@
       state: latest
     become: true
 
+  - name: "Install Harlequin"
+    kewlfft.aur.aur:
+      name:
+      - harlequin
+      - harlequin-mysql
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install Lazysql"
+    kewlfft.aur.aur:
+      name:
+      - lazysql
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install Sipcalc"
     kewlfft.aur.aur:
       name:
