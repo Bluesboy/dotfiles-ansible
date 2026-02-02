@@ -141,6 +141,7 @@
       - cockpit-podman # Cockpit UI for podman containers
       - cockpit-pcp # Cockpit support for reading PCP metrics and loading PCP archives
       - cockpit-storaged # Cockpit user interface for storage, using udisks
+      - cockpit-docker # Cockpit UI for docker containers
       state: latest
     become: true
 
@@ -150,6 +151,7 @@
       - cockpit-zfs-manager # An interactive ZFS on Linux admin package for Cockpit
       - cockpit-file-sharing # A Cockpit plugin to easily manage samba and NFS file sharing.
       - cockpit-navigator # A Featureful File Browser for Cockpit
+      - cockpit-pacman # Cockpit plugin for Arch Linux package management using alpm.rs
       state: latest
     become: true
     become_user: aur_builder
