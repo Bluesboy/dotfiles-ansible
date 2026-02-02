@@ -1,2 +1,9 @@
 gui:
   language: en
+  tabWidth: 2
+git:
+  disableForcePushing: true
+customCommands:
+- key: '<c-g>'
+  context: 'global'
+  command: 'gh browse'
