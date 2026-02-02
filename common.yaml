@@ -171,7 +171,7 @@
 
   - name: "Install systemd-manager-tui"
     kewlfft.aur.aur:
-      name: systemd-manager-tui # Terminal UI for managing systemd services
+      name: systemd-manager-tui-bin # Terminal UI for managing systemd services
       state: latest
     become: true
     become_user: aur_builder
