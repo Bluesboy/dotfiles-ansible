@@ -328,13 +328,23 @@
     become: true
     become_user: aur_builder
 
-  - name: "Apache Bechch"
+  - name: "AUR Benchmarks"
     kewlfft.aur.aur:
       name:
       - apache-tools
+      - hey-bin
+      - wrk
       state: latest
     become: true
     become_user: aur_builder
+
+  - name: "Benchmarks"
+    community.general.pacman:
+      name:
+      - vegeta # Vegeta
+      - siege # Siege
+      state: latest
+    become: true
 
   - name: "Task"
     community.general.pacman:
