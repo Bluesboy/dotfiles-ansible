@@ -33,10 +33,10 @@ on = [ "b", "d" ]
 run = "plugin bookmarks delete"
 desc = "Delete a bookmark"
 
-[[mgr.prepend_keymap]]
-on = [ "b", "D" ]
-run = "plugin bookmarks delete_all"
-desc = "Delete all bookmarks"
+# [[mgr.prepend_keymap]]
+# on = [ "b", "D" ]
+# run = "plugin bookmarks delete_all"
+# desc = "Delete all bookmarks"
 
 # [[manager.prepend_keymap]]
 # on = ["z", "h"]
@@ -132,3 +132,23 @@ desc = "Open a file, or recursively enter child directory, skipping children wit
 on = "<C-y>"
 run = ["plugin system-clipboard"]
 desc = "Yank to System clipboard"
+
+[[mgr.prepend_keymap]]
+on   = [ "f","g" ]
+run  = "plugin fg"
+desc = "find file by content (fuzzy match)"
+
+[[mgr.prepend_keymap]]
+on   = [ "f","G" ]
+run  = "plugin fg -- rg"
+desc = "find file by content (ripgrep match)"
+
+[[mgr.prepend_keymap]]
+on   = [ "f","f" ]
+run  = "plugin fg -- fzf"
+desc = "find file by filename"
+
+[[mgr.prepend_keymap]]
+on   = [ "F" ]
+run  = "filter --smart"
+desc = "find file by filename"
