@@ -495,10 +495,14 @@
     become: true
     become_user: aur_builder
 
-  - name: "Install Codex"
+  - name: "Install AI Agents"
     kewlfft.aur.aur:
       name:
       - openai-codex-bin
+      - crush-bin
+      - opencode-bin
+      - claude-code
+      - claude-desktop-native
       state: latest
     become: true
     become_user: aur_builder
