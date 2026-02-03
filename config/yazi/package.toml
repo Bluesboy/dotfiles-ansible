@@ -30,8 +30,8 @@ hash = "e519d894e94ded741e06aae4d4775981"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "de33976"
-hash = "eb301feb9e125adf5aa4f59f2aa54e44"
+rev = "230b9c6"
+hash = "4bb76e7d88473bb9a3c7c44570f98ff0"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/bypass"
@@ -40,8 +40,8 @@ hash = "208e77480824f62558a5b037c8569d61"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "888026c"
-hash = "9f82a544335a53d79e87ea315746caaa"
+rev = "75a5330"
+hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "kirasok/torrent-preview"
@@ -50,18 +50,18 @@ hash = "b89b46a15035a51d010a254858ba9741"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "de33976"
+rev = "230b9c6"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "de33976"
-hash = "76ea4ff62db6ebe62e4653c2de95cbd"
+rev = "230b9c6"
+hash = "25aee698dd1081001008ce0cb1cc4da3"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:lsar"
-rev = "de33976"
-hash = "41f41f311d92259e09e8750958034915"
+rev = "230b9c6"
+hash = "c1c66e28145e28e581e74e2d6da4fdf1"
 
 [[plugin.deps]]
 use = "DreamMaoMao/fg"
@@ -73,5 +73,7 @@ use = "boydaihungst/file-extra-metadata"
 rev = "4fbb106"
 hash = "8765a20c837f4be5718f89ab1cf33b4"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "9e053d0"
+hash = "629df5625f4c5b3dc93115d3098b017b"
