@@ -172,9 +172,11 @@
       repo: https://github.com/tmux-plugins/tpm.git
       dest: ~/.config/tmux/plugins/tpm
 
-  - name: "Install systemd-manager-tui"
+  - name: "Install systemd tools"
     kewlfft.aur.aur:
-      name: systemd-manager-tui-bin # Terminal UI for managing systemd services
+      name:
+      - systemd-manager-tui-bin # Terminal UI for managing systemd services
+      - sysz # fzf terminal UI for systemctl
       state: latest
     become: true
     become_user: aur_builder
