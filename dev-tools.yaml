@@ -41,6 +41,14 @@
     become: true
     become_user: aur_builder
 
+  - name: 'Install "tenv"'
+    kewlfft.aur.aur:
+      name:
+      - tenv-bin # OpenTofu, Terraform, Terragrunt, Terramate and Atmos version manager, written in Go
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install Lazymake"
     kewlfft.aur.aur:
       name:
@@ -390,13 +398,6 @@
       state: latest
     become: true
     become_user: aur_builder
-
-  - name: "Install terragrunt"
-    community.general.pacman:
-      name:
-      - terragrunt # Thin wrapper for Terraform that provides extra tools for working with multiple Terraform modules
-      state: latest
-    become: true
 
   - name: 'Install "viddy"'
     kewlfft.aur.aur:
