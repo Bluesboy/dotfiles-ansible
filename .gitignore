@@ -34,3 +34,4 @@ config/wezterm/tmp
 config/fish/themes
 config/fish/fish_variables.wLp8Ex
 config/yazi/flavors/catppuccin-macchiato.yazi
+/config/yazi/package.toml

@@ -9,6 +9,7 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+
 --Remap space as leader key
 map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
@@ -76,6 +77,8 @@ map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
 
 -- Golang
 map("n", "<F5>", "<cmd>GoRun<CR>")
+
+ map("n", "<leader>pd", require("user.functions.aur").insert_description)
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
