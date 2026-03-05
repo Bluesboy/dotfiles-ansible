@@ -5,28 +5,28 @@
   tasks:
   - name: "Install Downgrade"
     kewlfft.aur.aur:
-      name: downgrade
+      name: downgrade # Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install Brave browser"
     kewlfft.aur.aur:
-      name: brave-bin
+      name: brave-bin # Web browser that blocks ads and trackers by default
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install Zoom"
     kewlfft.aur.aur:
-      name: zoom
+      name: zoom # Video Conferencing and Web Conferencing Service
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install TLDR"
     kewlfft.aur.aur:
-      name: tlrc-bin
+      name: tlrc-bin # Official tldr client written in Rust
       state: latest
     become: true
     become_user: aur_builder
@@ -34,14 +34,14 @@
   - name: "Install OBS"
     community.general.pacman:
       name:
-      - obs-studio
+      - obs-studio # Free, open source software for live streaming and recording
       state: latest
     become: true
 
   - name: "Install CUPS"
     community.general.pacman:
       name:
-      - cups
+      - cups # OpenPrinting CUPS - daemon package
       state: latest
     become: true
 
@@ -55,32 +55,32 @@
   - name: "Install SANE"
     community.general.pacman:
       name:
-      - sane
+      - sane # Scanner Access Now Easy
       state: latest
     become: true
 
   - name: "Install Skanpage"
     community.general.pacman:
       name:
-      - skanpage
+      - skanpage # Utility to scan images and multi-page documents
       state: latest
     become: true
 
   - name: "Install PacCap"
     community.general.pacman:
       name:
-      - tcpdump
-      - wireshark-qt
-      - wireshark-cli
-      - termshark
+      - tcpdump # Powerful command-line packet analyzer
+      - wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
+      - wireshark-cli # Network traffic and protocol analyzer/sniffer - CLI tools and data files
+      - termshark # Terminal UI for tshark, inspired by Wireshark
       state: latest
     become: true
 
   - name: "Install LibreOffice"
     community.general.pacman:
       name:
-      - libreoffice-fresh
-      - libreoffice-fresh-ru
+      - libreoffice-fresh # LibreOffice branch which contains new features and program enhancements
+      - libreoffice-fresh-ru # Russian language pack for LibreOffice Fresh
       state: latest
     become: true
 
@@ -89,41 +89,24 @@
       name:
       - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
       - wireguard-tools # next generation secure network tunnel - tools for configuration
+      - vortix # A TUI for WireGuard and OpenVPN with real-time telemetry and leak guarding
       update_cache: true
       state: latest
     become: true
 
-  - name: "Install sing-geoip"
+  - name: "Install VLESS apps"
     kewlfft.aur.aur:
-      name: sing-geoip-git
-      state: latest
-    become: true
-    become_user: aur_builder
-
-  - name: "Install sing-geoip-db"
-    kewlfft.aur.aur:
-      name: sing-geoip-db-git
-      state: latest
-    become: true
-    become_user: aur_builder
-
-  - name: "Install sing-geosite"
-    kewlfft.aur.aur:
-      name: sing-geosite-git
-      state: latest
-    become: true
-    become_user: aur_builder
-
-  - name: "Install sing-geosite-db"
-    kewlfft.aur.aur:
-      name: sing-geosite-db-git
+      name:
+      - sing-geoip-db-git # sing-geoip (database)
+      - sing-geosite-db-git # sing-geosite (database)
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install ExpressVPN"
     kewlfft.aur.aur:
-      name: expressvpn
+      name:
+      - expressvpn # Proprietary VPN client for Linux
       state: latest
     become: true
     become_user: aur_builder

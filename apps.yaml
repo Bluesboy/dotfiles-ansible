@@ -38,8 +38,9 @@
       name:
       - alacritty # A cross-platform, GPU-accelerated terminal emulator
       - flameshot # Powerful yet simple to use screenshot software
-      - grim 
-      - swappy
+      - satty # Modern screenshot annotation tool, inspired by Swappy and Flameshot
+      - grim # Screenshot utility for Wayland
+      - swappy # A Wayland native snapshot editing tool
       - gparted # A Partition Magic clone, frontend to GNU Parted
       - mpv # a free, open source, and cross-platform media player
       - zathura # Minimalistic document viewer
@@ -159,13 +160,6 @@
       - thunderbird-i18n-en-us # English (US) language pack for Thunderbird
       state: latest
     become: true
-
-  - name: "Install tfswitch"
-    kewlfft.aur.aur:
-      name: tfswitch-bin
-      state: latest
-    become: true
-    become_user: aur_builder
 
   - name: "Install Postman"
     kewlfft.aur.aur:

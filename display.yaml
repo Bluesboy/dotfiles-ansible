@@ -164,7 +164,7 @@
   - name: "Install Ubuntu Mono Ligaturized"
     kewlfft.aur.aur:
       name:
-      - ttf-ubuntu-mono-ligaturized-git
+      - ttf-ubuntu-mono-ligaturized-git # Ubuntu Mono font with programming ligatures
       state: latest
     become: true
     become_user: aur_builder
@@ -213,7 +213,7 @@
   - name: "Install SDDM theme"
     kewlfft.aur.aur:
       name:
-      - sddm-sugar-dark
+      - sddm-sugar-dark # The sweetest dark theme around for SDDM, the Simple Desktop Display Manager.
       state: latest
     become: true
     become_user: aur_builder
@@ -296,7 +296,7 @@
       name:
       - hypridle  # Idle management daemon for Wayland
       - swayidle  # Idle management daemon for Wayland
-      - hyprland-protocols
+      - hyprland-protocols # Wayland protocol extensions for Hyprland
       update_cache: true
       state: latest
     become: true
@@ -304,7 +304,7 @@
   - name: "Install mako"
     community.general.pacman:
       name:
-      - mako
+      - mako # Lightweight notification daemon for Wayland
       update_cache: true
       state: latest
     become: true

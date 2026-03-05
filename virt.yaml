@@ -40,7 +40,7 @@
   - name: "Install Kubecolor"
     kewlfft.aur.aur:
       name:
-      - kubecolor
+      - kubecolor # Colorize your kubectl output
       state: latest
     become: true
     become_user: aur_builder
@@ -113,7 +113,7 @@
   - name: "Install Icedtea-web"
     community.general.pacman:
       name:
-      - icedtea-web
+      - icedtea-web # Additional components for OpenJDK - Browser plug-in and Web Start implementation
       state: latest
     become: true
 

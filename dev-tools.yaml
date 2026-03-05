@@ -18,17 +18,17 @@
   - name: "Install bats"
     community.general.pacman:
       name:
-      - bats
+      - bats # Bash Automated Testing System
       state: latest
     become: true
 
   - name: "Install SQL tools"
     kewlfft.aur.aur:
       name:
-      - harlequin
-      - harlequin-mysql
-      - lazysql
-      - sqlit
+      - harlequin # The SQL IDE for Your Terminal
+      - harlequin-mysql # The MySQL adapter for Harlequin
+      - lazysql # A cross-platform TUI database management tool written in Go
+      - sqlit # The lazygit of SQL databases - a lightweight TUI for SQL Server, PostgreSQL, MySQL, SQLite, and more
       state: latest
     become: true
     become_user: aur_builder
@@ -36,7 +36,7 @@
   - name: "Install Sipcalc"
     kewlfft.aur.aur:
       name:
-      - sipcalc
+      - sipcalc # An advanced console based IP subnet calculator
       state: latest
     become: true
     become_user: aur_builder
@@ -52,7 +52,7 @@
   - name: "Install Lazymake"
     kewlfft.aur.aur:
       name:
-      - lazymake-bin
+      - lazymake-bin # Modern TUI for Makefiles with interactive target selection, dependency visualization, and command safety analysis
       state: latest
     become: true
     become_user: aur_builder
@@ -67,7 +67,7 @@
 
   - name: "Install serie"
     community.general.pacman:
-      name: serie
+      name: serie # A rich git commit graph in your terminal
       state: latest
     become: true
 
@@ -79,7 +79,7 @@
 
   - name: "Install UV"
     community.general.pipx:
-      name: uv
+      name: uv # An extremely fast Python package installer and resolver written in Rust
       state: latest
 
   - name: "Install Virtualenv"
@@ -89,7 +89,7 @@
 
   - name: "Install VirtualFish"
     community.general.pipx:
-      name: virtualfish
+      name: virtualfish # Fish shell tool for managing Python virtual environments
       state: latest
 
   - name: "Install iPython"
@@ -137,7 +137,7 @@
   - name: "Install Ueberzugpp"
     kewlfft.aur.aur:
       name:
-      - ueberzugpp
+      - ueberzugpp # Command line utility which allows to display images in the terminal, written in C++
       state: latest
     become: true
     become_user: aur_builder
@@ -145,14 +145,14 @@
   - name: "Install Helm LS"
     kewlfft.aur.aur:
       name:
-      - helm-ls-bin
+      - helm-ls-bin # Language server for Helm
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install Cairosvg"
     community.general.pacman:
-      name: python-cairosvg
+      name: python-cairosvg # SVG converter based on Cairo. It can export SVG files to PDF, PostScript and PNG files
       state: latest
     become: true
 
@@ -163,14 +163,14 @@
 
   - name: "Install Plotly"
     kewlfft.aur.aur:
-      name: python-plotly
+      name: python-plotly # An open-source, interactive graphing library
       state: latest
     become: true
     become_user: aur_builder
 
   - name: "Install Kaleido"
     kewlfft.aur.aur:
-      name: python-kaleido-bin
+      name: python-kaleido-bin # Static image export for web-based visualization libraries with zero dependencies
       state: latest
     become: true
     become_user: aur_builder
@@ -178,8 +178,8 @@
   - name: "Rust"
     community.general.pacman:
       name:
-      - base-devel
-      - rust
+      - base-devel # Basic tools to build Arch Linux packages
+      - rust # Systems programming language focused on safety, speed and concurrency
       state: latest
     become: true
 
@@ -201,14 +201,14 @@
   - name: "NPM"
     community.general.pacman:
       name:
-      - npm
+      - npm # JavaScript package manager
       state: latest
     become: true
 
   - name: "Bun"
     community.general.pacman:
       name:
-      - bun
+      - bun # Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
       state: latest
     become: true
 
@@ -229,7 +229,7 @@
   - name: "Install 'neovim' python package"
     community.general.pacman:
       name:
-      - python-pynvim
+      - python-pynvim # Python client for Neovim
       state: latest
     become: true
 
@@ -302,17 +302,9 @@
   - name: "Install Istioctl"
     community.general.pacman:
       name:
-      - istio
+      - istio # Istio configuration command line utility for service operators to debug and diagnose their Istio mesh
       state: latest
     become: true
-
-  - name: "Install Python3.12 for Google Cloud Apps"
-    kewlfft.aur.aur:
-      name:
-      - python312
-      state: latest
-    become: true
-    become_user: aur_builder
 
   - name: "Packer"
     community.general.pacman:
@@ -324,14 +316,14 @@
   - name: "Operator SDK"
     community.general.pacman:
       name:
-      - operator-sdk
+      - operator-sdk # SDK for building Kubernetes applications
       state: latest
     become: true
 
   - name: "Bruno"
     kewlfft.aur.aur:
       name:
-      - brunorbin
+      - bruno-bin # Opensource API Client for Exploring and Testing APIs
       state: latest
     become: true
     become_user: aur_builder
@@ -339,14 +331,14 @@
   - name: "Libwebkit 4.1"
     community.general.pacman:
       name:
-      - webkit2gtk-4.1
+      - webkit2gtk-4.1 # Web content engine for GTK
       state: latest
     become: true
 
   - name: "Hoppscotch"
     kewlfft.aur.aur:
       name:
-      - hoppscotch-bin
+      - hoppscotch-bin # Hoppscotch. Open source API development ecosystem
       state: latest
     become: true
     become_user: aur_builder
@@ -354,9 +346,9 @@
   - name: "AUR Benchmarks"
     kewlfft.aur.aur:
       name:
-      - apache-tools
-      - hey-bin
-      - wrk
+      - apache-tools # Useful Apache tools - htdigest, htpasswd, ab (Apache Benchmark), htdbm
+      - hey-bin # HTTP load generator, ApacheBench (ab) replacement
+      - wrk # Modern HTTP benchmarking tool
       state: latest
     become: true
     become_user: aur_builder
@@ -379,7 +371,7 @@
   - name: "Install redisinsight"
     kewlfft.aur.aur:
       name:
-      - redisinsight
+      - redisinsight # Desktop manager that provides an intuitive and efficient GUI for Redis, allowing you to interact with your databases, monitor, and manage your data.
       state: latest
     become: true
     become_user: aur_builder
@@ -394,7 +386,7 @@
   - name: "Install Argonaut"
     kewlfft.aur.aur:
       name:
-      - argonaut-bin
+      - argonaut-bin # A GitOps CLI tool for managing ArgoCD applications
       state: latest
     become: true
     become_user: aur_builder
@@ -425,7 +417,7 @@
   - name: "Install ACT"
     kewlfft.aur.aur:
       name:
-      - act
+      - act # Run your GitHub Actions locally
       state: latest
     become: true
     become_user: aur_builder
@@ -433,7 +425,7 @@
   - name: "Install Exercism CLI"
     kewlfft.aur.aur:
       name:
-      - exercism
+      - exercism # Command line tool for exercism.io
       state: latest
     become: true
     become_user: aur_builder
@@ -441,11 +433,11 @@
   - name: "Install TeXlive"
     community.general.pacman:
       name:
-      - texlive-bin
-      - texlive-latex
-      - texlive-latexextra
-      - texlive-plaingeneric
-      - texlive-meta
+      - texlive-bin # TeX Live binaries
+      - texlive-latex # TeX Live - LaTeX fundamental packages
+      - texlive-latexextra # TeX Live - LaTeX additional packages
+      - texlive-plaingeneric # TeX Live - Plain (La)TeX packages
+      - texlive-meta # Metapackage to install Tex Live
       state: latest
     become: true
 
@@ -460,7 +452,7 @@
   - name: "Install k3d"
     kewlfft.aur.aur:
       name:
-      - rancher-k3d-bin
+      - rancher-k3d-bin # Little helper to run Rancher Labs k3s in Docker
       state: latest
     become: true
     become_user: aur_builder
@@ -468,7 +460,7 @@
   - name: "Install dyff"
     kewlfft.aur.aur:
       name:
-      - dyff-bin
+      - dyff-bin # diff tool for YAML files
       state: latest
     become: true
     become_user: aur_builder
@@ -495,13 +487,13 @@
 
   - name: "Install lnav"
     community.general.pacman:
-      name: lnav
+      name: lnav # A curses-based tool for viewing and analyzing log files
       state: latest
     become: true
 
   - name: "Install gping"
     community.general.pacman:
-      name: gping
+      name: gping # Ping, but with a graph
       state: latest
     become: true
 
@@ -516,7 +508,7 @@
   - name: "Install Koji"
     kewlfft.aur.aur:
       name:
-      - git-koji-bin
+      - git-koji-bin # An interactive CLI for creating conventional commits
       state: latest
     become: true
     become_user: aur_builder
@@ -524,7 +516,7 @@
   - name: "Install Posting"
     kewlfft.aur.aur:
       name:
-      - posting
+      - posting # The modern API client that lives in your terminal
       state: latest
     become: true
     become_user: aur_builder
@@ -532,19 +524,26 @@
   - name: "Install DevBox"
     kewlfft.aur.aur:
       name:
-      - devbox-bin
+      - devbox-bin # A command-line tool that lets you easily create isolated shells for development.(Written in Go.Prebuilt version)
       state: latest
     become: true
     become_user: aur_builder
 
+  - name: "Install Cocogitto"
+    community.general.pacman:
+      name:
+      - cocogitto # Set of CLI tools for the conventional commit and semver specifications
+      state: latest
+    become: true
+
   - name: "Install AI Agents"
     kewlfft.aur.aur:
       name:
-      - openai-codex-bin
-      - crush-bin
-      - opencode-bin
-      - claude-code
-      - claude-desktop-native
+      - openai-codex-bin # Arch Linux package for OpenAI's Codex CLI - Auto Updated
+      - crush-bin # A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
+      - opencode-bin # The AI coding agent built for the terminal.
+      - claude-code # An agentic coding tool that lives in your terminal
+      - claude-desktop-native # Unofficial Claude Desktop for Linux
       state: latest
     become: true
     become_user: aur_builder
