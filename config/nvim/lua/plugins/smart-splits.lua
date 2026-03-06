@@ -2,6 +2,7 @@ return {
   {
     "mrjones2014/smart-splits.nvim",
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("smart-splits").setup({
         -- Ignored buffer types (only while resizing)
         ignored_buftypes = {

@@ -16,7 +16,28 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    config = true,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("Comment").setup({
+        pre_hook = function(ctx)
+          local U = require("Comment.utils")
+
+          local location = nil
+          ---@diagnostic disable-next-line: undefined-field
+          if ctx.ctype == U.ctype.block then
+            location = require("ts_context_commentstring.utils").get_cursor_location()
+          elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+            location = require("ts_context_commentstring.utils").get_visual_start_location()
+          end
+
+          return require("ts_context_commentstring.internal").calculate_commentstring({
+            ---@diagnostic disable-next-line: undefined-field
+            key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
+            location = location,
+          })
+        end,
+      })
+    end,
   },
   {
     "ethanholz/nvim-lastplace",
@@ -25,21 +46,6 @@ return {
         lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
         lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
         lastplace_open_folds = true,
-        pre_hook = function(ctx)
-          local U = require("Comment.utils")
-
-          local location = nil
-          if ctx.ctype == U.ctype.block then
-            location = require("ts_context_commentstring.utils").get_cursor_location()
-          elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-            location = require("ts_context_commentstring.utils").get_visual_start_location()
-          end
-
-          return require("ts_context_commentstring.internal").calculate_commentstring({
-            key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
-            location = location,
-          })
-        end,
       })
     end,
   },
