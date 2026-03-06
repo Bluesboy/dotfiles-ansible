@@ -2,8 +2,14 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = {
+      {
+        "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
       "rafamadriz/friendly-snippets",
-      -- "Exafunction/codeium.nvim",
     },
     version = "1.*",
 
@@ -39,15 +45,11 @@ return {
           "path",
           "snippets",
           "buffer",
-          -- "codeium",
         },
-        -- providers = {
-        --   codeium = {
-        --     name = "Codeium",
-        --     module = "codeium.blink",
-        --     async = true,
-        --   },
-        -- },
+      },
+
+      snippets = {
+        preset = "luasnip",
       },
 
       signature = { enabled = true },
