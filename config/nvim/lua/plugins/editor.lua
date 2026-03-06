@@ -102,5 +102,5 @@ return {
     keys = {
       { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
-  }
+  },
 }
