@@ -17,6 +17,7 @@ local options = {
   expandtab = true, -- convert tabs to spaces
   shiftwidth = 2, -- the number of spaces inserted for each indentation
   tabstop = 2, -- insert 2 spaces for a tab
+  softtabstop = 2, -- insert 2 spaces for a softtab
   autoindent = true, -- indent lines below like current
   smartindent = true, -- make indenting smarter again
   splitbelow = true, -- force all horizontal splits to go below current window
@@ -51,3 +52,46 @@ for key, value in pairs(options) do
 end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
+
+-- Detect Ansible YAML files as yaml.ansible so ansiblels takes over yamlls
+vim.filetype.add({
+  pattern = {
+    [".*/tasks/.*%.ya?ml"] = "yaml.ansible",
+    [".*/handlers/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/.*%.ya?ml"] = "yaml.ansible",
+    [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
+    [".*ansible.*%.ya?ml"] = "yaml.ansible",
+    -- Files with #!/usr/bin/env ansible-playbook shebang
+    [".*%.ya?ml"] = {
+      function(_, bufnr)
+        local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
+        if first_line:match("^#!/usr/bin/env ansible%-playbook") then
+          return "yaml.ansible"
+        end
+      end,
+      priority = math.huge,
+    },
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.expandtab = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "yaml*",
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.expandtab = true
+    vim.bo.smartindent = true
+    vim.bo.autoindent = true
+  end,
+})

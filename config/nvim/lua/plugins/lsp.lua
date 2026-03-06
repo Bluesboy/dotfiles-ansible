@@ -143,24 +143,18 @@ return {
       -- Per-server configurations via vim.lsp.config (Neovim 0.11+)
       -- Replaces the deprecated require("lspconfig")[server].setup() pattern
       vim.lsp.config("yamlls", {
+        filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
         settings = {
           yaml = {
             validate = true,
             schemaStore = {
               enable = false,
             },
-            schemas = {
-              -- kubernetes = "k8s-*.yaml",
-              ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "*.{yml,yaml}",
-              ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-              ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-              ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
-              ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-              ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-              ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-              ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-              ["ignore"] = "templates/*",
-            },
+            schemas = vim.tbl_extend("force", require("schemastore").yaml.schemas(), {
+              ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"] = "**/argo-cd/applications/**/*.{yml,yaml}",
+              ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/applicationset_v1alpha1.json"] = "**/argo-cd/applicationsets/**/*.{yml,yaml}",
+              ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/appproject_v1alpha1.json"] = "**/argo-cd/appprojects/**/*.{yml,yaml}",
+            }),
             customTags = {
               "!ignore status",
             },
@@ -169,31 +163,28 @@ return {
       })
 
       vim.lsp.config("helm_ls", {
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+            if result and result.diagnostics then
+              result.diagnostics = vim.tbl_filter(function(d)
+                return not (d.source and d.source:match("^yaml%-schema:"))
+              end, result.diagnostics)
+            end
+            vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+          end,
+        },
+      })
+
+      vim.lsp.config("ansiblels", {
         settings = {
-          yamlls = {
-            path = "yaml-language-server",
-            config = {
-              schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "https://www.schemastore.org/api/json/catalog.json",
-              },
-              schemas = {
-                -- kubernetes = "k8s-*.yaml",
-                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "templates/*.{yml,yaml}",
-                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
-                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-                ["ignore"] = "templates/*",
-              },
-              customTags = {
-                "!ignore status",
+          ansible = {
+            ansible = {
+              path = "ansible",
+            },
+            validation = {
+              lint = {
+                enabled = true,
+                path = "ansible-lint",
               },
             },
           },

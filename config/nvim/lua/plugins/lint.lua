@@ -10,13 +10,12 @@ return {
         yaml = { "yamllint" },
       }
 
-      lint.linters.yamllint.args = {
-        "--format",
-        "parsable",
-        "-d",
-        '{extends: default, rules: {comments: {min-spaces-from-content: 1}, truthy: {allowed-values: ["true", "false", "yes", "no"]}, document-start: {present: false}, line-length: {max: 120}, indentation: {spaces: 2, indent-sequences: false}}}',
-        "-",
-      }
+      local yamllint_base = '{extends: default, rules: {comments: {min-spaces-from-content: 1}, truthy: {allowed-values: ["true", "false", "yes", "no"]}, document-start: disable, line-length: {max: 120}, indentation: {spaces: 2, indent-sequences: false}}}'
+      local yamllint_gha  = '{extends: default, rules: {comments: {min-spaces-from-content: 1}, truthy: {allowed-values: ["true", "false", "yes", "no", "on", "off"]}, document-start: disable, line-length: {max: 120}, indentation: {spaces: 2, indent-sequences: false}}}'
+
+      local function yamllint_args(conf)
+        return { "--format", "parsable", "-d", conf, "-" }
+      end
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
@@ -24,6 +23,12 @@ return {
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         group = lint_augroup,
         callback = function()
+          local path = vim.api.nvim_buf_get_name(0)
+          if path:match("%.github/workflows/") then
+            lint.linters.yamllint.args = yamllint_args(yamllint_gha)
+          else
+            lint.linters.yamllint.args = yamllint_args(yamllint_base)
+          end
           lint.try_lint()
         end,
       })
