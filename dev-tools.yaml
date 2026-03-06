@@ -125,9 +125,11 @@
     become: true
 
   - name: "Install ansible-lint"
-    community.general.pipx:
-      name: ansible-lint
+    community.general.pacman:
+      name:
+      - ansible-lint # Checks playbooks for practices and behaviour that could potentially be improved.
       state: latest
+    become: true
 
   - name: "Install ansible-dev-tools"
     community.general.pipx:
