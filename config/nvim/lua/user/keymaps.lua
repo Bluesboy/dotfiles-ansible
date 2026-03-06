@@ -9,14 +9,12 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-
 --Remap space as leader key
 map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
-
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
@@ -78,7 +76,7 @@ map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
 -- Golang
 map("n", "<F5>", "<cmd>GoRun<CR>")
 
- map("n", "<leader>pd", require("user.functions.aur").insert_description)
+map("n", "<leader>pd", require("user.functions.aur").insert_description)
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
