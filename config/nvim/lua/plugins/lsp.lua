@@ -81,10 +81,10 @@ return {
           -- map("<leader>D", vim.lsp.buf.type_definition)
           --
           map("gn", function()
-            vim.diagnostic.goto_next({ buffer = 0 })
+            vim.diagnostic.jump({ count = 1, float = true })
           end, "[G]oto [N]ext diagnostic")
           map("gp", function()
-            vim.diagnostic.goto_prev({ buffer = 0 })
+            vim.diagnostic.jump({ count = -1, float = true })
           end, "[G]oto [P]revious diagnostic")
 
           map("<leader>e", vim.diagnostic.open_float, "Show Diagnostic Window")
@@ -97,7 +97,7 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup("lsp-attach", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
@@ -120,7 +120,7 @@ return {
             })
           end
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "[T]oggle Inlay [H]ints")
@@ -128,28 +128,61 @@ return {
         end,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
+      -- Global border for all floating windows (Neovim 0.11+)
+      vim.o.winborder = "rounded"
 
-      local servers = {
-        "pyright",
-        "terraformls",
-        "gopls",
-        "ts_ls",
-        "texlab",
-        "ansiblels",
-        "typescript-language-server",
-        "yamllint",
-        yamlls = {
-          settings = {
-            yaml = {
-              validate = true,
+      -- Global LSP config: capabilities (Neovim 0.11+)
+      vim.lsp.config("*", {
+        capabilities = vim.tbl_deep_extend(
+          "force",
+          vim.lsp.protocol.make_client_capabilities(),
+          require("blink.cmp").get_lsp_capabilities({}, false)
+        ),
+      })
+
+      -- Per-server configurations via vim.lsp.config (Neovim 0.11+)
+      -- Replaces the deprecated require("lspconfig")[server].setup() pattern
+      vim.lsp.config("yamlls", {
+        settings = {
+          yaml = {
+            validate = true,
+            schemaStore = {
+              enable = false,
+            },
+            schemas = {
+              -- kubernetes = "k8s-*.yaml",
+              ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "*.{yml,yaml}",
+              ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+              ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+              ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+              ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+              ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+              ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+              ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+              ["ignore"] = "templates/*",
+            },
+            customTags = {
+              "!ignore status",
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("helm_ls", {
+        settings = {
+          yamlls = {
+            path = "yaml-language-server",
+            config = {
               schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
                 enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "https://www.schemastore.org/api/json/catalog.json",
               },
               schemas = {
                 -- kubernetes = "k8s-*.yaml",
-                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "*.{yml,yaml}",
+                ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "templates/*.{yml,yaml}",
                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
@@ -165,105 +198,55 @@ return {
             },
           },
         },
-        helm_ls = {
-          settings = {
-            yamlls = {
-              path = "yaml-language-server",
-              config = {
-                schemaStore = {
-                  -- You must disable built-in schemaStore support if you want to use
-                  -- this plugin and its advanced options like `ignore`.
-                  enable = false,
-                  -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                  url = "https://www.schemastore.org/api/json/catalog.json",
-                },
-                schemas = {
-                  -- kubernetes = "k8s-*.yaml",
-                  ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.2-standalone/all.json"] = "templates/*.{yml,yaml}",
-                  ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                  ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                  ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
-                  ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                  ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                  ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                  ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-                  ["ignore"] = "templates/*",
-                },
-                -- schemas = require("schemastore").yaml.schemas({}),
-                customTags = {
-                  "!ignore status",
-                },
-              },
-            },
-          },
-        },
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = {
-                globals = {
-                  "vim",
-                  "awesome",
-                  "client",
-                  "fs",
-                  "Command",
-                },
-              },
-              workspace = {
-                library = {
-                  vim.api.nvim_get_runtime_file("**.lua", true),
-                  vim.fn.expand("$VIMRUNTIME" .. "/lua"),
-                  vim.fn.expand("$XDG_CONFIG_HOME" .. "/nvim/lua"),
-                  vim.fn.expand("/usr/share/awesome/lib"),
-                },
-              },
-              telemetry = {
-                enable = false,
-              },
-              globals = {
-                "awesome",
-                "client",
-              },
-            },
-          },
-        },
-      }
+      })
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
+      -- lazydev.nvim handles Neovim runtime paths automatically,
+      -- so workspace.library is not needed here
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            diagnostics = {
+              globals = { "vim", "awesome", "client", "fs", "Command" },
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      })
 
       require("mason").setup()
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
-        "yamlfmt",
-      })
-
-      require("mason-lspconfig").setup({
-        auto_install = true,
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
+      -- Formatters/linters (not LSP servers) via mason-tool-installer
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "stylua",
+          "yamlfmt",
         },
       })
 
-      local config = {
-        virtual_text = true, -- enable virtual text
+      -- mason-lspconfig v2: automatic_enable replaces the removed handlers{} API
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "pyright",
+          "terraformls",
+          "gopls",
+          "ts_ls",
+          "texlab",
+          "ansiblels",
+          "yamlls",
+          "helm_ls",
+          "lua_ls",
+        },
+        automatic_enable = true,
+      })
+
+      vim.diagnostic.config({
+        virtual_text = true,
         signs = {
-          -- active = signs, -- show signs
           text = {
             [vim.diagnostic.severity.ERROR] = "",
             [vim.diagnostic.severity.WARN] = "",
@@ -284,20 +267,10 @@ return {
           focusable = false,
           style = "minimal",
           border = "rounded",
-          source = "always",
+          source = true,
           header = "",
           prefix = "",
         },
-      }
-
-      vim.diagnostic.config(config)
-
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        -- Use a sharp border with `FloatBorder` highlights
-        border = "rounded",
-      })
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
       })
     end,
   },
