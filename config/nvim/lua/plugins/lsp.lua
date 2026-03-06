@@ -164,13 +164,13 @@ return {
 
       vim.lsp.config("helm_ls", {
         handlers = {
-          ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+          ["textDocument/publishDiagnostics"] = function(err, result, ctx)
             if result and result.diagnostics then
               result.diagnostics = vim.tbl_filter(function(d)
                 return not (d.source and d.source:match("^yaml%-schema:"))
               end, result.diagnostics)
             end
-            vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+            vim.lsp.handlers["textDocument/publishDiagnostics"](err, result, ctx)
           end,
         },
       })
