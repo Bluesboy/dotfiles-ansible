@@ -51,10 +51,10 @@ return {
       map("n", "<C-\\>", ss.move_cursor_previous, { desc = "Move Cursor to Preview Pane" })
 
       -- swapping buffers between windows
-      map("n", "<leader>sh", ss.swap_buf_left, { desc = "Swap with Left Pane" })
-      map("n", "<leader>sj", ss.swap_buf_down, { desc = "Swap with Bottom Pane" })
-      map("n", "<leader>sk", ss.swap_buf_up, { desc = "Swap with Upper Pane" })
-      map("n", "<leader>sl", ss.swap_buf_right, { desc = "Swap with Right Pane" })
+      map("n", "<leader>Wh", ss.swap_buf_left, { desc = "Swap with Left Pane" })
+      map("n", "<leader>Wj", ss.swap_buf_down, { desc = "Swap with Bottom Pane" })
+      map("n", "<leader>Wk", ss.swap_buf_up, { desc = "Swap with Upper Pane" })
+      map("n", "<leader>Wl", ss.swap_buf_right, { desc = "Swap with Right Pane" })
     end,
   },
 }

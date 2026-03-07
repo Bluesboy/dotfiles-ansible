@@ -14,14 +14,6 @@ map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Normal --
-
--- Better window navigation
-map("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
-
 -- Resize with arrows
 map("n", "<C-Up>", "<cmd>resize +2<CR>")
 map("n", "<C-Down>", "<cmd>resize -2<CR>")
