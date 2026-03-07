@@ -191,6 +191,44 @@ return {
         },
       })
 
+      vim.lsp.config("gopls", {
+        settings = {
+          gopls = {
+            -- Inlay hints
+            hints = {
+              assignVariableTypes = true,    -- show types of variables assigned with :=
+              compositeLiteralFields = true, -- show field names in struct literals
+              compositeLiteralTypes = true,  -- show types of composite literals
+              constantValues = true,         -- show values of constants
+              functionTypeParameters = true, -- show type params for generic functions
+              parameterNames = true,         -- show parameter names at call sites
+              rangeVariableTypes = true,     -- show types of range variables
+            },
+            analyses = {
+              unusedparams = true,   -- report unused function parameters
+              shadow = true,         -- check for shadowed variables
+              nilness = true,        -- check for redundant nil checks
+              useany = true,         -- suggest replacing interface{} with any
+            },
+            staticcheck = true,        -- enable staticcheck analyzers
+            gofumpt = true,            -- use gofumpt (stricter superset of gofmt)
+            semanticTokens = true,     -- enable semantic token highlighting
+            usePlaceholders = true,    -- use placeholders in completions
+            completeUnimported = true, -- complete from unimported packages
+            codelenses = {
+              gc_details = true,         -- show compiler details (escape analysis)
+              generate = true,           -- run go generate
+              regenerate_cgo = true,
+              run_govulncheck = true,    -- check for vulnerabilities
+              test = true,               -- run tests
+              tidy = true,               -- run go mod tidy
+              upgrade_dependency = true,
+              vendor = true,
+            },
+          },
+        },
+      })
+
       -- lazydev.nvim handles Neovim runtime paths automatically,
       -- so workspace.library is not needed here
       vim.lsp.config("lua_ls", {
