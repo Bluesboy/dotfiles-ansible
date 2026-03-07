@@ -26,7 +26,7 @@ return {
             "-formatter",
             "trim_trailing_whitespace=true",
             "-formatter",
-            "include_document_start=false",
+            "include_document_start=true",
             "-formatter",
             "scan_folded_as_literal=true",
           },

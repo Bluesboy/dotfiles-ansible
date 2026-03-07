@@ -14,4 +14,3 @@
   import_playbook: virt.yaml
 - name: "Other Apps"
   import_playbook: misc.yaml
-...
