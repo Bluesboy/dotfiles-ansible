@@ -64,6 +64,7 @@ if status --is-interactive
   abbr --add --global -- g git
   abbr --add --global -- gvm g
   abbr --add --global -- ga 'git add'
+  abbr --add --global -- gb 'gh browse'
   abbr --add --global -- gc 'git commit -m'
   abbr --add --global -- gca 'git commit --amend'
   abbr --add --global -- glo 'git lo'
