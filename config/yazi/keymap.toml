@@ -91,7 +91,12 @@ desc = "Calc size of selection or cwd"
 [[mgr.prepend_keymap]]
 on   = [ "g", "l" ]
 run  = "plugin lazygit"
-desc = "run lazygit"
+desc = "Run lazygit"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "b" ]
+run  = "shell -- gh browse"
+desc = "Browse on github"
 
 [[mgr.prepend_keymap]]
 on = [ "L" ]
