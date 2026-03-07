@@ -89,7 +89,7 @@ run  = "plugin what-size"
 desc = "Calc size of selection or cwd"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "i" ]
+on   = [ "g", "l" ]
 run  = "plugin lazygit"
 desc = "run lazygit"
 
