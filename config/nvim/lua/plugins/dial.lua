@@ -8,6 +8,10 @@ return {
         augend.integer.alias.decimal_int,
         augend.date.alias["%d.%m.%Y"],
         augend.semver.alias.semver,
+        augend.constant.new({
+          elements = { "debug", "info", "warn", "error" },
+          cyclic = true,
+        }),
       },
     })
     vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
