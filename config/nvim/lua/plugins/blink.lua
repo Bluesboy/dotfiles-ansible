@@ -48,6 +48,10 @@ return {
         },
       },
 
+      cmdline = {
+        sources = { "cmdline" },
+      },
+
       snippets = {
         preset = "luasnip",
       },
