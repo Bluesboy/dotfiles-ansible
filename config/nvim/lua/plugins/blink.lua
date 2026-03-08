@@ -19,7 +19,7 @@ return {
       keymap = {
         preset = "default",
 
-        ["<S-space>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
+        ["<A-space>"] = { "show", "show_documentation", "hide_documentation", "fallback" },
       },
 
       appearance = {
@@ -27,7 +27,7 @@ return {
       },
 
       completion = {
-        documentation = { auto_show = false },
+        documentation = { auto_show = true },
         menu = {
           border = "rounded",
           draw = {
