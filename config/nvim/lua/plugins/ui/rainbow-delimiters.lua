@@ -10,44 +10,6 @@ local highlight = {
 
 return {
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
-  {
-    "numToStr/Comment.nvim",
-    config = true,
-  },
-  {
-    "ethanholz/nvim-lastplace",
-    config = function()
-      require("nvim-lastplace").setup({
-        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-        lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-        lastplace_open_folds = true,
-      })
-    end,
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    config = true,
-    lazy = true,
-  },
-  {
-    "xiyaowong/transparent.nvim",
-    config = function()
-      require("transparent").clear_prefix("NeoTree")
-      require("transparent").clear_prefix("BufferLine")
-    end,
-  },
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = true,
-    opts = {
-      "*",
-    },
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       local hooks = require("ibl.hooks")
@@ -79,13 +41,5 @@ return {
       require("rainbow-delimiters.setup").setup({})
       vim.g.rainbow_delimiters = { highlight = highlight }
     end,
-  },
-  {
-    "jiaoshijie/undotree",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = true,
-    keys = {
-      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
-    },
   },
 }

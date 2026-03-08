@@ -1,18 +1,5 @@
 return {
   {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-  { "Bilal2453/luvit-meta", lazy = true },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
@@ -175,6 +162,34 @@ return {
         },
       })
 
+      vim.lsp.config("dockerls", {
+        filetypes = { "dockerfile" },
+        settings = {
+          docker = {
+            languageserver = {
+              formatter = {
+                ignoreMultilineInstructions = true,
+              },
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("bashls", {
+        filetypes = { "sh", "bash" },
+        settings = {
+          bashIde = {
+            globPattern = "*@(.sh|.inc|.bash|.command)",
+            shellcheckPath = "shellcheck",
+            enableSourceErrorDiagnostics = false,
+            shfmt = {
+              path = "shfmt",
+              ignoreEditorconfig = false,
+            },
+          },
+        },
+      })
+
       vim.lsp.config("ansiblels", {
         settings = {
           ansible = {
@@ -196,32 +211,32 @@ return {
           gopls = {
             -- Inlay hints
             hints = {
-              assignVariableTypes = true,    -- show types of variables assigned with :=
+              assignVariableTypes = true, -- show types of variables assigned with :=
               compositeLiteralFields = true, -- show field names in struct literals
-              compositeLiteralTypes = true,  -- show types of composite literals
-              constantValues = true,         -- show values of constants
+              compositeLiteralTypes = true, -- show types of composite literals
+              constantValues = true, -- show values of constants
               functionTypeParameters = true, -- show type params for generic functions
-              parameterNames = true,         -- show parameter names at call sites
-              rangeVariableTypes = true,     -- show types of range variables
+              parameterNames = true, -- show parameter names at call sites
+              rangeVariableTypes = true, -- show types of range variables
             },
             analyses = {
-              unusedparams = true,   -- report unused function parameters
-              shadow = true,         -- check for shadowed variables
-              nilness = true,        -- check for redundant nil checks
-              useany = true,         -- suggest replacing interface{} with any
+              unusedparams = true, -- report unused function parameters
+              shadow = true, -- check for shadowed variables
+              nilness = true, -- check for redundant nil checks
+              useany = true, -- suggest replacing interface{} with any
             },
-            staticcheck = true,        -- enable staticcheck analyzers
-            gofumpt = true,            -- use gofumpt (stricter superset of gofmt)
-            semanticTokens = true,     -- enable semantic token highlighting
-            usePlaceholders = true,    -- use placeholders in completions
+            staticcheck = true, -- enable staticcheck analyzers
+            gofumpt = true, -- use gofumpt (stricter superset of gofmt)
+            semanticTokens = true, -- enable semantic token highlighting
+            usePlaceholders = true, -- use placeholders in completions
             completeUnimported = true, -- complete from unimported packages
             codelenses = {
-              gc_details = true,         -- show compiler details (escape analysis)
-              generate = true,           -- run go generate
+              gc_details = true, -- show compiler details (escape analysis)
+              generate = true, -- run go generate
               regenerate_cgo = true,
-              run_govulncheck = true,    -- check for vulnerabilities
-              test = true,               -- run tests
-              tidy = true,               -- run go mod tidy
+              run_govulncheck = true, -- check for vulnerabilities
+              test = true, -- run tests
+              tidy = true, -- run go mod tidy
               upgrade_dependency = true,
               vendor = true,
             },
@@ -254,6 +269,8 @@ return {
         ensure_installed = {
           "stylua",
           "yamlfmt",
+          "shellcheck",
+          "shfmt",
         },
       })
 
@@ -269,6 +286,8 @@ return {
           "yamlls",
           "helm_ls",
           "lua_ls",
+          "bashls",
+          "dockerls",
         },
         automatic_enable = true,
       })
@@ -302,29 +321,5 @@ return {
         },
       })
     end,
-  },
-  {
-    "towolf/vim-helm",
-    ft = "helm",
-  },
-  {
-    "ray-x/go.nvim",
-    dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("go").setup({
-        run_in_floaterm = true,
-        floaterm = {
-          posititon = "bottom",
-          height = 0.25,
-        },
-      })
-    end,
-    event = { "CmdlineEnter" },
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()',
   },
 }
