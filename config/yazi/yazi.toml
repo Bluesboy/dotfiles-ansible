@@ -24,12 +24,12 @@ run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-firs
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*"
+url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
 id  = "git"
-name = "*/"
+url = "*/"
 run = "git"
 
 [[plugin.prepend_previewers]]
