@@ -9,7 +9,8 @@ return {
     "TimeMachineLogClear",
   },
   keys = {
-    { "<leader>tm", "<cmd>TimeMachineToggle<cr>", desc = "Toggle Time Machine" },
+    { "<leader>tm", "<cmd>TimeMachineToggle<cr>", desc = "Toggle [T]ime [M]achine" },
+    { "<leader>tl", "<cmd>TimeMachineLogShow<cr>", desc = "Show [T]ime Machine [L]og" },
   },
   opts = {},
 }
