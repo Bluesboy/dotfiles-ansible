@@ -10,7 +10,7 @@ return {
       require("go").setup({
         run_in_floaterm = true,
         floaterm = {
-          posititon = "bottom",
+          position = "bottom",
           height = 0.25,
         },
       })

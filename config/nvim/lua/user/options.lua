@@ -51,8 +51,6 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-
 -- Detect Ansible YAML files as yaml.ansible so ansiblels takes over yamlls
 vim.filetype.add({
   pattern = {
@@ -95,3 +93,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.autoindent = true
   end,
 })
+
+-- Used by telescope, which-key and other plugins to enable Nerd Font icons
+vim.g.have_nerd_font = true

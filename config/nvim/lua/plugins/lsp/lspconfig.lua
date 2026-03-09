@@ -262,8 +262,6 @@ return {
         },
       })
 
-      require("mason").setup()
-
       -- Formatters/linters (not LSP servers) via mason-tool-installer
       require("mason-tool-installer").setup({
         ensure_installed = {

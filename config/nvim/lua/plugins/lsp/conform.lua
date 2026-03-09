@@ -36,6 +36,8 @@ return {
         lua = { "stylua" },
         yaml = { "yamlfmt" },
         ["yaml.ansible"] = { "yamlfmt" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
       },
     },
   },
