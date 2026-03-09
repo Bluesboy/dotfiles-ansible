@@ -93,7 +93,7 @@ return {
           end, { desc = "Reset selected" })
 
           -- Text object
-          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
         end,
     },
   },
