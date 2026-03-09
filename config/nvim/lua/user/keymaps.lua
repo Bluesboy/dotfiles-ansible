@@ -65,6 +65,10 @@ map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 -- WhichKey
 map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
 
+-- GitPortal
+map("n", "<leader>gb", "<cmd>GitPortal browse_file<CR>", { desc = "Show file on Remote" })
+map({ "n", "v" }, "<leader>gc", "<cmd>GitPortal copy_link_to_clipboard<CR>", { desc = "Copy link to file in clipboard" })
+
 -- Golang
 map("n", "<F5>", "<cmd>GoRun<CR>")
 
