@@ -1,4 +1,5 @@
 return {
   "declancm/maximize.nvim",
-  config = true
+  cmd = "Maximize",
+  config = true,
 }

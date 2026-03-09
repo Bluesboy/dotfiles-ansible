@@ -3,7 +3,5 @@ return {
   name = "window-picker",
   event = "VeryLazy",
   version = "2.*",
-  config = function()
-    require("window-picker").setup()
-  end,
+  config = true,
 }

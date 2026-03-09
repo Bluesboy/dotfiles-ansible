@@ -11,6 +11,7 @@ local highlight = {
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       local hooks = require("ibl.hooks")
 
@@ -34,6 +35,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "lukas-reineke/indent-blankline.nvim",
     },

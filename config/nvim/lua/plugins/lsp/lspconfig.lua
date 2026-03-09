@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
@@ -108,6 +109,7 @@ return {
           end
 
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
             map("<leader>ti", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "Toggle [I]nlay Hints")
@@ -118,8 +120,11 @@ return {
       -- Global border for all floating windows (Neovim 0.11+)
       vim.o.winborder = "rounded"
 
+      -- Per-server configurations via vim.lsp.config (Neovim 0.11+)
+      local lsp = vim.lsp.config
+
       -- Global LSP config: capabilities (Neovim 0.11+)
-      vim.lsp.config("*", {
+      lsp("*", {
         capabilities = vim.tbl_deep_extend(
           "force",
           vim.lsp.protocol.make_client_capabilities(),
@@ -127,9 +132,7 @@ return {
         ),
       })
 
-      -- Per-server configurations via vim.lsp.config (Neovim 0.11+)
-      -- Replaces the deprecated require("lspconfig")[server].setup() pattern
-      vim.lsp.config("yamlls", {
+      lsp("yamlls", {
         filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
         settings = {
           yaml = {
@@ -149,7 +152,7 @@ return {
         },
       })
 
-      vim.lsp.config("helm_ls", {
+      lsp("helm_ls", {
         handlers = {
           ["textDocument/publishDiagnostics"] = function(err, result, ctx)
             if result and result.diagnostics then
@@ -162,7 +165,7 @@ return {
         },
       })
 
-      vim.lsp.config("dockerls", {
+      lsp("dockerls", {
         filetypes = { "dockerfile" },
         settings = {
           docker = {
@@ -175,7 +178,7 @@ return {
         },
       })
 
-      vim.lsp.config("bashls", {
+      lsp("bashls", {
         filetypes = { "sh", "bash" },
         settings = {
           bashIde = {
@@ -190,7 +193,7 @@ return {
         },
       })
 
-      vim.lsp.config("ansiblels", {
+      lsp("ansiblels", {
         settings = {
           ansible = {
             ansible = {
@@ -206,7 +209,7 @@ return {
         },
       })
 
-      vim.lsp.config("gopls", {
+      lsp("gopls", {
         settings = {
           gopls = {
             -- Inlay hints
@@ -246,7 +249,7 @@ return {
 
       -- lazydev.nvim handles Neovim runtime paths automatically,
       -- so workspace.library is not needed here
-      vim.lsp.config("lua_ls", {
+      lsp("lua_ls", {
         settings = {
           Lua = {
             completion = {

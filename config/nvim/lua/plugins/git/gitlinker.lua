@@ -1,13 +1,14 @@
 return {
   {
     "ruifm/gitlinker.nvim",
+    keys = "<leader>gy",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    config = function()
-      require("gitlinker").setup({
+    opts = function()
+      return {
         opts = {
-          remote = nil, -- force the use of a specific remote
+          remote = nil,
           add_current_line_on_normal_mode = true,
           action_callback = require("gitlinker.actions").copy_to_clipboard,
           print_url = true,
@@ -26,7 +27,7 @@ return {
           ["git.savannah.gnu.org"] = require("gitlinker.hosts").get_cgit_type_url,
         },
         mappings = "<leader>gy",
-      })
+      }
     end,
   },
 }
