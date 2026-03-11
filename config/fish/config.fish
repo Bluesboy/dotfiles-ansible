@@ -48,9 +48,9 @@ fish_add_path -m ~/.cargo/bin
 # Do not display greeting
 functions -e fish_greeting
 
-# Bind lf start to CTRL+O
+# Bind Yazi start to CTRL+Y
 function fish_user_key_bindings
-  bind -M insert \co 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
+  bind -M insert \cy 'y'
 end
 
 # Setup abbreviations
