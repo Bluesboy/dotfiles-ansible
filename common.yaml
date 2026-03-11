@@ -84,7 +84,6 @@
       - bash-completion # Programmable completion for the bash shell
       - bat # Cat clone with syntax highlighting and git integration
       - bind # A complete, highly portable implementation of the DNS protocol
-      - bottom # A graphical process/system monitor
       - broot # Fuzzy Search + tree + cd
       - btop # A monitor of system resources, bpytop ported to C++
       - curl # It's fucking cURL, questions?
