@@ -10,8 +10,11 @@ TRANSITION_DURATION="${TRANSITION_DURATION:-0.2}"
 TRANSITION_FPS="${TRANSITION_FPS:-60}"
 
 # --- Logging ---
-log()  { printf '[wallpapper] %s\n' "$*" >&2; }
-die()  { log "ERROR: $*"; exit 1; }
+log() { printf '[wallpapper] %s\n' "$*" >&2; }
+die() {
+  log "ERROR: $*"
+  exit 1
+}
 warn() { log "WARN:  $*"; }
 
 # --- Usage ---
@@ -38,21 +41,21 @@ EOF
 # --- Parse arguments ---
 while getopts ':d:s:t:D:f:h' opt; do
   case "$opt" in
-    d) WALLDIR="$OPTARG" ;;
-    s) DELAY="$OPTARG" ;;
-    t) TRANSITION="$OPTARG" ;;
-    D) TRANSITION_DURATION="$OPTARG" ;;
-    f) TRANSITION_FPS="$OPTARG" ;;
-    h) usage ;;
-    :) die "Option -$OPTARG requires an argument" ;;
-    \?) die "Unknown option: -$OPTARG" ;;
+  d) WALLDIR="$OPTARG" ;;
+  s) DELAY="$OPTARG" ;;
+  t) TRANSITION="$OPTARG" ;;
+  D) TRANSITION_DURATION="$OPTARG" ;;
+  f) TRANSITION_FPS="$OPTARG" ;;
+  h) usage ;;
+  :) die "Option -$OPTARG requires an argument" ;;
+  \?) die "Unknown option: -$OPTARG" ;;
   esac
 done
 
 # --- Validation ---
-command -v swww >/dev/null 2>&1   || die "'swww' not found in PATH"
+command -v swww >/dev/null 2>&1 || die "'swww' not found in PATH"
 command -v swww-daemon >/dev/null || die "'swww-daemon' not found in PATH"
-[[ -d "$WALLDIR" ]]               || die "Wallpaper directory not found: $WALLDIR"
+[[ -d "$WALLDIR" ]] || die "Wallpaper directory not found: $WALLDIR"
 
 # --- Start swww-daemon if not already running ---
 if ! swww query &>/dev/null; then
@@ -82,7 +85,7 @@ trap cleanup SIGINT SIGTERM
 # --- Start inotifywait if available ---
 if command -v inotifywait &>/dev/null; then
   inotifywait -m -q -e create,moved_to,delete,moved_from \
-    --format '%f' "$WALLDIR" > "$PIPE" 2>/dev/null &
+    --format '%f' "$WALLDIR" >"$PIPE" 2>/dev/null &
   INOTIFY_PID=$!
   log "Watching $WALLDIR for changes (inotifywait)"
 else
@@ -96,8 +99,8 @@ log "Transition    : $TRANSITION (${TRANSITION_DURATION}s @ ${TRANSITION_FPS}fps
 rotate() {
   mapfile -t FILES < <(find "$WALLDIR" -type f \
     \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \
-       -o -iname '*.webp' -o -iname '*.gif' -o -iname '*.bmp' \) \
-    | sort)
+    -o -iname '*.webp' -o -iname '*.gif' -o -iname '*.bmp' \) |
+    sort)
 
   if [[ ${#FILES[@]} -eq 0 ]]; then
     warn "No images found in $WALLDIR"
@@ -123,7 +126,7 @@ rotate() {
 
   for i in "${!OUTPUTS[@]}"; do
     OUT="${OUTPUTS[$i]}"
-    IMG="${SHUFFLED[$(( i % ${#SHUFFLED[@]} ))]}"
+    IMG="${SHUFFLED[$((i % ${#SHUFFLED[@]}))]}"
     log "  $OUT -> $(basename "$IMG")"
     swww img \
       --outputs "$OUT" \
@@ -140,10 +143,10 @@ while true; do
 
   if [[ -n "$INOTIFY_PID" ]]; then
     # Wait DELAY seconds, but wake up early if inotifywait reports a change
-    if read -t "$DELAY" -r EVENT < "$PIPE" 2>/dev/null; then
+    if read -t "$DELAY" -r EVENT <"$PIPE" 2>/dev/null; then
       log "Directory change detected ($EVENT), rescanning..."
       # Drain any further pending events to avoid rapid-fire rotations
-      while read -t 0.5 -r _ < "$PIPE" 2>/dev/null; do :; done
+      while read -t 0.5 -r _ <"$PIPE" 2>/dev/null; do :; done
     fi
   else
     sleep "$DELAY"

@@ -3,61 +3,53 @@
 readonly SCRATCH_WORKSPACE_NAME=scratch
 readonly SCRATCH_WIN_NAME=dropdown
 
-windows() {
-  niri msg -j windows
+# Cache niri state once per invocation
+_win_data=""
+_ws_data=""
+
+win_data() {
+  if [[ -z "$_win_data" ]]; then
+    _win_data=$(niri msg -j windows)
+  fi
+  echo "$_win_data"
+}
+
+ws_data() {
+  if [[ -z "$_ws_data" ]]; then
+    _ws_data=$(niri msg -j workspaces)
+  fi
+  echo "$_ws_data"
 }
 
 app_window() {
-  local window_name=${SCRATCH_WIN_NAME}
-  windows \
-    | jq ".[] | select(.app_id == \"${window_name}\")"
-}
-
-run_quake() {
-  local window_name=${SCRATCH_WIN_NAME}
-  niri msg action spawn-sh -- "wezterm start --class ${window_name}"
-  sleep 0.3
-}
-
-is_running() {
-  [[ -n $(app_window) ]]
-}
-
-is_floating() {
-  [[ $(app_window | jq .is_floating) == "true" ]]
-}
-
-is_focused() {
-  [[ $(app_window | jq .is_focused) == "true" ]]
-}
-
-window_id() {
-  app_window \
-    | jq .id
-}
-
-window_workspace_id() {
-  app_window \
-    | jq -r .workspace_id
+  win_data | jq ".[] | select(.app_id == \"${SCRATCH_WIN_NAME}\")"
 }
 
 focused_workspace() {
-  niri msg -j workspaces \
-    | jq '.[] | select(.is_focused == true)'
+  ws_data | jq '.[] | select(.is_focused == true)'
 }
 
-workspace_id() {
-  focused_workspace \
-    | jq -r .id
-}
+is_running() { [[ -n $(app_window) ]]; }
+is_focused() { [[ $(app_window | jq .is_focused) == "true" ]]; }
+on_current_workspace() { [[ $(focused_workspace | jq -r .id) == $(app_window | jq -r .workspace_id) ]]; }
 
 workspace_reference() {
-  focused_workspace \
-    | jq -r 'if .name == null then (.idx | tostring) else .name end'
+  focused_workspace |
+    jq -r 'if .name == null then (.idx | tostring) else .name end'
 }
 
-on_current_workspace() {
-  [[ $(workspace_id) == $(window_workspace_id) ]]
+window_id() {
+  app_window | jq .id
+}
+
+run_quake() {
+  niri msg action spawn-sh -- "wezterm start --class ${SCRATCH_WIN_NAME}"
+  # Poll until window appears (max 2s)
+  for _ in {1..20}; do
+    _win_data="" # invalidate cache
+    is_running && return
+    sleep 0.1
+  done
 }
 
 moveToScratchpad() {
@@ -68,22 +60,18 @@ moveToScratchpad() {
 }
 
 bringToFocus() {
-  niri msg action move-window-to-workspace \
-    --window-id "$(window_id)" "$(workspace_reference)"
-  niri msg action focus-window \
-    --id "$(window_id)"
+  local id
+  id=$(window_id)
+  niri msg action move-window-to-workspace --window-id "$id" "$(workspace_reference)"
+  niri msg action focus-window --id "$id"
 }
 
 main() {
   if is_running; then
-    if is_focused; then
+    if is_focused || on_current_workspace; then
       moveToScratchpad
     else
-      if on_current_workspace; then
-        moveToScratchpad
-      else
-        bringToFocus
-      fi
+      bringToFocus
     fi
   else
     run_quake
