@@ -77,8 +77,6 @@ return {
 
           map("<leader>e", vim.diagnostic.open_float, "Show Diagnostic Window")
 
-          -- map('<leader>q', vim.diagnostic.setloclist)
-
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
