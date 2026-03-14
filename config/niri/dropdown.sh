@@ -62,16 +62,16 @@ on_current_workspace() {
 
 moveToScratchpad() {
   niri msg action move-window-to-workspace \
-    --window-id $(window_id) \
+    --window-id "$(window_id)" \
     "$SCRATCH_WORKSPACE_NAME" \
     --focus=false
 }
 
 bringToFocus() {
   niri msg action move-window-to-workspace \
-    --window-id $(window_id) "$(workspace_reference)"
+    --window-id "$(window_id)" "$(workspace_reference)"
   niri msg action focus-window \
-    --id $(window_id)
+    --id "$(window_id)"
 }
 
 main() {
