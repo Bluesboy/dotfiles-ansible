@@ -50,7 +50,7 @@ functions -e fish_greeting
 
 # Bind Yazi start to CTRL+Y
 function fish_user_key_bindings
-  bind -M insert \cy 'y'
+  bind -M insert \co 'y'
 end
 
 # Setup abbreviations
