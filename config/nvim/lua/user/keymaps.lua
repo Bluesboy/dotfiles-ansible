@@ -56,22 +56,42 @@ map("n", "<leader>q", "<cmd>q<CR>", { desc = "Exit Neovim. Finally!" })
 map("n", "<leader>x", "<cmd>q!<CR>", { desc = "Exit without saving" })
 map("n", "<leader>Q", "<cmd>wq<CR>", { desc = "Save buffer and exit" })
 
+-- Quickfix navigation
+map("n", "]q", "<CMD>cnext<CR>", { desc = "Next QF record" })
+map("n", "[q", "<CMD>cprev<CR>", { desc = "Prev QF record" })
+
+map("n", "<leader>lq", "<CMD>copen<CR>", { desc = "Open Quickfix" })
+map("n", "<leader>ll", "<CMD>lopen<CR>", { desc = "Open Location list" })
+map("n", "gq", function()
+  vim.diagnostic.setqflist()
+end, { desc = "Put to Quickfix" })
+map("n", "gl", function()
+  vim.diagnostic.setloclist()
+end, { desc = "Put to Location list" })
+
 -- Backspace turn off search highlight
 map("n", "<BS>", "<cmd>nohlsearch<CR>", { desc = "Disable search highlight" })
 
 -- ToggleTerm
 map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+map("n", "<S-t>", function() require("user.functions.tmux").open_or_focus() end, { desc = "Focus tmux bottom pane" })
 
 -- WhichKey
 map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
 
 -- GitPortal
 map("n", "<leader>gb", "<cmd>GitPortal browse_file<CR>", { desc = "Show file on Remote" })
-map({ "n", "v" }, "<leader>gc", "<cmd>GitPortal copy_link_to_clipboard<CR>", { desc = "Copy link to file in clipboard" })
+map(
+  { "n", "v" },
+  "<leader>gc",
+  "<cmd>GitPortal copy_link_to_clipboard<CR>",
+  { desc = "Copy link to file in clipboard" }
+)
 
 -- Golang
 map("n", "<F5>", "<cmd>GoRun<CR>")
 
+-- Dotfiles AUR helper
 map("n", "<leader>pd", require("user.functions.aur").insert_description)
 
 -- Highlight when yanking (copying) text
