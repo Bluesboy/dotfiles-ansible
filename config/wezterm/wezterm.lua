@@ -54,6 +54,7 @@ config.keys = {
   -- paste from the primary selection
   { key = "V", mods = "CTRL|SHIFT", action = act.PasteFrom("PrimarySelection") },
   { key = "'", mods = "CTRL|SHIFT", action = act.Hide },
+  { key = "t", mods = "SUPER", action = act.DisableDefaultAssignment },
 
   -- -- move between split panes
   -- split_nav("move", "h"),
