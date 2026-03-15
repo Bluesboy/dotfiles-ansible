@@ -468,7 +468,6 @@ workspace "misc" {
   open-on-output "HDMI-A-2"
 }
 
-spawn-at-startup "waybar"
 spawn-at-startup "opera"
 spawn-sh-at-startup "~/.config/niri/wallpapper.sh -d ~/Pictures/wallpapers/ -s 30"
 spawn-at-startup "Telegram"
@@ -478,6 +477,12 @@ spawn-at-startup "thunderbird"
 
 binds {
     Ctrl+grave { spawn-sh "~/.config/niri/dropdown.sh"; }
+
+    Super+S { spawn-sh "~/.config/niri/toggle-window.sh -a Slack -w messengers"; }
+
+    Super+E { spawn-sh "~/.config/niri/toggle-window.sh -a Element -w messengers"; }
+
+    Super+T { spawn-sh "~/.config/niri/toggle-window.sh -a org.telegram.desktop -w messengers"; }
 
     Mod+V hotkey-overlay-title="Open Vicinae" { spawn "vicinae" "toggle"; }
 
