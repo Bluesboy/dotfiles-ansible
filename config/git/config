@@ -1,6 +1,7 @@
 [user]
   name = Bluesboy
   email = youngreg@ya.ru
+  signingkey = 68B6369E37C05013
 
 [pull]
   ff = only
