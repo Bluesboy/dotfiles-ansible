@@ -24,3 +24,6 @@ border-color=#bf616a
 
 [app-name="flameshot"]
 default-timeout=1000
+
+[body="Font problem"]
+default-timeout=1000
