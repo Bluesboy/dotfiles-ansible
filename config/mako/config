@@ -27,3 +27,9 @@ default-timeout=1000
 
 [body="Font problem"]
 default-timeout=1000
+
+[app-name="fish"]
+default-timeout=1000
+
+[app-name="Thunderbird"]
+default-timeout=5000
