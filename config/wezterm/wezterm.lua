@@ -55,7 +55,7 @@ config.keys = {
   { key = "V", mods = "CTRL|SHIFT", action = act.PasteFrom("PrimarySelection") },
   { key = "'", mods = "CTRL|SHIFT", action = act.Hide },
   { key = "t", mods = "SUPER", action = act.DisableDefaultAssignment },
-
+  { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
   -- -- move between split panes
   -- split_nav("move", "h"),
   -- split_nav("move", "j"),
