@@ -287,6 +287,7 @@ return {
           "lua_ls",
           "bashls",
           "dockerls",
+          "kcl",
         },
         automatic_enable = true,
       })
