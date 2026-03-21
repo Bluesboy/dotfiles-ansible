@@ -74,7 +74,9 @@ map("n", "<BS>", "<cmd>nohlsearch<CR>", { desc = "Disable search highlight" })
 
 -- ToggleTerm
 map({ "n", "t" }, "<C-s>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
-map("n", "<S-t>", function() require("user.functions.tmux").open_or_focus() end, { desc = "Focus tmux bottom pane" })
+map("n", "<S-t>", function()
+  require("user.functions.tmux").open_or_focus()
+end, { desc = "Focus tmux bottom pane" })
 
 -- WhichKey
 map({ "n", "i" }, "<C-_>", "<cmd>WhichKey<CR>", { desc = "Show WhichKey" })
@@ -117,3 +119,13 @@ end, { desc = "Toggle diagnostic" })
 
 -- MarkDownPreview
 map({ "n", "i" }, "gm", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
+
+-- Maximize
+map("n", "<leader>o", function()
+  require("maximize").toggle()
+end, { desc = "Maximize/Restore Window" })
+
+-- Kubectl
+map("n", "<leader>k", function()
+  require("kubectl").toggle({})
+end, { desc = "Maximize/Restore Window" })
