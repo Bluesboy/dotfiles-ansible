@@ -177,3 +177,38 @@ desc = "Merge current project to other projects"
 on   = [ "g", "b" ]
 run  = "plugin open-git-remote"
 desc = "open git remote url"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "t" ]
+run = "plugin eza-preview"
+desc = "Toggle tree/list dir preview"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "-" ]
+run = "plugin eza-preview inc-level"
+desc = "Increment tree level"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "_" ]
+run = "plugin eza-preview dec"
+desc = "Decrement tree level"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "$" ]
+run = "plugin eza-preview toggle-follow-symlinks"
+desc = "Toggle tree follow symlinks"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "*" ]
+run = "plugin eza-preview toggle-hidden"
+desc = "Toggle hidden files"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "g", "i" ]
+run = "plugin eza-preview toggle-git-ignore"
+desc = "Toggle .gitignore files"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "g", "s" ]
+run = "plugin eza-preview toggle-git-status"
+desc = "Toggle showing git status"
