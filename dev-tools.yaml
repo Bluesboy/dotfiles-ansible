@@ -547,6 +547,8 @@
       - opencode-bin # The AI coding agent built for the terminal.
       - claude-code # An agentic coding tool that lives in your terminal
       - claude-desktop-native # Unofficial Claude Desktop for Linux
+      - qwen-code-bin # Open-source AI agent based on Gemini CLI by QwenLM
+      - opencode-qwencode-oauth # Qwen OAuth authentication plugin for opencode with multi-account rotation
       state: latest
     become: true
     become_user: aur_builder
@@ -558,3 +560,23 @@
       state: latest
     become: true
     become_user: aur_builder
+
+  - name: "Install gomplate"
+    kewlfft.aur.aur:
+      name:
+      - gomplate-bin # A flexible commandline tool for template rendering. Supports lots of local and remote datasources
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install mise"
+    community.general.pacman:
+      name:
+      - mise # The front-end to your dev env
+      state: latest
+    become: true
+
+  - name: "Install function-pythonic"
+    community.general.pipx:
+      name: crossplane-function-pythonic
+      state: latest
