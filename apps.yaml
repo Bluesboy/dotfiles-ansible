@@ -84,13 +84,6 @@
     become: true
     become_user: aur_builder
 
-  - name: "Install FFMPEG for Opera"
-    kewlfft.aur.aur:
-      name: opera-ffmpeg-codecs-bin # additional support for proprietary codecs for opera
-      state: latest
-    become: true
-    become_user: aur_builder
-
   - name: "Install browserpass"
     community.general.pacman:
       name:
