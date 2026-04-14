@@ -22,12 +22,12 @@ usage() {
   cat >&2 <<EOF
 Usage: $(basename "$0") [OPTIONS]
 
-Randomly rotate wallpapers across all connected outputs using swww.
+Randomly rotate wallpapers across all connected outputs using awww.
 
 Options:
   -d DIR     Wallpaper directory (default: ~/Pictures/wallpapers)
   -s SECS    Rotation interval in seconds (default: 10)
-  -t TYPE    swww transition type (default: random)
+  -t TYPE    awww transition type (default: random)
   -D SECS    Transition duration in seconds (default: 0.2)
   -f FPS     Transition FPS (default: 60)
   -h         Show this help
@@ -53,19 +53,19 @@ while getopts ':d:s:t:D:f:h' opt; do
 done
 
 # --- Validation ---
-command -v swww >/dev/null 2>&1 || die "'swww' not found in PATH"
-command -v swww-daemon >/dev/null || die "'swww-daemon' not found in PATH"
+command -v awww >/dev/null 2>&1 || die "'awww' not found in PATH"
+command -v awww-daemon >/dev/null || die "'awww-daemon' not found in PATH"
 [[ -d "$WALLDIR" ]] || die "Wallpaper directory not found: $WALLDIR"
 
-# --- Start swww-daemon if not already running ---
-if ! swww query &>/dev/null; then
-  log "Starting swww-daemon..."
-  swww-daemon &
+# --- Start awww-daemon if not already running ---
+if ! awww query &>/dev/null; then
+  log "Starting awww-daemon..."
+  awww-daemon &
   for _ in {1..10}; do
-    swww query &>/dev/null && break
+    awww query &>/dev/null && break
     sleep 0.2
   done
-  swww query &>/dev/null || die "swww-daemon failed to start"
+  awww query &>/dev/null || die "awww-daemon failed to start"
 fi
 
 # --- Named pipe for inotifywait events ---
@@ -74,10 +74,10 @@ mkfifo "$PIPE"
 INOTIFY_PID=""
 
 cleanup() {
-  log "Exiting, stopping swww-daemon..."
+  log "Exiting, stopping awww-daemon..."
   [[ -n "$INOTIFY_PID" ]] && kill "$INOTIFY_PID" 2>/dev/null || true
   rm -f "$PIPE"
-  pkill -x swww-daemon 2>/dev/null || true
+  pkill -x awww-daemon 2>/dev/null || true
   exit 0
 }
 trap cleanup SIGINT SIGTERM
@@ -107,7 +107,7 @@ rotate() {
     return
   fi
 
-  mapfile -t OUTPUTS < <(swww query | awk '{print $2}' | tr -d ':')
+  mapfile -t OUTPUTS < <(awww query | awk '{print $2}' | tr -d ':')
 
   log "Detected outputs: ${OUTPUTS[*]:-<none>}"
 
@@ -128,7 +128,7 @@ rotate() {
     OUT="${OUTPUTS[$i]}"
     IMG="${SHUFFLED[$((i % ${#SHUFFLED[@]}))]}"
     log "  $OUT -> $(basename "$IMG")"
-    swww img \
+    awww img \
       --outputs "$OUT" \
       --transition-type "$TRANSITION" \
       --transition-duration "$TRANSITION_DURATION" \

@@ -375,7 +375,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Slack"
+    match app-id="slack"
     open-on-workspace "messengers"
     open-maximized true
 }
@@ -470,6 +470,7 @@ workspace "misc" {
 
 spawn-at-startup "opera"
 spawn-sh-at-startup "~/.config/niri/wallpapper.sh -d ~/Pictures/wallpapers/ -s 30"
+spawn-sh-at-startup "wl-paste -p --watch wl-copy"
 spawn-at-startup "Telegram"
 spawn-at-startup "element-desktop"
 spawn-at-startup "slack"
@@ -478,7 +479,7 @@ spawn-at-startup "thunderbird"
 binds {
     Ctrl+grave { spawn-sh "~/.config/niri/dropdown.sh"; }
 
-    Super+S { spawn-sh "~/.config/niri/toggle-window.sh -a Slack -w messengers"; }
+    Super+S { spawn-sh "~/.config/niri/toggle-window.sh -a slack -w messengers"; }
 
     Super+E { spawn-sh "~/.config/niri/toggle-window.sh -a Element -w messengers"; }
 
