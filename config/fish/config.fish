@@ -79,6 +79,7 @@ if status --is-interactive
   abbr --add --global -- kn kubens
   abbr --add --global -- ka 'kubectl apply -f'
   abbr --add --global -- lg lazygit
+  abbr --add --global -- lm lazymake
   abbr --add --global -- tf terraform
   abbr --add --global -- tp 'terraform plan'
   abbr --add --global -- fishconf 'vim ~/.config/fish/config.fish'
