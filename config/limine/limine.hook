@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = limine
+
+[Action]
+Description = Updating Limine EFI binary on ESP...
+When = PostTransaction
+Exec = /bin/cp /usr/share/limine/BOOTX64.EFI /boot/EFI/limine/BOOTX64.EFI

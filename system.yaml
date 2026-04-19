@@ -1,0 +1,70 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  vars:
+    ansible_ask_become_pass: true
+
+  tasks:
+  # ── Limine bootloader ─────────────────────────────────────────────────────
+
+  - name: "Create Limine EFI directory"
+    ansible.builtin.file:
+      path: /boot/EFI/limine
+      state: directory
+      mode: "0700"
+      owner: root
+      group: root
+    become: true
+
+  - name: "Create pacman hooks directory"
+    ansible.builtin.file:
+      path: /etc/pacman.d/hooks
+      state: directory
+      mode: "0755"
+      owner: root
+      group: root
+    become: true
+
+  - name: "Install Limine pacman hook"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/limine/limine.hook"
+      dest: /etc/pacman.d/hooks/limine.hook
+      owner: root
+      group: root
+      mode: "0644"
+    become: true
+
+  - name: "Install Limine"
+    community.general.pacman:
+      name:
+      - limine # An advanced, portable, multiprotocol bootloader
+      state: latest
+    become: true
+
+  - name: "Install Limine configuration"
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/config/limine/limine.conf"
+      dest: /boot/limine.conf
+      owner: root
+      group: root
+      mode: "0600"
+    become: true
+
+  - name: "Check if Limine EFI entry already exists"
+    ansible.builtin.shell:
+      cmd: efibootmgr | grep -q "Limine"
+    register: limine_efi_entry
+    failed_when: false
+    become: true
+
+  - name: "Add Limine EFI boot entry"
+    ansible.builtin.command:
+      cmd: >
+        efibootmgr
+        --create
+        --disk /dev/nvme0n1
+        --part 1
+        --label "Limine"
+        --loader '\EFI\limine\BOOTX64.EFI'
+    when: limine_efi_entry.rc != 0
+    become: true

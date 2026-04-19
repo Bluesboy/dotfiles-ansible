@@ -1,5 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
+- name: "System configuration (bootloader, low-level)"
+  import_playbook: system.yaml
 - name: "Install and configure common packages"
   import_playbook: common.yaml
 - name: "Install developer tools"
