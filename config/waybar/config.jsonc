@@ -22,6 +22,7 @@
         "tray",
         "niri/language",
         "clock",
+        "custom/weather",
         "custom/power"
     ],
     "niri/language": {
@@ -106,6 +107,13 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/weather": {
+        "format": "{}°",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar -l ru --location Oufa",
+        "return-type": "json"
     },
     "custom/power": {
         "format" : "⏻ ",
