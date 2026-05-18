@@ -1,22 +1,17 @@
 [mgr]
 ratio = [15, 40, 50 ]
 
-[[mgr.prepend_keymap]]
-on = [ "g", "i" ]
-run = "plugin lazygit"
-desc = "run lazygit"
-
 [[plugin.prepend_previewers]]
-name = "*.service"
+url  = "*.service"
 run  = 'piper -- bat -p --color=always "$1"'
 
 [[plugin.prepend_previewers]]
-name = "*.socket"
+url  = "*.socket"
 run  = 'piper -- bat -p --color=always "$1"'
 
 [[plugin.prepend_previewers]]
-name = "*.tar*"
-run = 'piper --format=url -- tar tf "$1"'
+url  = "*.tar*"
+run  = 'piper --format=url -- tar tf "$1"'
 
 [[plugin.prepend_previewers]]
 url = "*/"
@@ -24,21 +19,21 @@ url = "*/"
 run = "eza-preview"
 
 [[plugin.prepend_fetchers]]
-id = "git"
-url = "*"
-run = "git"
+url   = "*"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_fetchers]]
-id  = "git"
-url = "*/"
-run = "git"
+url   = "*/"
+run   = "git"
+group = "git"
 
 [[plugin.prepend_previewers]]
 mime = "application/bittorrent"
 run = "torrent-preview"
 
 [[plugin.prepend_previewers]]
-name = "*.md"
+url  = "*.md"
 run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'
 
 [[plugin.prepend_previewers]]
@@ -50,7 +45,7 @@ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}"
 run  = "lsar"
 
 [[plugin.prepend_spotters]]
-name = "*"
+url = "*"
 run = "file-extra-metadata"
 
 [tasks]
