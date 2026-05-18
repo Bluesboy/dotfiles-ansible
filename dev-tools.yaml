@@ -555,6 +555,21 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install RTK"
+    kewlfft.aur.aur:
+      name:
+      - rtk-bin # CLI proxy that reduces LLM token consumption by 60-90% on common dev commands
+      state: latest
+    become: true
+    become_user: aur_builder
+
+  - name: "Install 'skills' Node package"
+    community.general.npm:
+      name: skills
+      global: yes
+      state: latest
+    become: true
+
   - name: "Install KCL Lang"
     kewlfft.aur.aur:
       name:

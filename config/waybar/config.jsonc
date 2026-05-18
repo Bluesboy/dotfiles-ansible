@@ -19,6 +19,8 @@
         "memory",
         "temperature",
         "backlight",
+        "custom/ai-quota",
+        "custom/codexbar",
         "tray",
         "niri/language",
         "clock",
@@ -107,6 +109,20 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/ai-quota": {
+        "exec": "ai-quota-waybar",
+        "return-type": "json",
+        "interval": 60,
+        "tooltip": true
+    },
+    "custom/codexbar": {
+        "exec": "codexbar",
+        "return-type": "json",
+        "interval": 60,
+        "signal": 12,
+        "tooltip": true,
+        "on-click": "xdg-open https://chatgpt.com/codex/settings/usage"
     },
     "custom/weather": {
         "format": "{}°",
