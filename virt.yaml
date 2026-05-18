@@ -38,6 +38,14 @@
       state: latest
     become: true
 
+  - name: "Install Lima"
+    kewlfft.aur.aur:
+      name:
+      - lima-bin # Linux virtual machines, typically on macOS, for running containerd.
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install Kubecolor"
     kewlfft.aur.aur:
       name:
