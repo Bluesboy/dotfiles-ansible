@@ -571,6 +571,16 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install gomplate"
+    kewlfft.aur.aur:
+      name:
+      - kaskade # A text user interface for Kafka. Interact and consume topics from your terminal in style!
+      - kcat-cli # A generic non-JVM producer and consumer for Apache Kafka, think of it as a netcat for Kafka
+      - kafkactl # Command Line Tool for managing Apache Kafka
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install mise"
     community.general.pacman:
       name:
