@@ -395,10 +395,11 @@
     become: true
     become_user: aur_builder
 
-  - name: 'Install "viddy"'
+  - name: 'Install watchers'
     kewlfft.aur.aur:
       name:
       - viddy # A modern watch command
+      - hwatch # A modern alternative to the watch command
       state: latest
     become: true
     become_user: aur_builder
