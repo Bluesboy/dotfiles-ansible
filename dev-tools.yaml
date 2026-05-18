@@ -254,6 +254,7 @@
   - name: "Linters"
     community.general.pacman:
       name:
+      - shellcheck # Shell script analysis tool
       - eslint # An AST-based pattern checker for JavaScript
       - flake8 # The modular source code checker
       - prettier # An opinionated code formatter for JS, JSON, CSS, YAML and much more
