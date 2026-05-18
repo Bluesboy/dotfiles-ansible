@@ -372,12 +372,24 @@ window-rule {
     open-maximized true
     open-focused true
     open-on-workspace "main"
+    popups {
+        opacity 0.7
+        background-effect {
+            blur true
+        }
+    }
 }
 
 window-rule {
     match app-id="slack"
     open-on-workspace "messengers"
     open-maximized true
+    popups {
+        opacity 0.8
+        background-effect {
+            blur true
+        }
+    }
 }
 
 window-rule {
@@ -398,6 +410,12 @@ window-rule {
     match app-id="Element"
     open-on-workspace "messengers"
     open-maximized true
+    popups {
+        opacity 0.8
+        background-effect {
+            blur true
+        }
+    }
 }
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
