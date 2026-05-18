@@ -73,6 +73,35 @@
       enabled: true
     become: true
 
+  - name: "Create Ly service override directory"
+    ansible.builtin.file:
+      path: "/etc/systemd/system/ly@tty2.service.d"
+      state: directory
+      owner: root
+      group: root
+      mode: "0755"
+    become: true
+
+  - name: "Override Ly service to prevent screen flicker on shutdown"
+    ansible.builtin.copy:
+      dest: "/etc/systemd/system/ly@tty2.service.d/override.conf"
+      content: |
+        [Service]
+        TTYReset=no
+        TTYVHangup=no
+        TTYVTDisallocate=yes
+      owner: root
+      group: root
+      mode: "0644"
+    become: true
+    register: ly_override
+
+  - name: "Reload systemd after Ly override"
+    ansible.builtin.systemd:
+      daemon_reload: true
+    become: true
+    when: ly_override.changed
+
   # ── UI components ─────────────────────────────────────────────────────────
 
   - name: "Install Waybar"
