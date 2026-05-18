@@ -90,6 +90,7 @@
       - openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
       - wireguard-tools # next generation secure network tunnel - tools for configuration
       - vortix # A TUI for WireGuard and OpenVPN with real-time telemetry and leak guarding
+      - v2ray # A platform for building proxies to bypass network restrictions
       update_cache: true
       state: latest
     become: true
@@ -97,8 +98,12 @@
   - name: "Install VLESS apps"
     kewlfft.aur.aur:
       name:
-      - sing-geoip-db-git # sing-geoip (database)
-      - sing-geosite-db-git # sing-geosite (database)
+      - v2raya-bin # A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
+      - sing-geoip-rule-set-git # GeoIP Rule Sets for sing-box
+      - sing-geosite-rule-set-git # Geosite Rule Sets for sing-box
+      - flclashx-bin # Fork of FlClash | A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
+      - clash-verge-rev-bin # Continuation of Clash Verge | A Clash Meta GUI based on Tauri
+      use: paru
       state: latest
     become: true
     become_user: aur_builder
