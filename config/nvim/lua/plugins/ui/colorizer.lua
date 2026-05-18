@@ -1,10 +1,8 @@
 return {
   {
-    "norcalli/nvim-colorizer.lua",
-    event = { "BufReadPost", "BufNewFile" },
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
     config = true,
-    opts = {
-      "*",
-    },
+    opts = {},
   },
 }
