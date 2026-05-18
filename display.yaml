@@ -10,6 +10,7 @@
     - niri
     - rofi
     - waybar
+    - ai-quota-waybar
 
   tasks:
   # ── Graphics & Wayland ────────────────────────────────────────────────────
@@ -120,6 +121,15 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install AI Usage Waybar Plugins"
+    kewlfft.aur.aur:
+      name:
+      - codexbar
+      - ai-quota-waybar-git
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: "Install awww"
     community.general.pacman:
       name:
@@ -177,7 +187,7 @@
   - name: "Install hypridle"
     community.general.pacman:
       name:
-      - hypridle  # Idle management daemon for Wayland
+      - hypridle # Idle management daemon for Wayland
       - hyprland-protocols # Wayland protocol extensions for Hyprland
       update_cache: true
       state: latest
@@ -193,7 +203,7 @@
   - name: "Install gammastep"
     community.general.pacman:
       name:
-      - gammastep  # Adjusts the color temperature of your screen according to your surroundings.
+      - gammastep # Adjusts the color temperature of your screen according to your surroundings.
       update_cache: true
       state: latest
     become: true
