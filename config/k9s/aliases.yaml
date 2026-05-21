@@ -13,7 +13,7 @@ aliases:
   gfr: globalforwardingrules.compute.gcp.m.upbound.io
   thp: targethttpproxies.compute.gcp.m.upbound.io
   rs: runservices.run.cnrm.cloud.google.com
-  ed: xedges.funnelflux.pro
+  ed: xedgestacks.funnelflux.pro
   dd: xdevicedetectors.funnelflux.pro
   df: xdragonflies.funnelflux.pro
-  lb: xgclb.funnelflux.pro
+  xcr: xcloudruns.funnelflux.pro

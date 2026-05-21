@@ -37,11 +37,11 @@ local function split_nav(resize_or_move, key)
 end
 
 config.color_scheme = "Catppuccin Macchiato"
-config.font = wezterm.font("Ubuntu Mono Ligaturized", {
+config.font = wezterm.font("Ioskeley Mono Nerd Font", {
   weight = "Regular",
   undo,
 })
-config.font_size = 14.5
+config.font_size = 13.5
 
 config.enable_tab_bar = true
 

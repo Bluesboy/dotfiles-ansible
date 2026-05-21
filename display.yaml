@@ -232,15 +232,18 @@
       - ttf-nerd-fonts-symbols-common # High number of extra glyphs from popular 'iconic fonts' (common files)
       - ttf-nerd-fonts-symbols-mono # High number of extra glyphs from popular 'iconic fonts' (monospace)
       - ttf-noto-nerd # Patched font Noto from nerd fonts library
+      - ttf-jetbrains-mono # Typeface for developers, by JetBrains
+      - ttf-jetbrains-mono-nerd # Patched font JetBrains Mono from nerd fonts library
       - otf-firamono-nerd # Patched font Fira (Fura) Mono from nerd fonts library
       update_cache: true
       state: latest
     become: true
 
-  - name: "Install Ubuntu Mono Ligaturized"
+  - name: "Install Nerd Fonts from AUR"
     kewlfft.aur.aur:
       name:
       - ttf-ubuntu-mono-ligaturized-git # Ubuntu Mono font with programming ligatures
+      - ttf-ioskeley-mono-nerd # Ioskeley Mono Nerd Font (Hinted) - A patched version for standard screens
       state: latest
     become: true
     become_user: aur_builder
