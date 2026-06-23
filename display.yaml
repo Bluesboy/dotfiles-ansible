@@ -11,6 +11,7 @@
     - rofi
     - waybar
     - ai-quota-waybar
+    - xdg-desktop-portal
 
   tasks:
   # ── Graphics & Wayland ────────────────────────────────────────────────────
