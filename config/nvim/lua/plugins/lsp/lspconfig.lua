@@ -201,6 +201,7 @@ return {
               lint = {
                 enabled = true,
                 path = "ansible-lint",
+                arguments = "-x yaml[indentation]",
               },
             },
           },
