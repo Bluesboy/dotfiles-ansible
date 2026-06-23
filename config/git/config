@@ -9,6 +9,7 @@
 
 [core]
   editor = $EDITOR
+	excludesfile = /home/bluesboy/.config/git/ignore
 
 [alias]
   lo = log -10
