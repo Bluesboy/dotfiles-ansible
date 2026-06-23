@@ -21,6 +21,8 @@
       name:
       - bluez # Daemons for the bluetooth protocol stack
       - bluez-utils # Development and debugging utilities for the bluetooth protocol stack
+      - bluez-tools # A set of tools to manage Bluetooth devices for Linux
+      - bluetui # TUI for managing bluetooth devices
       state: latest
     become: true
 
