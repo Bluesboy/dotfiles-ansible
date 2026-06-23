@@ -101,6 +101,7 @@
       - github-cli # The GitHub CLI
       - go-yq # Portable command-line YAML processor
       - hub # cli interface for Github
+      - impala # TUI for managing wifi
       - iwd # Internet Wireless Daemon
       - jq # Command-line JSON processor
       - lazygit # Simple terminal UI for git commands
@@ -108,7 +109,6 @@
       - mediainfo # Supplies technical and tag information about a video or audio file (CLI interface)
       - navi # An interactive cheatsheet tool for the command-line
       - neovim # Fork of Vim aiming to improve user experience, plugins, and GUIs
-      # - networkmanager # Network connection manager and user applications
       - nmap # Utility for network discovery and security auditing
       - obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
       - oha # Ohayou(おはよう), HTTP load generator, inspired by rakyll/hey with tui animationq
