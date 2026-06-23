@@ -395,6 +395,15 @@
     become: true
     become_user: aur_builder
 
+  - name: "Install FluxCD tools"
+    kewlfft.aur.aur:
+      name:
+      - flux-bin # Open and extensible continuous delivery solution for Kubernetes
+      - flux-operator # GitOps on Autopilot Mode
+      state: latest
+    become: true
+    become_user: aur_builder
+
   - name: 'Install watchers'
     kewlfft.aur.aur:
       name:
