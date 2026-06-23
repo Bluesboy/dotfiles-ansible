@@ -601,6 +601,13 @@
       state: latest
     become: true
 
+  - name: Enable Ollama
+    ansible.builtin.systemd:
+      name: ollama
+      state: started
+      enabled: true
+    become: true
+
   - name: "Install 'codebase' Node package"
     community.general.npm:
       name: '@autodev/codebase'
