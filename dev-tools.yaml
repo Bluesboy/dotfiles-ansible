@@ -178,6 +178,13 @@
     become: true
     become_user: aur_builder
 
+  - name: "AST Grep"
+    community.general.pacman:
+      name:
+      - ast-grep # CLI tool for code structural search, lint and rewriting
+      state: latest
+    become: true
+
   - name: "Rust"
     community.general.pacman:
       name:
@@ -233,6 +240,13 @@
     community.general.pacman:
       name:
       - python-pynvim # Python client for Neovim
+      state: latest
+    become: true
+
+  - name: "Install OpenJDK"
+    community.general.pacman:
+      name:
+      - jdk-openjdk # OpenJDK Java 26 development kit
       state: latest
     become: true
 
@@ -560,6 +574,7 @@
       - claude-desktop-native # Unofficial Claude Desktop for Linux
       - qwen-code-bin # Open-source AI agent based on Gemini CLI by QwenLM
       - opencode-qwencode-oauth # Qwen OAuth authentication plugin for opencode with multi-account rotation
+      - pi # AI coding agent for the terminal — minimal, extensible and optimized for tool use
       state: latest
     become: true
     become_user: aur_builder
@@ -575,6 +590,27 @@
   - name: "Install 'skills' Node package"
     community.general.npm:
       name: skills
+      global: yes
+      state: latest
+    become: true
+
+  - name: "Install Ollama"
+    community.general.pacman:
+      name:
+      - ollama # Create, run and share large language models (LLMs)
+      state: latest
+    become: true
+
+  - name: "Install 'codebase' Node package"
+    community.general.npm:
+      name: '@autodev/codebase'
+      global: yes
+      state: latest
+    become: true
+
+  - name: "Install 'opencode-codebase-index' Node package"
+    community.general.npm:
+      name: 'opencode-codebase-index'
       global: yes
       state: latest
     become: true
@@ -616,3 +652,11 @@
     community.general.pipx:
       name: crossplane-function-pythonic
       state: latest
+
+  - name: "Install k0sctl"
+    kewlfft.aur.aur:
+      name:
+      - k0sctl-bin # A bootstrapping and management tool for k0s clusters.
+      state: latest
+    become: true
+    become_user: aur_builder
