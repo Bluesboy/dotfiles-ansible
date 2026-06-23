@@ -176,6 +176,7 @@
       name:
       - systemd-manager-tui # Terminal UI for managing systemd services
       - sysz # fzf terminal UI for systemctl
+      - systemctl-tui # A fast, simple TUI for interacting with systemd services and their logs
       state: latest
     become: true
     become_user: aur_builder
