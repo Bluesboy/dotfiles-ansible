@@ -123,6 +123,7 @@
       - smartmontools # Control and monitor S.M.A.R.T. enabled ATA and SCSI Hard Drives
       - starship # The cross-shell prompt for astronauts
       - thefuck # Magnificent app which corrects your previous console command
+      - typst # A markup-based typesetting system for the sciences
       - tmux # A terminal multiplexer
       - trash-cli # Command line trashcan (recycle bin) interface
       - unarchiver # unar and lsar: Objective-C tools for uncompressing archive files
