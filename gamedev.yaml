@@ -4,6 +4,6 @@
   hosts: localhost
 
   tasks:
-  - name: Install "bevy" Rust package
+  - name: "Install bevy Rust package"
     community.general.cargo:
       name: bevy

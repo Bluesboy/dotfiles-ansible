@@ -162,11 +162,11 @@
       state: latest
     become: true
 
-  - name: Install "tree-sitter-cli" Rust package
+  - name: "Install tree-sitter-cli Rust package"
     community.general.cargo:
       name: tree-sitter-cli
 
-  - name: Install "texlab" Rust package
+  - name: "Install texlab Rust package"
     community.general.cargo:
       name: texlab
 
@@ -199,7 +199,7 @@
       state: directory
       mode: "0755"
 
-  - name: Install yaml-diff
+  - name: "Install yaml-diff"
     quera.github.install_from_github:
       repo: sters/yaml-diff
       asset_regex: yaml-diff.*\.tar\.gz
@@ -209,7 +209,7 @@
         dst: "{{ ansible_facts['user_dir'] }}/.local/bin/"
         mode: "0755"
 
-  - name: Install diffnest
+  - name: "Install diffnest"
     quera.github.install_from_github:
       repo: sters/diffnest
       asset_regex: diffnest.*\.tar\.gz
@@ -445,7 +445,7 @@
       state: latest
     become: true
 
-  - name: Enable Ollama
+  - name: "Enable Ollama"
     ansible.builtin.systemd:
       name: ollama
       state: started

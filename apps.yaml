@@ -11,7 +11,7 @@
     - zathura
 
   tasks:
-  - name: "Create symlink for NeoVim configuration"
+  - name: "Create symlinks for application configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
       dest: "{{ ansible_facts['user_dir'] }}/.config/{{ item }}"

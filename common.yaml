@@ -52,13 +52,13 @@
       group: "{{ ansible_facts['user_gid'] }}"
     loop: "{{ configs }}"
 
-  - name: "Add usev rule for Dactyl"
+  - name: "Add udev rule for Dactyl"
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/config/udev/dactyl.rules"
       dest: /etc/udev/rules.d/92-viia.rules
       owner: root
       group: root
-      mode: '0644'
+      mode: "0644"
     become: true
 
   - name: "Install common packages"
@@ -151,7 +151,7 @@
       state: present
     become: true
 
-  - name: Install Tmux Plugin Manager
+  - name: "Install Tmux Plugin Manager"
     ansible.builtin.git:
       repo: https://github.com/tmux-plugins/tpm.git
       dest: "{{ ansible_facts['user_dir'] }}/.config/tmux/plugins/tpm"

@@ -14,7 +14,7 @@
     - xdg-desktop-portal
 
   tasks:
-  # ── Graphics & Wayland ────────────────────────────────────────────────────
+  # Graphics and Wayland
 
   - name: "Install Graphics drivers"
     community.general.pacman:
@@ -51,7 +51,7 @@
       state: latest
     become: true
 
-  # ── Display manager ───────────────────────────────────────────────────────
+  # Display manager
 
   - name: "Install Ly"
     community.general.pacman:
@@ -99,7 +99,7 @@
     register: ly_override
     notify: "Reload systemd"
 
-  # ── UI components ─────────────────────────────────────────────────────────
+  # UI components
 
   - name: "Install Waybar"
     community.general.pacman:
@@ -154,7 +154,7 @@
     become: true
     become_user: "{{ aur_builder_user }}"
 
-  - name: Enable vicinae
+  - name: "Enable vicinae"
     ansible.builtin.systemd:
       name: vicinae
       state: started
@@ -175,7 +175,7 @@
       enabled: true
       state: started
 
-  # ── Idle & color temperature ──────────────────────────────────────────────
+  # Idle and color temperature
 
   - name: "Install hypridle"
     community.general.pacman:
@@ -199,14 +199,14 @@
       state: latest
     become: true
 
-  - name: Enable gammastep
+  - name: "Enable gammastep"
     ansible.builtin.systemd:
       name: gammastep
       state: started
       enabled: true
       scope: user
 
-  # ── Fonts ─────────────────────────────────────────────────────────────────
+  # Fonts
 
   - name: "Install Fonts"
     community.general.pacman:
@@ -238,7 +238,7 @@
     become: true
     become_user: "{{ aur_builder_user }}"
 
-  # ── Misc ──────────────────────────────────────────────────────────────────
+  # Misc
 
   - name: "Clipboard"
     kewlfft.aur.aur:

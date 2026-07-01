@@ -4,7 +4,7 @@
   hosts: localhost
 
   tasks:
-  # ── Limine bootloader ─────────────────────────────────────────────────────
+  # Limine bootloader
 
   - name: "Create Limine EFI directory"
     ansible.builtin.file:
