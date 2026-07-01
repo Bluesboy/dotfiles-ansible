@@ -263,10 +263,10 @@
   - name: "Symlink .gnupg configuration"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/gnupg/gpg-agent.conf"
-      dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
+      dest: "{{ ansible_facts['user_dir'] }}/.gnupg/gpg-agent.conf"
       state: link
-      owner: "{{ ansible_user_uid }}"
-      group: "{{ ansible_user_gid }}"
+      owner: "{{ ansible_facts['user_uid'] }}"
+      group: "{{ ansible_facts['user_gid'] }}"
 
   - name: "Lookup for HiDPI configs"
     ansible.builtin.find:
@@ -277,17 +277,17 @@
   - name: "Create symlinks for HiDPI configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/hidpi/{{ item.path | basename }}"
-      dest: "{{ ansible_env.HOME }}/{{ item.path | basename }}"
+      dest: "{{ ansible_facts['user_dir'] }}/{{ item.path | basename }}"
       state: link
-      owner: "{{ ansible_user_uid }}"
-      group: "{{ ansible_user_gid }}"
+      owner: "{{ ansible_facts['user_uid'] }}"
+      group: "{{ ansible_facts['user_gid'] }}"
     loop: "{{ hidpi.files }}"
 
   - name: "Create symlinks for configurations"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
-      dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+      dest: "{{ ansible_facts['user_dir'] }}/.config/{{ item }}"
       state: link
-      owner: "{{ ansible_user_uid }}"
-      group: "{{ ansible_user_gid }}"
+      owner: "{{ ansible_facts['user_uid'] }}"
+      group: "{{ ansible_facts['user_gid'] }}"
     loop: "{{ configs }}"
