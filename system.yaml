@@ -2,8 +2,6 @@
 ---
 - name: "Configure system bootloader"
   hosts: localhost
-  vars:
-    ansible_ask_become_pass: true
 
   tasks:
   # ── Limine bootloader ─────────────────────────────────────────────────────

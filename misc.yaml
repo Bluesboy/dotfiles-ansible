@@ -9,28 +9,28 @@
       name: downgrade # Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Brave browser"
     kewlfft.aur.aur:
       name: brave-bin # Web browser that blocks ads and trackers by default
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom # Video Conferencing and Web Conferencing Service
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install TLDR"
     kewlfft.aur.aur:
       name: tlrc-bin # Official tldr client written in Rust
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install OBS"
     community.general.pacman:
@@ -103,10 +103,10 @@
       - sing-geosite-rule-set-git # Geosite Rule Sets for sing-box
       - flclashx-bin # Fork of FlClash | A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
       - clash-verge-rev-bin # Continuation of Clash Verge | A Clash Meta GUI based on Tauri
-      use: paru
+      use: "{{ aur_helper }}"
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install ExpressVPN"
     kewlfft.aur.aur:
@@ -114,7 +114,7 @@
       - expressvpn # Proprietary VPN client for Linux
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install XFR"
     kewlfft.aur.aur:
@@ -122,7 +122,7 @@
       - xfr-bin # A modern iperf3 alternative with a live TUI, multi-client server, and QUIC support
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Trippy"
     community.general.pacman:

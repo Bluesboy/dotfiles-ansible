@@ -3,7 +3,6 @@
 - name: "Install and configure display"
   hosts: localhost
   vars:
-    ansible_ask_become_pass: true
     configs:
     - gammastep
     - hypr
@@ -115,7 +114,7 @@
       - wttrbar-bin # Weather indicator for Waybar
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install AI Usage Waybar Plugins"
     kewlfft.aur.aur:
@@ -124,7 +123,7 @@
       - ai-quota-waybar-git
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install awww"
     community.general.pacman:
@@ -146,14 +145,14 @@
       - pinentry-rofi # rofi-based pinentry implementation
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Vicinae"
     kewlfft.aur.aur:
       name:
       - vicinae-bin # A focused launcher for your desktop — native, fast, extensible
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: Enable vicinae
     ansible.builtin.systemd:
@@ -237,7 +236,7 @@
       - ttf-ioskeley-mono-nerd # Ioskeley Mono Nerd Font (Hinted) - A patched version for standard screens
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   # ── Misc ──────────────────────────────────────────────────────────────────
 
@@ -247,7 +246,7 @@
       - clipboard # Cut, copy, and paste anything in your terminal.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install FFmpegthumbnailer"
     community.general.pacman:

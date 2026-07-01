@@ -3,7 +3,6 @@
 - name: "Install and configure common packages"
   hosts: localhost
   vars:
-    ansible_ask_become_pass: true
     configs:
     - bat
     - btop
@@ -47,7 +46,7 @@
   - name: "Create the `aur_builder` user"
     become: true
     ansible.builtin.user:
-      name: aur_builder
+      name: "{{ aur_builder_user }}"
       create_home: true
       group: wheel
 
@@ -55,7 +54,7 @@
     become: true
     ansible.builtin.lineinfile:
       path: /etc/sudoers.d/11-install-aur_builder
-      line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+      line: '{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman'
       create: true
       mode: "0440"
       validate: 'visudo -cf %s'
@@ -182,7 +181,7 @@
       - systemctl-tui # A fast, simple TUI for interacting with systemd services and their logs
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install lazyjournal"
     kewlfft.aur.aur:
@@ -190,7 +189,7 @@
       - lazyjournal # TUI for journalctl, file system logs, as well Docker and Podman containers for quick viewing and filtering with fuzzy find and regex support
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install rmlint"
     kewlfft.aur.aur:
@@ -198,4 +197,4 @@
       - rmlint-git # Tool to remove duplicates and other lint, being much faster than fdupes
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"

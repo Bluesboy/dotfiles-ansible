@@ -3,7 +3,6 @@
 - name: "Install and configure virtualization"
   hosts: localhost
   vars:
-    ansible_ask_become_pass: true
     configs:
     - k9s
     - nix
@@ -45,7 +44,7 @@
       - lima-bin # Linux virtual machines, typically on macOS, for running containerd.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Kubecolor"
     kewlfft.aur.aur:
@@ -53,7 +52,7 @@
       - kubecolor # Colorize your kubectl output
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Set subuids for Podman"
     ansible.builtin.lineinfile:
@@ -84,7 +83,7 @@
       - lazydocker # A simple terminal UI for docker and docker-compose, written in Go with the gocui library.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Enable nested virtualization"
     community.general.modprobe:
@@ -164,7 +163,7 @@
       - cockpit-pacman # Cockpit plugin for Arch Linux package management using alpm.rs
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install kind for kubernetes"
     kewlfft.aur.aur:
@@ -172,7 +171,7 @@
       - kind # Kubernetes IN Docker - local clusters for testing Kubernetes
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Configure groups for current user"
     ansible.builtin.user:
@@ -205,4 +204,4 @@
       - oxker # A simple TUI to view & control Docker containers
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"

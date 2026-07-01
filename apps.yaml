@@ -3,7 +3,6 @@
 - name: "Install and configure applications"
   hosts: localhost
   vars:
-    ansible_ask_become_pass: true
     configs:
     - alacritty
     - mpv
@@ -26,14 +25,14 @@
       name: ctpv-git # Fast image previews for lf
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Archivemount"
     kewlfft.aur.aur:
       name: archivemount
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Common GUI tools"
     community.general.pacman:
@@ -74,14 +73,14 @@
       name: pass-git-helper
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Opera"
     kewlfft.aur.aur:
       name: opera # A fast and secure web browser
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install browserpass"
     community.general.pacman:
@@ -125,7 +124,7 @@
       - wayscriber-bin # Screen annotation tool for Wayland compositors (prebuilt binaries)
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Enable wayscriber"
     ansible.builtin.systemd:
@@ -139,7 +138,7 @@
       name: slack-desktop # Slack Desktop (Beta) for Linux
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install tewi"
     community.general.pipx:
@@ -151,21 +150,21 @@
       name: trgui-ng
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install gh-dash"
     kewlfft.aur.aur:
       name: gh-dash # A beautiful CLI dashboard extension for GitHub to display pull requests and issues with filters you care about
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Skype"
     kewlfft.aur.aur:
       name: skypeforlinux-bin # Skype for Linux - Stable/Release Version
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Thunderbird"
     community.general.pacman:
@@ -181,14 +180,14 @@
       name: postman-bin
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Git Extras"
     kewlfft.aur.aur:
       name: git-extras
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Transmission"
     community.general.pacman:
@@ -209,4 +208,4 @@
       name: stig # TUI and CLI client for the Transmission daemon
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"

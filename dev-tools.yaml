@@ -3,7 +3,6 @@
 - name: "Install and configure development tools"
   hosts: localhost
   vars:
-    ansible_ask_become_pass: true
     configs:
     - stylua
     - yamllint
@@ -34,7 +33,7 @@
       - sqlit # The lazygit of SQL databases - a lightweight TUI for SQL Server, PostgreSQL, MySQL, SQLite, and more
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Sipcalc"
     kewlfft.aur.aur:
@@ -42,7 +41,7 @@
       - sipcalc # An advanced console based IP subnet calculator
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: 'Install "tenv"'
     kewlfft.aur.aur:
@@ -50,7 +49,7 @@
       - tenv-bin # OpenTofu, Terraform, Terragrunt, Terramate and Atmos version manager, written in Go
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Lazymake"
     kewlfft.aur.aur:
@@ -58,7 +57,7 @@
       - lazymake-bin # Modern TUI for Makefiles with interactive target selection, dependency visualization, and command safety analysis
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Doggo"
     kewlfft.aur.aur:
@@ -66,7 +65,7 @@
       - doggo-bin # Command-line DNS client for humans
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install serie"
     community.general.pacman:
@@ -145,7 +144,7 @@
       - ueberzugpp # Command line utility which allows to display images in the terminal, written in C++
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Helm LS"
     kewlfft.aur.aur:
@@ -153,7 +152,7 @@
       - helm-ls-bin # Language server for Helm
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Cairosvg"
     community.general.pacman:
@@ -171,14 +170,14 @@
       name: python-plotly # An open-source, interactive graphing library
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Kaleido"
     kewlfft.aur.aur:
       name: python-kaleido-bin # Static image export for web-based visualization libraries with zero dependencies
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "AST Grep"
     community.general.pacman:
@@ -201,14 +200,14 @@
       use: makepkg
       state: present
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Paru"
     kewlfft.aur.aur:
       name: paru-git # Feature packed AUR helper
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "NPM"
     community.general.pacman:
@@ -285,7 +284,7 @@
       - stylua # Code formatter for Lua
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Git BFG"
     kewlfft.aur.aur:
@@ -293,7 +292,7 @@
       - bfg # Removes large or troublesome blobs like git-filter-branch does, but faster.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Git Filter Repo"
     community.general.pacman:
@@ -307,7 +306,7 @@
       name: krew # Krew is the package manager for kubectl plugins
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Google Cloud CLI And Plugins"
     kewlfft.aur.aur:
@@ -317,7 +316,7 @@
       - google-cloud-cli-gsutil # Cloud Storage Command Line Tool: gsutil is not the recommended CLI for Cloud Storage
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Istioctl"
     community.general.pacman:
@@ -346,7 +345,7 @@
       - bruno-bin # Opensource API Client for Exploring and Testing APIs
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Libwebkit 4.1"
     community.general.pacman:
@@ -361,7 +360,7 @@
       - hoppscotch-bin # Hoppscotch. Open source API development ecosystem
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "AUR Benchmarks"
     kewlfft.aur.aur:
@@ -371,7 +370,7 @@
       - wrk # Modern HTTP benchmarking tool
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Benchmarks"
     community.general.pacman:
@@ -394,7 +393,7 @@
       - redisinsight # Desktop manager that provides an intuitive and efficient GUI for Redis, allowing you to interact with your databases, monitor, and manage your data.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "ArgoCD"
     community.general.pacman:
@@ -409,7 +408,7 @@
       - argonaut-bin # A GitOps CLI tool for managing ArgoCD applications
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install FluxCD tools"
     kewlfft.aur.aur:
@@ -418,7 +417,7 @@
       - flux-operator # GitOps on Autopilot Mode
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: 'Install watchers'
     kewlfft.aur.aur:
@@ -427,7 +426,7 @@
       - hwatch # A modern alternative to the watch command
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: 'Create "g" installer cache directory'
     ansible.builtin.file:
@@ -457,7 +456,7 @@
       - act # Run your GitHub Actions locally
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Exercism CLI"
     kewlfft.aur.aur:
@@ -465,7 +464,7 @@
       - exercism # Command line tool for exercism.io
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install TeXlive"
     community.general.pacman:
@@ -492,7 +491,7 @@
       - rancher-k3d-bin # Little helper to run Rancher Labs k3s in Docker
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install dyff"
     kewlfft.aur.aur:
@@ -500,7 +499,7 @@
       - dyff-bin # diff tool for YAML files
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Create GitHub installer state directory"
     ansible.builtin.file:
@@ -546,7 +545,7 @@
       - cloud-sql-proxy-bin # Google Cloud SQL Auth proxy
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Koji"
     kewlfft.aur.aur:
@@ -554,7 +553,7 @@
       - git-koji-bin # An interactive CLI for creating conventional commits
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Posting"
     kewlfft.aur.aur:
@@ -562,7 +561,7 @@
       - posting # The modern API client that lives in your terminal
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install DevBox"
     kewlfft.aur.aur:
@@ -570,7 +569,7 @@
       - devbox-bin # A command-line tool that lets you easily create isolated shells for development.(Written in Go.Prebuilt version)
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install Cocogitto"
     community.general.pacman:
@@ -592,7 +591,7 @@
       - pi # AI coding agent for the terminal — minimal, extensible and optimized for tool use
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install RTK"
     kewlfft.aur.aur:
@@ -600,7 +599,7 @@
       - rtk-bin # CLI proxy that reduces LLM token consumption by 60-90% on common dev commands
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install 'skills' Node package"
     community.general.npm:
@@ -643,7 +642,7 @@
       - codebase-memory-mcp-ui-bin # High-performance code intelligence MCP server with persistent knowledge graph (with UI)
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install KCL Lang"
     kewlfft.aur.aur:
@@ -651,7 +650,7 @@
       - kcl-lang # KCL Programming Language
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install gomplate"
     kewlfft.aur.aur:
@@ -659,7 +658,7 @@
       - gomplate-bin # A flexible commandline tool for template rendering. Supports lots of local and remote datasources
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install gomplate"
     kewlfft.aur.aur:
@@ -669,7 +668,7 @@
       - kafkactl # Command Line Tool for managing Apache Kafka
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
 
   - name: "Install mise"
     community.general.pacman:
@@ -689,4 +688,4 @@
       - k0sctl-bin # A bootstrapping and management tool for k0s clusters.
       state: latest
     become: true
-    become_user: aur_builder
+    become_user: "{{ aur_builder_user }}"
