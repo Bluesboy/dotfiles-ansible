@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure audio"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
 

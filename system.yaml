@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Configure system bootloader"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
 
@@ -51,9 +52,10 @@
     become: true
 
   - name: "Check if Limine EFI entry already exists"
-    ansible.builtin.shell:
-      cmd: efibootmgr | grep -q "Limine"
-    register: limine_efi_entry
+    ansible.builtin.command:
+      cmd: efibootmgr
+    register: limine_efi_entries
+    changed_when: false
     failed_when: false
     become: true
 
@@ -66,5 +68,6 @@
         --part 1
         --label "Limine"
         --loader '\EFI\limine\BOOTX64.EFI'
-    when: limine_efi_entry.rc != 0
+    when: "'Limine' not in limine_efi_entries.stdout"
+    changed_when: true
     become: true

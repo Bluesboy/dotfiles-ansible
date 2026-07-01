@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install miscellaneous packages"
+  hosts: localhost
 
   tasks:
   - name: "Install Downgrade"

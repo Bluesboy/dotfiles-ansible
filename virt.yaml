@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure virtualization"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:

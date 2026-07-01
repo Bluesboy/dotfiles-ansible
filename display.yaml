@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure display"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:
@@ -97,12 +98,7 @@
       mode: "0644"
     become: true
     register: ly_override
-
-  - name: "Reload systemd after Ly override"
-    ansible.builtin.systemd:
-      daemon_reload: true
-    become: true
-    when: ly_override.changed
+    notify: "Reload systemd"
 
   # ── UI components ─────────────────────────────────────────────────────────
 
@@ -291,3 +287,9 @@
       owner: "{{ ansible_facts['user_uid'] }}"
       group: "{{ ansible_facts['user_gid'] }}"
     loop: "{{ configs }}"
+
+  handlers:
+  - name: "Reload systemd"
+    ansible.builtin.systemd:
+      daemon_reload: true
+    become: true

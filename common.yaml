@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure common packages"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:
@@ -15,7 +16,6 @@
     - tmux
     - tmux-powerline
     - yazi
-    - yamllint
 
   tasks:
   - name: "Disable PC speaker in console"
@@ -57,6 +57,7 @@
       path: /etc/sudoers.d/11-install-aur_builder
       line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
       create: true
+      mode: "0440"
       validate: 'visudo -cf %s'
 
   - name: "Create symlink for configuration directories"
@@ -171,6 +172,7 @@
     ansible.builtin.git:
       repo: https://github.com/tmux-plugins/tpm.git
       dest: "{{ ansible_facts['user_dir'] }}/.config/tmux/plugins/tpm"
+      version: master
 
   - name: "Install systemd tools"
     kewlfft.aur.aur:

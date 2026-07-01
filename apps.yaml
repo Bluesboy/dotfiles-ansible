@@ -1,6 +1,7 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure applications"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:
@@ -97,10 +98,17 @@
       state: latest
     become: true
 
-  - name: "Make browserpass host config"
-    make:
-      chdir: /usr/lib/browserpass
-      target: hosts-chrome-user
+  - name: "Create Chrome native messaging hosts directory"
+    ansible.builtin.file:
+      path: "{{ ansible_facts['user_dir'] }}/.config/google-chrome/NativeMessagingHosts"
+      state: directory
+      mode: "0755"
+
+  - name: "Link browserpass Chrome host config"
+    ansible.builtin.file:
+      src: /usr/lib/browserpass/hosts/chromium/com.github.browserpass.native.json
+      dest: "{{ ansible_facts['user_dir'] }}/.config/google-chrome/NativeMessagingHosts/com.github.browserpass.native.json"
+      state: link
 
   - name: "Install Messengers"
     community.general.pacman:

@@ -1,3 +1,4 @@
 ---
 rules:
   indentation: disable
+  line-length: disable

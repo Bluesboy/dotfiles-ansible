@@ -1,10 +1,12 @@
 #!/usr/bin/env ansible-playbook
 ---
-- hosts: localhost
+- name: "Install and configure development tools"
+  hosts: localhost
   vars:
     ansible_ask_become_pass: true
     configs:
     - stylua
+    - yamllint
 
   tasks:
   - name: "Create symlink for configuration directories"
@@ -427,20 +429,27 @@
     become: true
     become_user: aur_builder
 
+  - name: 'Create "g" installer cache directory'
+    ansible.builtin.file:
+      path: "{{ ansible_facts['user_dir'] }}/.cache"
+      state: directory
+      mode: "0755"
+
   - name: 'Download "g" install script'
     ansible.builtin.get_url:
       url: https://git.io/g-install
-      dest: /tmp/g-install
-      mode: '0775'
+      dest: "{{ ansible_facts['user_dir'] }}/.cache/g-install"
+      mode: "0755"
+      force: true
+    changed_when: false
 
   - name: 'Execute "g" install script'
-    ansible.builtin.shell:
-      cmd: /tmp/g-install -y
-
-  - name: 'Remove "g" install script'
-    ansible.builtin.file:
-      path: /tmp/g-install
-      state: absent
+    ansible.builtin.command:
+      cmd: "{{ ansible_facts['user_dir'] }}/.cache/g-install -y"
+    register: g_install
+    changed_when: >-
+      'g has been successfully installed' in g_install.stdout
+      or 'g has been successfully upgraded' in g_install.stdout
 
   - name: "Install ACT"
     kewlfft.aur.aur:
@@ -493,25 +502,31 @@
     become: true
     become_user: aur_builder
 
+  - name: "Create GitHub installer state directory"
+    ansible.builtin.file:
+      path: "{{ ansible_facts['user_dir'] }}/.local/state/ansible-github"
+      state: directory
+      mode: "0755"
+
   - name: Install yaml-diff
     quera.github.install_from_github:
       repo: sters/yaml-diff
       asset_regex: yaml-diff.*\.tar\.gz
+      version_file: "{{ ansible_facts['user_dir'] }}/.local/state/ansible-github/yaml-diff.version"
       move_rules:
       - src_regex: yaml-diff
-        dst: "{{ ansible_facts['env'].HOME }}/.local/bin/"
-        mode: 0755
-    become: true
+        dst: "{{ ansible_facts['user_dir'] }}/.local/bin/"
+        mode: "0755"
 
   - name: Install diffnest
     quera.github.install_from_github:
       repo: sters/diffnest
       asset_regex: diffnest.*\.tar\.gz
+      version_command: "{{ ansible_facts['user_dir'] }}/.local/bin/diffnest --version"
       move_rules:
       - src_regex: diffnest
-        dst: "{{ ansible_facts['env'].HOME }}/.local/bin/"
-        mode: 0755
-    become: true
+        dst: "{{ ansible_facts['user_dir'] }}/.local/bin/"
+        mode: "0755"
 
   - name: "Install lnav"
     community.general.pacman:
