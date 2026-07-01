@@ -27,7 +27,7 @@
       - go-task # A task runner written in Go
       - mise # The front-end to your dev env
       - serie # A rich git commit graph in your terminal
-      state: latest
+      state: present
     become: true
 
   - name: "Install core developer tools from AUR"
@@ -37,7 +37,7 @@
       - lazymake-bin # Modern TUI for Makefiles with interactive target selection, dependency visualization, and command safety analysis
       - tenv-bin # OpenTofu, Terraform, Terragrunt, Terramate and Atmos version manager, written in Go
       - ueberzugpp # Command line utility which allows to display images in the terminal, written in C++
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -52,7 +52,7 @@
   - name: "Install Paru"
     kewlfft.aur.aur:
       name: paru-git # Feature packed AUR helper
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -64,34 +64,34 @@
       - python-cairosvg # SVG converter based on Cairo. It can export SVG files to PDF, PostScript and PNG files
       - python-jupyter-client
       - python-pynvim # Python client for Neovim
-      state: latest
+      state: present
     become: true
 
   - name: "Install pipx"
     community.general.pacman:
       name: python-pipx
-      state: latest
+      state: present
     become: true
 
   - name: "Install UV"
     community.general.pipx:
       name: uv # An extremely fast Python package installer and resolver written in Rust
-      state: latest
+      state: present
 
   - name: "Install Virtualenv"
     community.general.pipx:
       name: virtualenv
-      state: latest
+      state: present
 
   - name: "Install VirtualFish"
     community.general.pipx:
       name: virtualfish # Fish shell tool for managing Python virtual environments
-      state: latest
+      state: present
 
   - name: "Install iPython"
     community.general.pipx:
       name: ipython
-      state: latest
+      state: present
 
   - name: "Install Euporie"
     community.general.pipx:
@@ -101,35 +101,35 @@
   - name: "Install Jupyterlab"
     community.general.pipx:
       name: jupyterlab
-      state: latest
+      state: present
 
   - name: "Install Jupyterlab Vim"
     community.general.pipx:
       name: jupyterlab-vim
-      state: latest
+      state: present
       install_deps: true
 
   - name: "Install TimeWeb CLI"
     community.general.pipx:
       name: twc-cli
-      state: latest
+      state: present
 
   - name: "Install pnglatex"
     community.general.pipx:
       name: pnglatex
-      state: latest
+      state: present
 
   - name: "Install function-pythonic"
     community.general.pipx:
       name: crossplane-function-pythonic
-      state: latest
+      state: present
 
   - name: "Install Python visualization packages from AUR"
     kewlfft.aur.aur:
       name:
       - python-kaleido-bin # Static image export for web-based visualization libraries with zero dependencies
       - python-plotly # An open-source, interactive graphing library
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -145,21 +145,21 @@
       - npm # JavaScript package manager
       - ruby # An object-oriented language for quick and easy programming
       - rust # Systems programming language focused on safety, speed and concurrency
-      state: latest
+      state: present
     become: true
 
   - name: "Install Node version manager"
     community.general.npm:
       name: n
       global: true
-      state: latest
+      state: present
     become: true
 
   - name: "Install 'neovim' Node package"
     community.general.npm:
       name: neovim
       global: true
-      state: latest
+      state: present
     become: true
 
   - name: "Install tree-sitter-cli Rust package"
@@ -182,14 +182,14 @@
       - python-black # Uncompromising Python code formatter
       - shellcheck # Shell script analysis tool
       - yamllint # Linter for YAML files
-      state: latest
+      state: present
     become: true
 
   - name: "Install linters from AUR"
     kewlfft.aur.aur:
       name:
       - stylua # Code formatter for Lua
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -226,7 +226,7 @@
       name:
       - cocogitto # Set of CLI tools for the conventional commit and semver specifications
       - git-filter-repo # Quickly rewrite git repository history (filter-branch replacement)
-      state: latest
+      state: present
     become: true
 
   - name: "Install Git workflow tools from AUR"
@@ -235,7 +235,7 @@
       - act # Run your GitHub Actions locally
       - bfg # Removes large or troublesome blobs like git-filter-branch does, but faster.
       - git-koji-bin # An interactive CLI for creating conventional commits
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -245,13 +245,13 @@
     community.general.pacman:
       name:
       - ansible-lint # Checks playbooks for practices and behaviour that could potentially be improved.
-      state: latest
+      state: present
     become: true
 
   - name: "Install ansible-dev-tools"
     community.general.pipx:
       name: ansible-dev-tools
-      state: latest
+      state: present
 
   # SQL, API and databases
 
@@ -263,7 +263,7 @@
       - lazysql # A cross-platform TUI database management tool written in Go
       - redisinsight # Desktop manager that provides an intuitive and efficient GUI for Redis, allowing you to interact with your databases, monitor, and manage your data.
       - sqlit # The lazygit of SQL databases - a lightweight TUI for SQL Server, PostgreSQL, MySQL, SQLite, and more
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -271,7 +271,7 @@
     community.general.pacman:
       name:
       - webkit2gtk-4.1 # Web content engine for GTK
-      state: latest
+      state: present
     become: true
 
   - name: "Install API clients from AUR"
@@ -280,7 +280,7 @@
       - bruno-bin # Opensource API Client for Exploring and Testing APIs
       - hoppscotch-bin # Hoppscotch. Open source API development ecosystem
       - posting # The modern API client that lives in your terminal
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -293,7 +293,7 @@
       - lnav # A curses-based tool for viewing and analyzing log files
       - siege # An http regression testing and benchmarking utility
       - vegeta # HTTP load testing tool
-      state: latest
+      state: present
     become: true
 
   - name: "Install diagnostics and benchmark tools from AUR"
@@ -306,7 +306,7 @@
       - sipcalc # An advanced console based IP subnet calculator
       - viddy # A modern watch command
       - wrk # Modern HTTP benchmarking tool
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -319,7 +319,7 @@
       - istio # Istio configuration command line utility for service operators to debug and diagnose their Istio mesh
       - operator-sdk # SDK for building Kubernetes applications
       - packer # tool for creating identical machine images for multiple platforms from a single source configuration
-      state: latest
+      state: present
     become: true
 
   - name: "Install Cloud and Kubernetes tools from AUR"
@@ -338,7 +338,7 @@
       - kcl-lang # KCL Programming Language
       - krew # Krew is the package manager for kubectl plugins
       - rancher-k3d-bin # Little helper to run Rancher Labs k3s in Docker
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -349,7 +349,7 @@
       - kafkactl # Command Line Tool for managing Apache Kafka
       - kaskade # A text user interface for Kafka. Interact and consume topics from your terminal in style!
       - kcat-cli # A generic non-JVM producer and consumer for Apache Kafka, think of it as a netcat for Kafka
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -387,14 +387,14 @@
       - texlive-latexextra # TeX Live - LaTeX additional packages
       - texlive-meta # Metapackage to install Tex Live
       - texlive-plaingeneric # TeX Live - Plain (La)TeX packages
-      state: latest
+      state: present
     become: true
 
   - name: "Install learning tools from AUR"
     kewlfft.aur.aur:
       name:
       - exercism # Command line tool for exercism.io
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -404,7 +404,7 @@
     community.general.pacman:
       name:
       - ollama # Create, run and share large language models (LLMs)
-      state: latest
+      state: present
     become: true
 
   - name: "Install AI tools from AUR"
@@ -420,7 +420,7 @@
       - pi # AI coding agent for the terminal — minimal, extensible and optimized for tool use
       - qwen-code-bin # Open-source AI agent based on Gemini CLI by QwenLM
       - rtk-bin # CLI proxy that reduces LLM token consumption by 60-90% on common dev commands
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -428,21 +428,21 @@
     community.general.npm:
       name: skills
       global: true
-      state: latest
+      state: present
     become: true
 
   - name: "Install 'codebase' Node package"
     community.general.npm:
       name: '@autodev/codebase'
       global: true
-      state: latest
+      state: present
     become: true
 
   - name: "Install 'opencode-codebase-index' Node package"
     community.general.npm:
       name: 'opencode-codebase-index'
       global: true
-      state: latest
+      state: present
     become: true
 
   - name: "Enable Ollama"

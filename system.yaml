@@ -37,7 +37,7 @@
     community.general.pacman:
       name:
       - limine # An advanced, portable, multiprotocol bootloader
-      state: latest
+      state: present
     become: true
 
   - name: "Install Limine configuration"

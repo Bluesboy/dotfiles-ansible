@@ -7,28 +7,28 @@
   - name: "Install Downgrade"
     kewlfft.aur.aur:
       name: downgrade # Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Brave browser"
     kewlfft.aur.aur:
       name: brave-bin # Web browser that blocks ads and trackers by default
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom # Video Conferencing and Web Conferencing Service
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install TLDR"
     kewlfft.aur.aur:
       name: tlrc-bin # Official tldr client written in Rust
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -36,14 +36,14 @@
     community.general.pacman:
       name:
       - obs-studio # Free, open source software for live streaming and recording
-      state: latest
+      state: present
     become: true
 
   - name: "Install CUPS"
     community.general.pacman:
       name:
       - cups # OpenPrinting CUPS - daemon package
-      state: latest
+      state: present
     become: true
 
   - name: "Enable CUPS"
@@ -57,14 +57,14 @@
     community.general.pacman:
       name:
       - sane # Scanner Access Now Easy
-      state: latest
+      state: present
     become: true
 
   - name: "Install Skanpage"
     community.general.pacman:
       name:
       - skanpage # Utility to scan images and multi-page documents
-      state: latest
+      state: present
     become: true
 
   - name: "Install PacCap"
@@ -74,7 +74,7 @@
       - wireshark-qt # Network traffic and protocol analyzer/sniffer - Qt GUI
       - wireshark-cli # Network traffic and protocol analyzer/sniffer - CLI tools and data files
       - termshark # Terminal UI for tshark, inspired by Wireshark
-      state: latest
+      state: present
     become: true
 
   - name: "Install LibreOffice"
@@ -82,7 +82,7 @@
       name:
       - libreoffice-fresh # LibreOffice branch which contains new features and program enhancements
       - libreoffice-fresh-ru # Russian language pack for LibreOffice Fresh
-      state: latest
+      state: present
     become: true
 
   - name: "Install VPN clients"
@@ -92,7 +92,7 @@
       - wireguard-tools # next generation secure network tunnel - tools for configuration
       - vortix # A TUI for WireGuard and OpenVPN with real-time telemetry and leak guarding
       - v2ray # A platform for building proxies to bypass network restrictions
-      state: latest
+      state: present
     become: true
 
   - name: "Install VLESS apps"
@@ -104,7 +104,7 @@
       - flclashx-bin # Fork of FlClash | A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
       - clash-verge-rev-bin # Continuation of Clash Verge | A Clash Meta GUI based on Tauri
       use: "{{ aur_helper }}"
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -112,7 +112,7 @@
     kewlfft.aur.aur:
       name:
       - expressvpn # Proprietary VPN client for Linux
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -120,7 +120,7 @@
     kewlfft.aur.aur:
       name:
       - xfr-bin # A modern iperf3 alternative with a live TUI, multi-client server, and QUIC support
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -128,5 +128,5 @@
     community.general.pacman:
       name:
       - trippy # A network diagnostic tool
-      state: latest
+      state: present
     become: true

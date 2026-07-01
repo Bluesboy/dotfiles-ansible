@@ -22,7 +22,7 @@
       - mesa # An open-source implementation of the OpenGL specification
       - vulkan-radeon # Radeon's Vulkan mesa driver
       - upower # Abstraction for enumerating power devices, listening to device events and querying history and statistics
-      state: latest
+      state: present
     become: true
 
   - name: "Install Wayland"
@@ -41,14 +41,14 @@
       - xdg-desktop-portal-gtk # A backend implementation for xdg-desktop-portal using GTK
       - xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
       - xdg-desktop-portal-hyprland # xdg-desktop-portal backend for hyprland
-      state: latest
+      state: present
     become: true
 
   - name: "Install Niri"
     community.general.pacman:
       name:
       - niri # A scrollable-tiling Wayland compositor
-      state: latest
+      state: present
     become: true
 
   # Display manager
@@ -57,7 +57,7 @@
     community.general.pacman:
       name:
       - ly # TUI display manager
-      state: latest
+      state: present
     become: true
 
   - name: "Copy Ly configuration"
@@ -105,14 +105,14 @@
     community.general.pacman:
       name:
       - waybar # Highly customizable Wayland bar for Sway and Wlroots based compositors
-      state: latest
+      state: present
     become: true
 
   - name: "Install wttrbar"
     kewlfft.aur.aur:
       name:
       - wttrbar-bin # Weather indicator for Waybar
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -121,7 +121,7 @@
       name:
       - codexbar
       - ai-quota-waybar-git
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -129,21 +129,21 @@
     community.general.pacman:
       name:
       - awww # An Answer to your Wayland Wallpaper Woes
-      state: latest
+      state: present
     become: true
 
   - name: "Install Rofi"
     community.general.pacman:
       name:
       - rofi # A window switcher, application launcher and dmenu replacement
-      state: latest
+      state: present
     become: true
 
   - name: "Pinentry for Rofi"
     kewlfft.aur.aur:
       name:
       - pinentry-rofi # rofi-based pinentry implementation
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -165,7 +165,7 @@
     community.general.pacman:
       name:
       - mako # Lightweight notification daemon for Wayland
-      state: latest
+      state: present
     become: true
 
   - name: "Enable mako for the niri user session"
@@ -182,7 +182,7 @@
       name:
       - hypridle # Idle management daemon for Wayland
       - hyprland-protocols # Wayland protocol extensions for Hyprland
-      state: latest
+      state: present
     become: true
 
   - name: "Enable hypridle"
@@ -196,7 +196,7 @@
     community.general.pacman:
       name:
       - gammastep # Adjusts the color temperature of your screen according to your surroundings.
-      state: latest
+      state: present
     become: true
 
   - name: "Enable gammastep"
@@ -226,7 +226,7 @@
       - ttf-jetbrains-mono # Typeface for developers, by JetBrains
       - ttf-jetbrains-mono-nerd # Patched font JetBrains Mono from nerd fonts library
       - otf-firamono-nerd # Patched font Fira (Fura) Mono from nerd fonts library
-      state: latest
+      state: present
     become: true
 
   - name: "Install Nerd Fonts from AUR"
@@ -234,7 +234,7 @@
       name:
       - ttf-ubuntu-mono-ligaturized-git # Ubuntu Mono font with programming ligatures
       - ttf-ioskeley-mono-nerd # Ioskeley Mono Nerd Font (Hinted) - A patched version for standard screens
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -244,7 +244,7 @@
     kewlfft.aur.aur:
       name:
       - clipboard # Cut, copy, and paste anything in your terminal.
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -252,7 +252,7 @@
     community.general.pacman:
       name:
       - ffmpegthumbnailer # Lightweight video thumbnailer that can be used by file managers
-      state: latest
+      state: present
     become: true
 
   - name: "Symlink .gnupg configuration"

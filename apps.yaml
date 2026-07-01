@@ -23,14 +23,14 @@
   - name: "Install CTPV Git"
     kewlfft.aur.aur:
       name: ctpv-git # Fast image previews for lf
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Archivemount"
     kewlfft.aur.aur:
       name: archivemount
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -47,7 +47,7 @@
       - zathura-pdf-mupdf # PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
       - zathura-ps # Adds ps support to zathura by using the libspectre library
       - wezterm # A GPU-accelerated cross-platform terminal emulator and multiplexer
-      state: latest
+      state: present
     become: true
 
   - name: "Install Pass"
@@ -55,7 +55,7 @@
       name:
       - pass # Stores, retrieves, generates, and synchronizes passwords securely
       - pass-otp # A pass extension for managing one-time-password (OTP) tokens.
-      state: latest
+      state: present
     become: true
 
   - name: "Install Gopass"
@@ -65,20 +65,20 @@
       - gopass-jsonapi # jsonapi for gopass used for bridging to browsers
       - git-credential-gopass # git-credentials helper for gopass
       - zbar # Application and library for reading bar codes from various sources
-      state: latest
+      state: present
     become: true
 
   - name: "Install pass-git-helper"
     kewlfft.aur.aur:
       name: pass-git-helper
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Opera"
     kewlfft.aur.aur:
       name: opera # A fast and secure web browser
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -87,14 +87,14 @@
       name:
       - browserpass # Native host app for Browserpass, browser extension for zx2c4's pass (password manager)
       - browserpass-chromium # Chromium extension for Browserpass, browser extension for zx2c4's pass (password manager)
-      state: latest
+      state: present
     become: true
 
   - name: "Install Firefox"
     community.general.pacman:
       name:
       - firefox
-      state: latest
+      state: present
     become: true
 
   - name: "Create Chrome native messaging hosts directory"
@@ -115,14 +115,14 @@
       - telegram-desktop # Official Telegram Desktop client
       - element-desktop # Glossy Matrix collaboration client — desktop version.
       - discord # All-in-one voice and text chat for gamers
-      state: latest
+      state: present
     become: true
 
   - name: "Install wayscriber"
     kewlfft.aur.aur:
       name:
       - wayscriber-bin # Screen annotation tool for Wayland compositors (prebuilt binaries)
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -136,33 +136,33 @@
   - name: "Install Slack"
     kewlfft.aur.aur:
       name: slack-desktop # Slack Desktop (Beta) for Linux
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install tewi"
     community.general.pipx:
       name: tewi-transmission
-      state: latest
+      state: present
 
   - name: "Install trgui-ng"
     kewlfft.aur.aur:
       name: trgui-ng
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install gh-dash"
     kewlfft.aur.aur:
       name: gh-dash # A beautiful CLI dashboard extension for GitHub to display pull requests and issues with filters you care about
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Skype"
     kewlfft.aur.aur:
       name: skypeforlinux-bin # Skype for Linux - Stable/Release Version
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -172,20 +172,20 @@
       - thunderbird # Standalone mail and news reader from mozilla.org
       - thunderbird-i18n-ru # Russian language pack for Thunderbird
       - thunderbird-i18n-en-us # English (US) language pack for Thunderbird
-      state: latest
+      state: present
     become: true
 
   - name: "Install Postman"
     kewlfft.aur.aur:
       name: postman-bin
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
   - name: "Install Git Extras"
     kewlfft.aur.aur:
       name: git-extras
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -193,7 +193,7 @@
     community.general.pacman:
       name:
       - transmission-cli # Fast, easy, and free BitTorrent client (CLI tools, daemon and web client)
-      state: latest
+      state: present
     become: true
 
   - name: "Add current user to transmission group"
@@ -206,6 +206,6 @@
   - name: "Install Stig"
     kewlfft.aur.aur:
       name: stig # TUI and CLI client for the Transmission daemon
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"

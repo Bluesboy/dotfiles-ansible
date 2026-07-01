@@ -119,7 +119,7 @@
       - which # A utility to show the full path of commands
       - yazi # Blazing fast terminal file manager written in Rust, based on async I/O
       - zoxide # A smarter cd command for your terminal
-      state: latest
+      state: present
     become: true
 
   - name: "Set fish as default shell for current user"
@@ -140,7 +140,7 @@
       - udisks2-btrfs # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - BTRFS module
       - udisks2-lvm2 # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - LVM2 module
       - udisks2-docs # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies - documentation
-      state: latest
+      state: present
     become: true
 
   - name: "Set email for mdmonitor service"
@@ -163,7 +163,7 @@
       - systemd-manager-tui # Terminal UI for managing systemd services
       - sysz # fzf terminal UI for systemctl
       - systemctl-tui # A fast, simple TUI for interacting with systemd services and their logs
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -171,7 +171,7 @@
     kewlfft.aur.aur:
       name:
       - lazyjournal # TUI for journalctl, file system logs, as well Docker and Podman containers for quick viewing and filtering with fuzzy find and regex support
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"
 
@@ -179,6 +179,6 @@
     kewlfft.aur.aur:
       name:
       - rmlint-git # Tool to remove duplicates and other lint, being much faster than fdupes
-      state: latest
+      state: present
     become: true
     become_user: "{{ aur_builder_user }}"

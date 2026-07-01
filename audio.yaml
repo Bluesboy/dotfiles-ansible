@@ -12,7 +12,7 @@
       - pipewire-pulse # Low-latency audio/video router and processor - PulseAudio replacement
       - wireplumber # Session / policy manager implementation for PipeWire
       - helvum # GTK patchbay for PipeWire
-      state: latest
+      state: present
     become: true
 
   - name: "Install Bluez"
@@ -22,7 +22,7 @@
       - bluez-utils # Development and debugging utilities for the bluetooth protocol stack
       - bluez-tools # A set of tools to manage Bluetooth devices for Linux
       - bluetui # TUI for managing bluetooth devices
-      state: latest
+      state: present
     become: true
 
   - name: "Enable Bluetooth"
