@@ -1,0 +1,21 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: "Bootstrap Ansible dependencies"
+  hosts: localhost
+
+  tasks:
+  - name: "Create the AUR builder user"
+    ansible.builtin.user:
+      name: "{{ aur_builder_user }}"
+      create_home: true
+      group: wheel
+    become: true
+
+  - name: "Allow the AUR builder user to run pacman without a password"
+    ansible.builtin.lineinfile:
+      path: "/etc/sudoers.d/11-install-{{ aur_builder_user }}"
+      line: "{{ aur_builder_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+      create: true
+      mode: "0440"
+      validate: "visudo -cf %s"
+    become: true

@@ -1,4 +1,6 @@
 ANSIBLE_PLAYBOOK ?= site.yaml
+BOOTSTRAP_PLAYBOOK ?= bootstrap.yaml
+ANSIBLE_LINT_PLAYBOOKS ?= $(BOOTSTRAP_PLAYBOOK) $(ANSIBLE_PLAYBOOK)
 ANSIBLE_FLAGS ?=
 
 .PHONY: help
@@ -13,10 +15,10 @@ help: ## Show this help
 		printf "\033[32m %-30s\033[0m %-25s %s\n", target, deps, desc; \
 	}' $(MAKEFILE_LIST)
 
-.PHONY: bootstrap ansible/install deps lint syntax check apply
+.PHONY: bootstrap ansible/install deps bootstrap/apply lint syntax check apply
 
 #-- Bootstrap
-bootstrap: ansible/install deps ## Install system Ansible and project collections
+bootstrap: ansible/install deps bootstrap/apply ## Install Ansible, collections, and bootstrap users
 
 ansible/install: ## Install Ansible tools into the system
 	sudo pacman -S --needed ansible-core ansible-lint
@@ -24,11 +26,15 @@ ansible/install: ## Install Ansible tools into the system
 deps: ## Install Ansible Galaxy collections
 	ansible-galaxy collection install -r requirements.yaml
 
+bootstrap/apply: ## Apply bootstrap playbook
+	./$(BOOTSTRAP_PLAYBOOK) $(ANSIBLE_FLAGS)
+
 #-- Checks
 lint: ## Run ansible-lint
-	ansible-lint $(ANSIBLE_PLAYBOOK) --offline
+	ansible-lint $(ANSIBLE_LINT_PLAYBOOKS) --offline
 
 syntax: ## Run playbook syntax check
+	ansible-playbook $(BOOTSTRAP_PLAYBOOK) --syntax-check
 	ansible-playbook $(ANSIBLE_PLAYBOOK) --syntax-check
 
 check: syntax lint ## Run all checks
