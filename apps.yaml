@@ -14,10 +14,10 @@
   - name: "Create symlink for NeoVim configuration"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
-      dest: "~/.config/{{ item }}"
+      dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
       state: link
-      owner: 1000
-      group: 1000
+      owner: "{{ ansible_user_uid }}"
+      group: "{{ ansible_user_gid }}"
     loop: "{{ configs }}"
 
   - name: "Install CTPV Git"
@@ -47,7 +47,6 @@
       - zathura-pdf-mupdf # PDF support for Zathura (MuPDF backend) (Supports PDF, ePub, and OpenXPS)
       - zathura-ps # Adds ps support to zathura by using the libspectre library
       - wezterm # A GPU-accelerated cross-platform terminal emulator and multiplexer
-      update_cache: true
       state: latest
     become: true
 

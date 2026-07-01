@@ -34,20 +34,20 @@
   - name: "Enable TimesyncD"
     ansible.builtin.systemd:
       name: systemd-timesyncd
-      enabled: yes
+      enabled: true
     become: true
 
   - name: "Upgrade all packages"
     community.general.pacman:
-      update_cache: yes
-      upgrade: yes
+      update_cache: true
+      upgrade: true
     become: true
 
   - name: "Create the `aur_builder` user"
     become: true
     ansible.builtin.user:
       name: aur_builder
-      create_home: yes
+      create_home: true
       group: wheel
 
   - name: "Allow the `aur_builder` user to run `sudo pacman` without a password"
@@ -55,16 +55,16 @@
     ansible.builtin.lineinfile:
       path: /etc/sudoers.d/11-install-aur_builder
       line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-      create: yes
+      create: true
       validate: 'visudo -cf %s'
 
   - name: "Create symlink for configuration directories"
     ansible.builtin.file:
       src: "{{ playbook_dir }}/config/{{ item }}"
-      dest: "~/.config/{{ item }}"
+      dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
       state: link
-      owner: 1000
-      group: 1000
+      owner: "{{ ansible_user_uid }}"
+      group: "{{ ansible_user_gid }}"
     loop: "{{ configs }}"
 
   - name: "Add usev rule for Dactyl"
@@ -134,7 +134,6 @@
       - which # A utility to show the full path of commands
       - yazi # Blazing fast terminal file manager written in Rust, based on async I/O
       - zoxide # A smarter cd command for your terminal
-      update_cache: yes
       state: latest
     become: true
 
@@ -170,7 +169,7 @@
   - name: Instal Tmux Plugin Manager
     ansible.builtin.git:
       repo: https://github.com/tmux-plugins/tpm.git
-      dest: ~/.config/tmux/plugins/tpm
+      dest: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm"
 
   - name: "Install systemd tools"
     kewlfft.aur.aur:

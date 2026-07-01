@@ -4,6 +4,6 @@ collections:
 #AUR
 - name: kewlfft.aur
 #Install from github
-- name: quira.github
+- name: quera.github
   type: git
   source: https://github.com/QueraTeam/ansible-github

@@ -91,7 +91,6 @@
       - wireguard-tools # next generation secure network tunnel - tools for configuration
       - vortix # A TUI for WireGuard and OpenVPN with real-time telemetry and leak guarding
       - v2ray # A platform for building proxies to bypass network restrictions
-      update_cache: true
       state: latest
     become: true
 
@@ -128,6 +127,5 @@
     community.general.pacman:
       name:
       - trippy # A network diagnostic tool
-      update_cache: true
       state: latest
     become: true
