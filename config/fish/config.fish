@@ -5,7 +5,7 @@
 fish_vi_key_bindings
 
 #Set Catpuccin Macchiato theme
-fish_config theme choose "Catppuccin Macchiato"
+fish_config theme choose "catppuccin-macchiato"
 
 # Initialize Starship prompt
 starship init fish | source
@@ -99,6 +99,3 @@ set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $
 set PATH $PATH /home/bluesboy/.local/bin
 
 fish_add_path -m ~/.luarocks/bin/
-
-# Initiate Zoxide
-zoxide init fish | source

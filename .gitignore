@@ -17,6 +17,11 @@ config/fish/conf.d/abbr_tips.fish
 config/fish/conf.d/done.fish
 config/fish/conf.d/puffer_fish_key_bindings.fish
 config/fish/conf.d/sponge.fish
+config/fish/conf.d/zoxide.fish
+config/fish/functions/zoxide.fish
+config/fish/completions/zoxide.fish
+config/fish/functions/up-or-search.fish
+config/fish/conf.d/virtualfish-loader.fish
 config/fish/functions/sponge_filter_failed.fish
 config/fish/functions/sponge_filter_matched.fish
 config/tmux/plugins/
