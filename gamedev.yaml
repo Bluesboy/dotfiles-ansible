@@ -1,9 +1,0 @@
-#!/usr/bin/env ansible-playbook
----
-- name: "Install game development tools"
-  hosts: localhost
-
-  tasks:
-  - name: "Install bevy Rust package"
-    community.general.cargo:
-      name: bevy

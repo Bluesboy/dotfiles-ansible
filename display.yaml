@@ -96,7 +96,6 @@
       group: root
       mode: "0644"
     become: true
-    register: ly_override
     notify: "Reload systemd"
 
   # UI components

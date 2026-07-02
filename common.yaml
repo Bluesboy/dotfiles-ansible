@@ -41,6 +41,14 @@
   - name: "Enable TimesyncD"
     ansible.builtin.systemd:
       name: systemd-timesyncd
+      state: started
+      enabled: true
+    become: true
+
+  - name: "Enable iwd"
+    ansible.builtin.systemd:
+      name: iwd
+      state: started
       enabled: true
     become: true
 
@@ -128,6 +136,36 @@
       state: present
     become: true
 
+  - name: "Create reflector timer override directory"
+    ansible.builtin.file:
+      path: /etc/systemd/system/reflector.timer.d
+      state: directory
+      owner: root
+      group: root
+      mode: "0755"
+    become: true
+
+  - name: "Run reflector every three days"
+    ansible.builtin.copy:
+      dest: /etc/systemd/system/reflector.timer.d/override.conf
+      content: |
+        [Timer]
+        OnCalendar=
+        OnBootSec=15min
+        OnUnitActiveSec=3d
+      owner: root
+      group: root
+      mode: "0644"
+    become: true
+
+  - name: "Enable reflector timer"
+    ansible.builtin.systemd:
+      name: reflector.timer
+      state: started
+      enabled: true
+      daemon_reload: true
+    become: true
+
   - name: "Set fish as default shell for current user"
     ansible.builtin.user:
       name: "{{ ansible_facts['user_id'] }}"
@@ -149,12 +187,11 @@
       state: present
     become: true
 
-  - name: "Set email for mdmonitor service"
-    ansible.builtin.lineinfile:
-      path: /etc/mdadm.conf
-      regexp: '^#MAILADDR'
-      line: 'MAILADDR root'
-      state: present
+  - name: "Enable smartd"
+    ansible.builtin.systemd:
+      name: smartd
+      state: started
+      enabled: true
     become: true
 
   - name: "Install Tmux Plugin Manager"

@@ -14,7 +14,5 @@
   import_playbook: apps.yaml
 - name: "Virtualization Utilities and Tools"
   import_playbook: virt.yaml
-- name: "Install game development tools"
-  import_playbook: gamedev.yaml
 - name: "Other Apps"
   import_playbook: misc.yaml

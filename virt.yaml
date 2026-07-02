@@ -137,7 +137,7 @@
       state: present
     become: true
 
-  - name: "Set the UNIX domain socket group ownership to libvirt"
+  - name: "Set the UNIX domain socket permissions"
     ansible.builtin.lineinfile:
       path: /etc/libvirt/libvirtd.conf
       regexp: '^#unix_sock_rw_perms'
@@ -190,7 +190,7 @@
     - nix-users
     - nixbld
 
-  - name: "Enable Docker"
+  - name: "Enable service sockets"
     ansible.builtin.systemd:
       name: "{{ item }}"
       state: started
