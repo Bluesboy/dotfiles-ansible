@@ -4,11 +4,16 @@
   hosts: localhost
 
   tasks:
+  - name: "Create the AUR builder group"
+    ansible.builtin.group:
+      name: "{{ aur_builder_user }}"
+    become: true
+
   - name: "Create the AUR builder user"
     ansible.builtin.user:
       name: "{{ aur_builder_user }}"
       create_home: true
-      group: wheel
+      group: "{{ aur_builder_user }}"
     become: true
 
   - name: "Allow the AUR builder user to run pacman without a password"
