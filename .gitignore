@@ -32,7 +32,6 @@ config/fish/completions/argocd.fish
 config/fish/completions/cloud-sql-proxy.fish
 config/fish/completions/istioctl.fish
 config/fish/completions/minikube.fish
-config/nvim/lazy-lock.json
 config/lazygit/state.yml
 roles
 btop.log
