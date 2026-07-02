@@ -1,0 +1,84 @@
+[[plugin.deps]]
+use = "Rolv-Apneseth/bypass"
+rev = "c1e5fcf"
+hash = "208e77480824f62558a5b037c8569d61"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
+
+[[plugin.deps]]
+use = "DreamMaoMao/fg"
+rev = "b9fb819"
+hash = "7d62f2eae04f77d13a21917c169b151b"
+
+[[plugin.deps]]
+use = "boydaihungst/file-extra-metadata"
+rev = "044274c"
+hash = "14006064a6a53a1770fbdcefb97a8347"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "1db18bb"
+hash = "c8d30a70659f1b880407e61c564ab4e8"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "e73fd74"
+hash = "6ea5f37c7f219671ec504cb8311f889d"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:lsar"
+rev = "1db18bb"
+hash = "c1c66e28145e28e581e74e2d6da4fdf1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "1db18bb"
+hash = "384464b6df8cb807425c521f8cd790f3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "1db18bb"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
+
+[[plugin.deps]]
+use = "orhnk/system-clipboard"
+rev = "75a5330"
+hash = "2eca70f99d25c661e0a92000843d001e"
+
+[[plugin.deps]]
+use = "iynaix/time-travel"
+rev = "aaec6e2"
+hash = "3d52b2b88c91a4ece2f7ed68ff39bb7b"
+
+[[plugin.deps]]
+use = "kirasok/torrent-preview"
+rev = "f465282"
+hash = "d849ad596b8a77902e62a42403aeba40"
+
+[[plugin.deps]]
+use = "pirafrank/what-size"
+rev = "179ebf6"
+hash = "57056b9728006881d580ccabe8154a9c"
+
+[[plugin.deps]]
+use = "larry-oates/open-git-remote"
+rev = "72158d6"
+hash = "ed359abc14ba915a12e759435ed721ab"
+
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "dc9c103"
+hash = "949fc14ee6b6f8565ac7012d338b37c0"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "0670801"
+hash = "67f2240fd9c98f21714527a24cd672f8"

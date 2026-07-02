@@ -41,4 +41,4 @@ config/yazi/*.toml-*
 config/wezterm/tmp
 config/fish/themes
 config/yazi/flavors/catppuccin-macchiato.yazi
-/config/yazi/package.toml
+.ansible/
