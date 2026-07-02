@@ -57,6 +57,12 @@
       update_cache: true
       upgrade: true
     become: true
+    register: pacman_upgrade
+
+  - name: "Show upgraded packages"
+    ansible.builtin.debug:
+      var: pacman_upgrade.packages
+    when: pacman_upgrade.packages | default([]) | length > 0
 
   - name: "Create symlink for configuration directories"
     ansible.builtin.file:
