@@ -90,12 +90,9 @@ if status --is-interactive
   abbr --add --global -- v 'vim'
 end
 
-set -gx GOPATH $HOME/go; set -gx GOROOT $HOME/.go; set -gx PATH $GOPATH/bin $PATH; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+set -gx GOPATH $HOME/go; set -gx GOROOT $HOME/.go; fish_add_path -m $GOPATH/bin; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 # Enable krew
-set -q KREW_ROOT; and set -gx PATH $PATH $KREW_ROOT/.krew/bin; or set -gx PATH $PATH $HOME/.krew/bin
-
-# Created by `pipx` on 2024-04-29 19:26:34
-set PATH $PATH /home/bluesboy/.local/bin
+set -q KREW_ROOT; and fish_add_path $KREW_ROOT/.krew/bin; or fish_add_path $HOME/.krew/bin
 
 fish_add_path -m ~/.luarocks/bin/
