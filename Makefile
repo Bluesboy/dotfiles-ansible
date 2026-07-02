@@ -27,7 +27,7 @@ deps: ## Install Ansible Galaxy collections
 	ansible-galaxy collection install -r requirements.yaml
 
 bootstrap/apply: ## Apply bootstrap playbook
-	./$(BOOTSTRAP_PLAYBOOK) $(ANSIBLE_FLAGS)
+	./$(BOOTSTRAP_PLAYBOOK) --ask-become-pass $(ANSIBLE_FLAGS)
 
 #-- Checks
 lint: ## Run ansible-lint

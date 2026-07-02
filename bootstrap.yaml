@@ -4,6 +4,17 @@
   hosts: localhost
 
   tasks:
+  - name: "Allow the invoking user to run sudo without a password"
+    ansible.builtin.lineinfile:
+      path: "/etc/sudoers.d/10-nopasswd-{{ bootstrap_user }}"
+      line: "{{ bootstrap_user }} ALL=(ALL:ALL) NOPASSWD: ALL"
+      create: true
+      mode: "0440"
+      validate: "visudo -cf %s"
+    become: true
+    vars:
+      bootstrap_user: "{{ ansible_facts['env']['SUDO_USER'] | default(ansible_facts['user_id']) }}"
+
   - name: "Create the AUR builder group"
     ansible.builtin.group:
       name: "{{ aur_builder_user }}"
