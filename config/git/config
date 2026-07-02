@@ -7,9 +7,6 @@
   ff = only
   rebase = true
 
-[core]
-	excludesfile = /home/bluesboy/.config/git/ignore
-
 [alias]
   lo = log -10
   s = status
