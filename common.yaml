@@ -76,7 +76,7 @@
   - name: "Add udev rule for Dactyl"
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/config/udev/dactyl.rules"
-      dest: /etc/udev/rules.d/92-viia.rules
+      dest: /etc/udev/rules.d/92-dactyl.rules
       owner: root
       group: root
       mode: "0644"
