@@ -62,8 +62,8 @@
       cmd: >
         efibootmgr
         --create
-        --disk /dev/nvme0n1
-        --part 1
+        --disk {{ efi_disk }}
+        --part {{ efi_partition }}
         --label "Limine"
         --loader '\EFI\limine\BOOTX64.EFI'
     when: "'Limine' not in limine_efi_entries.stdout"

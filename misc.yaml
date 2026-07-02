@@ -7,6 +7,7 @@
   - name: "Install Downgrade"
     kewlfft.aur.aur:
       name: downgrade # Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -14,6 +15,7 @@
   - name: "Install Brave browser"
     kewlfft.aur.aur:
       name: brave-bin # Web browser that blocks ads and trackers by default
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -21,6 +23,7 @@
   - name: "Install Zoom"
     kewlfft.aur.aur:
       name: zoom # Video Conferencing and Web Conferencing Service
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -28,6 +31,7 @@
   - name: "Install TLDR"
     kewlfft.aur.aur:
       name: tlrc-bin # Official tldr client written in Rust
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -112,6 +116,7 @@
     kewlfft.aur.aur:
       name:
       - expressvpn # Proprietary VPN client for Linux
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -120,6 +125,7 @@
     kewlfft.aur.aur:
       name:
       - xfr-bin # A modern iperf3 alternative with a live TUI, multi-client server, and QUIC support
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"

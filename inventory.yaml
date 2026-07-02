@@ -7,4 +7,6 @@ local:
     ansible_ask_become_pass: true
     aur_builder_user: aur_builder
     aur_helper: paru
+    efi_disk: /dev/nvme0n1
+    efi_partition: 1
 ...

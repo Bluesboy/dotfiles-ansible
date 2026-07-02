@@ -24,6 +24,13 @@
       replace: '\1'
     become: true
 
+  - name: "Enable systemd-resolved"
+    ansible.builtin.systemd:
+      name: systemd-resolved
+      state: started
+      enabled: true
+    become: true
+
   - name: "Create stub link for resolv.conf"
     ansible.builtin.file:
       src: "/run/systemd/resolve/resolv.conf"
@@ -85,7 +92,6 @@
       - git-delta # A syntax-highlighting pager for git
       - github-cli # The GitHub CLI
       - go-yq # Portable command-line YAML processor
-      - hub # cli interface for Github
       - impala # TUI for managing wifi
       - iwd # Internet Wireless Daemon
       - jq # Command-line JSON processor
@@ -163,6 +169,7 @@
       - systemd-manager-tui # Terminal UI for managing systemd services
       - sysz # fzf terminal UI for systemctl
       - systemctl-tui # A fast, simple TUI for interacting with systemd services and their logs
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -171,6 +178,7 @@
     kewlfft.aur.aur:
       name:
       - lazyjournal # TUI for journalctl, file system logs, as well Docker and Podman containers for quick viewing and filtering with fuzzy find and regex support
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -179,6 +187,7 @@
     kewlfft.aur.aur:
       name:
       - rmlint-git # Tool to remove duplicates and other lint, being much faster than fdupes
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"

@@ -42,6 +42,7 @@
     kewlfft.aur.aur:
       name:
       - lima-bin # Linux virtual machines, typically on macOS, for running containerd.
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -50,6 +51,7 @@
     kewlfft.aur.aur:
       name:
       - kubecolor # Colorize your kubectl output
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -57,7 +59,7 @@
   - name: "Set subuids for Podman"
     ansible.builtin.lineinfile:
       path: "/etc/subuid"
-      regexp: "{{ ansible_facts['user_id'] }}"
+      regexp: "^{{ ansible_facts['user_id'] }}:"
       line: "{{ ansible_facts['user_id'] }}:100000:65535"
       backup: true
     become: true
@@ -65,7 +67,7 @@
   - name: "Set subgids for Podman"
     ansible.builtin.lineinfile:
       path: "/etc/subgid"
-      regexp: "{{ ansible_facts['user_id'] }}"
+      regexp: "^{{ ansible_facts['user_id'] }}:"
       line: "{{ ansible_facts['user_id'] }}:100000:65535"
       backup: true
     become: true
@@ -81,6 +83,7 @@
     kewlfft.aur.aur:
       name:
       - lazydocker # A simple terminal UI for docker and docker-compose, written in Go with the gocui library.
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -161,6 +164,7 @@
       - cockpit-file-sharing # A Cockpit plugin to easily manage samba and NFS file sharing.
       - cockpit-navigator # A Featureful File Browser for Cockpit
       - cockpit-pacman # Cockpit plugin for Arch Linux package management using alpm.rs
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -169,6 +173,7 @@
     kewlfft.aur.aur:
       name:
       - kind # Kubernetes IN Docker - local clusters for testing Kubernetes
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -202,6 +207,7 @@
     kewlfft.aur.aur:
       name:
       - oxker # A simple TUI to view & control Docker containers
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"

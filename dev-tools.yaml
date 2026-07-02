@@ -37,6 +37,7 @@
       - lazymake-bin # Modern TUI for Makefiles with interactive target selection, dependency visualization, and command safety analysis
       - tenv-bin # OpenTofu, Terraform, Terragrunt, Terramate and Atmos version manager, written in Go
       - ueberzugpp # Command line utility which allows to display images in the terminal, written in C++
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -93,11 +94,6 @@
       name: ipython
       state: present
 
-  - name: "Install Euporie"
-    community.general.pipx:
-      name: euporie
-      state: absent
-
   - name: "Install Jupyterlab"
     community.general.pipx:
       name: jupyterlab
@@ -129,6 +125,7 @@
       name:
       - python-kaleido-bin # Static image export for web-based visualization libraries with zero dependencies
       - python-plotly # An open-source, interactive graphing library
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -189,6 +186,7 @@
     kewlfft.aur.aur:
       name:
       - stylua # Code formatter for Lua
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -235,6 +233,7 @@
       - act # Run your GitHub Actions locally
       - bfg # Removes large or troublesome blobs like git-filter-branch does, but faster.
       - git-koji-bin # An interactive CLI for creating conventional commits
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -263,6 +262,7 @@
       - lazysql # A cross-platform TUI database management tool written in Go
       - redisinsight # Desktop manager that provides an intuitive and efficient GUI for Redis, allowing you to interact with your databases, monitor, and manage your data.
       - sqlit # The lazygit of SQL databases - a lightweight TUI for SQL Server, PostgreSQL, MySQL, SQLite, and more
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -280,6 +280,7 @@
       - bruno-bin # Opensource API Client for Exploring and Testing APIs
       - hoppscotch-bin # Hoppscotch. Open source API development ecosystem
       - posting # The modern API client that lives in your terminal
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -306,6 +307,7 @@
       - sipcalc # An advanced console based IP subnet calculator
       - viddy # A modern watch command
       - wrk # Modern HTTP benchmarking tool
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -338,6 +340,7 @@
       - kcl-lang # KCL Programming Language
       - krew # Krew is the package manager for kubectl plugins
       - rancher-k3d-bin # Little helper to run Rancher Labs k3s in Docker
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -349,6 +352,7 @@
       - kafkactl # Command Line Tool for managing Apache Kafka
       - kaskade # A text user interface for Kafka. Interact and consume topics from your terminal in style!
       - kcat-cli # A generic non-JVM producer and consumer for Apache Kafka, think of it as a netcat for Kafka
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -394,6 +398,7 @@
     kewlfft.aur.aur:
       name:
       - exercism # Command line tool for exercism.io
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -420,6 +425,7 @@
       - pi # AI coding agent for the terminal — minimal, extensible and optimized for tool use
       - qwen-code-bin # Open-source AI agent based on Gemini CLI by QwenLM
       - rtk-bin # CLI proxy that reduces LLM token consumption by 60-90% on common dev commands
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"

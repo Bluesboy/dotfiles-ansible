@@ -8,6 +8,7 @@
     - mpv
     - pass-git-helper
     - flameshot
+    - wezterm
     - zathura
 
   tasks:
@@ -23,6 +24,7 @@
   - name: "Install CTPV Git"
     kewlfft.aur.aur:
       name: ctpv-git # Fast image previews for lf
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -30,6 +32,7 @@
   - name: "Install Archivemount"
     kewlfft.aur.aur:
       name: archivemount
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -71,6 +74,7 @@
   - name: "Install pass-git-helper"
     kewlfft.aur.aur:
       name: pass-git-helper
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -78,6 +82,7 @@
   - name: "Install Opera"
     kewlfft.aur.aur:
       name: opera # A fast and secure web browser
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -122,6 +127,7 @@
     kewlfft.aur.aur:
       name:
       - wayscriber-bin # Screen annotation tool for Wayland compositors (prebuilt binaries)
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -136,6 +142,7 @@
   - name: "Install Slack"
     kewlfft.aur.aur:
       name: slack-desktop # Slack Desktop (Beta) for Linux
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -148,6 +155,7 @@
   - name: "Install trgui-ng"
     kewlfft.aur.aur:
       name: trgui-ng
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -155,13 +163,7 @@
   - name: "Install gh-dash"
     kewlfft.aur.aur:
       name: gh-dash # A beautiful CLI dashboard extension for GitHub to display pull requests and issues with filters you care about
-      state: present
-    become: true
-    become_user: "{{ aur_builder_user }}"
-
-  - name: "Install Skype"
-    kewlfft.aur.aur:
-      name: skypeforlinux-bin # Skype for Linux - Stable/Release Version
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -178,6 +180,7 @@
   - name: "Install Postman"
     kewlfft.aur.aur:
       name: postman-bin
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -185,6 +188,7 @@
   - name: "Install Git Extras"
     kewlfft.aur.aur:
       name: git-extras
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
@@ -206,6 +210,7 @@
   - name: "Install Stig"
     kewlfft.aur.aur:
       name: stig # TUI and CLI client for the Transmission daemon
+      use: "{{ aur_helper }}"
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"

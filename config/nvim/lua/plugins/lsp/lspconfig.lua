@@ -255,7 +255,7 @@ return {
               callSnippet = "Replace",
             },
             diagnostics = {
-              globals = { "vim", "awesome", "client", "fs", "Command" },
+              globals = { "vim", "fs", "Command" },
             },
             telemetry = {
               enable = false,
