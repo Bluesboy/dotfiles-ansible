@@ -28,7 +28,7 @@
         "custom/power"
     ],
     "niri/language": {
-        "format": "{shortDescription}",
+        "format": "{shortDescription}"
         // "format-en": "",
         // "format-ru": "",
     },
