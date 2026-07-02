@@ -121,6 +121,8 @@
       - vagrant # Build and distribute virtualized development environments
       state: present
     become: true
+    notify:
+    - "Generate minikube fish completions"
 
   - name: "Install Icedtea-web"
     community.general.pacman:
@@ -211,3 +213,9 @@
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
+
+  handlers:
+  - name: "Generate minikube fish completions"
+    ansible.builtin.shell:
+      cmd: minikube completion fish > "{{ ansible_facts['user_dir'] }}/.config/fish/completions/minikube.fish"
+    changed_when: true

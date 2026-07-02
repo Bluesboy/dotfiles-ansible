@@ -23,6 +23,10 @@ config/tmux/plugins/
 **/fishd.tmp.*
 config/fish/completions/gopass.fish
 config/fish/completions/kind.fish
+config/fish/completions/argocd.fish
+config/fish/completions/cloud-sql-proxy.fish
+config/fish/completions/istioctl.fish
+config/fish/completions/minikube.fish
 config/nvim/lazy-lock.json
 config/lazygit/state.yml
 roles

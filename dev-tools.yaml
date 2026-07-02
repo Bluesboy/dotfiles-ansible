@@ -323,6 +323,9 @@
       - packer # tool for creating identical machine images for multiple platforms from a single source configuration
       state: present
     become: true
+    notify:
+    - "Generate argocd fish completions"
+    - "Generate istioctl fish completions"
 
   - name: "Install Cloud and Kubernetes tools from AUR"
     kewlfft.aur.aur:
@@ -344,6 +347,8 @@
       state: present
     become: true
     become_user: "{{ aur_builder_user }}"
+    notify:
+    - "Generate cloud-sql-proxy fish completions"
 
   - name: "Install template and Kafka tools from AUR"
     kewlfft.aur.aur:
@@ -457,3 +462,19 @@
       state: started
       enabled: true
     become: true
+
+  handlers:
+  - name: "Generate argocd fish completions"
+    ansible.builtin.shell:
+      cmd: argocd completion fish > "{{ ansible_facts['user_dir'] }}/.config/fish/completions/argocd.fish"
+    changed_when: true
+
+  - name: "Generate istioctl fish completions"
+    ansible.builtin.shell:
+      cmd: istioctl completion fish > "{{ ansible_facts['user_dir'] }}/.config/fish/completions/istioctl.fish"
+    changed_when: true
+
+  - name: "Generate cloud-sql-proxy fish completions"
+    ansible.builtin.shell:
+      cmd: cloud-sql-proxy completion fish > "{{ ansible_facts['user_dir'] }}/.config/fish/completions/cloud-sql-proxy.fish"
+    changed_when: true
