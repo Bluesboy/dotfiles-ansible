@@ -18,6 +18,8 @@ Install Ansible tools, Galaxy collections, and prepare the AUR builder user:
 make bootstrap
 ```
 
+The bootstrap playbook asks for the sudo password once, then configures passwordless sudo for the invoking user, creates the dedicated AUR builder user and group, and allows the builder to run pacman without a password.
+
 ## Apply
 
 Apply the main local playbook:
